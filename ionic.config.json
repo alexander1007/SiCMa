@@ -1,0 +1,7 @@
+{
+  "name": "SiCMa",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
