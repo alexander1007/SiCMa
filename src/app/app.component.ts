@@ -5,6 +5,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
+
+export const firebaseConfig={
+  apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
+    authDomain: "sicma-54be2.firebaseapp.com",
+    databaseURL: "https://sicma-54be2.firebaseio.com",
+    projectId: "sicma-54be2",
+    storageBucket: "",
+    messagingSenderId: "985040714090"
+};
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +22,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
