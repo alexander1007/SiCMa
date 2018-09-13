@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+/**
+ * Generated class for the ElementoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-elemento',
+  templateUrl: 'elemento.html',
 })
-export class HomePage {
+export class ElementoPage {
+  elementos: Array<{id:number, nombre: String, descripcion: String, fondo: String}>;
 
-  //arreglo de los diferentes elementos a construir
- elementos: Array<{id:number, nombre: String, descripcion: String, fondo: String}>;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
 
     this.elementos = [
       {id:1, nombre:'Muro', descripcion: 'Utilizados para cerrar espacios', fondo:'/assets/imgs/muro.jpg'},
@@ -20,6 +28,12 @@ export class HomePage {
     ]
 
   }
+  
+
+
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ElementoPage');
+  }
 
 }
-

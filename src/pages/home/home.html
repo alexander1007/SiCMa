@@ -1,13 +1,8 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Elemento a Construir</ion-title>
-  </ion-navbar>
+ 
 </ion-header>
 
-<ion-content class="card-background-page" padding>
+<ion-content class="card-background-page fondo" padding>
   <ion-card ion-item *ngFor="let elemento of elementos">
     <img [src]="elemento.fondo"/>
     <div class="card-title">{{elemento.nombre}}</div>
