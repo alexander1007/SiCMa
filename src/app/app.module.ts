@@ -8,17 +8,17 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {AngularFireModule} from 'angularfire2';
+//import {AngularFireModule} from 'angularfire2';
 import { LoginPage } from '../pages/login/login';
 
-export const firebaseConfig={
+/* export const firebaseConfig={
   apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
     authDomain: "sicma-54be2.firebaseapp.com",
     databaseURL: "https://sicma-54be2.firebaseio.com",
     projectId: "sicma-54be2",
     storageBucket: "",
     messagingSenderId: "985040714090"
-};
+}; */
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ export const firebaseConfig={
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+  //  AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

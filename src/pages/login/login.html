@@ -4,11 +4,10 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-content class="fondo" padding>
+  <ion-list class="alineacionLogin">
 
-<ion-content padding>
-  <ion-list>
-
-    <ion-item>
+    <ion-item class="usuario">
       <ion-label>Usuario</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
@@ -17,15 +16,14 @@
       <ion-label>Contraseña</ion-label>
       <ion-input type="password"></ion-input>
     </ion-item>
-  
-  </ion-list>
+    </ion-list>
   
   <ion-row>
     <ion-col>
-      <button block>Ingresar</button>
+      <button block (click)="openPage('home')">Ingresar</button>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <!-- <ion-row>
     <ion-col col-5>
       <button block>Registrarse</button>
     </ion-col col-5>
@@ -34,5 +32,5 @@
     <ion-col col-5>
       <button block>Informacion</button>
       </ion-col col-5>
-  </ion-row>
+  </ion-row> -->
 </ion-content>

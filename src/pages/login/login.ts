@@ -13,8 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
+openPage(home) {
+  this.navCtrl.setRoot(home);
+} 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
