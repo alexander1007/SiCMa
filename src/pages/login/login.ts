@@ -24,10 +24,11 @@ export class LoginPage {
   }
 
  async ingresar(user: Usuario){
+  this.navCtrl.setRoot('ElementoPage');
         try{
         const result =  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
         console.log(result);
-          this.navCtrl.setRoot('ElementoPage');
+          
       }
       catch(e){
         console.error(e);
