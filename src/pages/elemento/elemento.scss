@@ -1,10 +1,5 @@
-page-home {
+page-elemento {
     .card-background-page {
-    }
-
-    .fondo{
-      background-image: url("/assets/imgs/Fondo.png");
-      background-size: 352px 649px;
 
         ion-card {
           position: relative;
@@ -36,5 +31,4 @@ page-home {
         background-size: 352px 612px;
         background-repeat: no-repeat;
     }
-
 }

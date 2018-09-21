@@ -1,0 +1,14 @@
+<ion-header>
+ 
+  </ion-header>
+  
+  <ion-content class="card-background-page fondo" padding>
+    <ion-card ion-item *ngFor="let elemento of elementos">
+      <img [src]="elemento.fondo"/>
+      <div class="card-title">{{elemento.nombre}}</div>
+      <div class="card-subtitle">{{elemento.descripcion}}</div>
+    </ion-card>
+  
+    
+  </ion-content>
+  

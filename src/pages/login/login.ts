@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Usuario } from '../../models/usuario';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -15,15 +18,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 
 export class LoginPage {
-
-openPage(home) {
-  this.navCtrl.setRoot(home);
-} 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+   user = {} as Usuario;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private afAuth: AngularFireAuth
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+ async ingresar(user: Usuario){
+  this.navCtrl.setRoot('ElementoPage');
+        try{
+        const result =  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
+        console.log(result);
+          
+      }
+      catch(e){
+        console.error(e);
+      }
+}
+
 
 }

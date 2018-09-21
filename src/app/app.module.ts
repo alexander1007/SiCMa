@@ -11,33 +11,44 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //import {AngularFireModule} from 'angularfire2';
 import { LoginPage } from '../pages/login/login';
 
-/* export const firebaseConfig={
-  apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
-    authDomain: "sicma-54be2.firebaseapp.com",
-    databaseURL: "https://sicma-54be2.firebaseio.com",
-    projectId: "sicma-54be2",
-    storageBucket: "",
-    messagingSenderId: "985040714090"
-}; */
 
+// zona de coneccion con firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HomePageModule } from '../pages/home/home.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { ElementoPageModule } from '../pages/elemento/elemento.module';
+export const firebaseConfig = {
+
+  apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
+  authDomain: "sicma-54be2.firebaseapp.com",
+  databaseURL: "https://sicma-54be2.firebaseio.com",
+  projectId: "sicma-54be2",
+  storageBucket: "sicma-54be2.appspot.com",
+  messagingSenderId: "985040714090"
+};
+ 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage,
-    LoginPage
+   
   ],
   imports: [
     BrowserModule,
+    HomePageModule,
+    LoginPageModule,
+    ElementoPageModule,
     IonicModule.forRoot(MyApp),
-  //  AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage,
-    LoginPage
+ 
+
   ],
   providers: [
     StatusBar,
