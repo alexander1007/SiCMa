@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ListaElementosService } from '../../services/elementos/elemento.service';
+import firebase from 'firebase';
+import { Storage } from '@ionic/storage';
+import { Elemento } from "../../app/models/elemento";
+import { log } from 'util';
+
+
 
 /**
  * Generated class for the ElementoPage page.
@@ -14,26 +21,51 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'elemento.html',
 })
 export class ElementoPage {
-  elementos: Array<{id:number, nombre: String, descripcion: String, fondo: String}>;
+  //elementos: Array<{id:number, nombre: String, descripcion: String, fondo: String}>;
+    elementos: any = [];
+    imagenes: string[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public elementoService: ListaElementosService,
+    public storage: Storage
+  ) {
 
 
-    this.elementos = [
-      {id:1, nombre:'Muro', descripcion: 'Utilizados para cerrar espacios', fondo:'/assets/imgs/muro.jpg'},
-      {id:2, nombre:'Cielo Raso', descripcion:'Uso Decorativo', fondo:'/assets/imgs/cielo.jpg'},
-      {id:3, nombre:'Entrepiso', descripcion:'Division entre un piso y otro', fondo:'/assets/imgs/entrepiso.jpg'},
-      {id:4, nombre:'Viga/Columna Concreto', descripcion:'Elemento en concreto', fondo:'/assets/imgs/concreto.jpg'},
-      {id:5, nombre:'Cubierta', descripcion:'Es la teja de la edificacion',fondo:'/assets/imgs/cubierta.jpg'}
-    ]
+    this.elementos = [];
+    this.elementoService.getListaElementos().valueChanges()
+    .subscribe(data =>{
+      console.log(data);
+      this.elementos = data;
+      this.imagenes = Array(this.elementos.length);
+      for (var index = 0; index < this.elementos.length; index++) {
+       
+        this.imagenes[index] = `img/elementos/`+this.elementos[index].fondo;
+        this.generarFotos(index);
+       
+      }
+
+    });
+ 
+
+   
 
   }
   
 
 
-
+  generarFotos(index){
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(this.imagenes[index]);
+    imageRef.getDownloadURL().then(url =>{
+      this.imagenes[index] = url;
+    this.elementos[index].imagen = url;
+    console.log('generando');
+    
+    console.log(url);
+    });
+}
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ElementoPage');
   }
 
 }

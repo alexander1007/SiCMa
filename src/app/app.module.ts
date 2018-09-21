@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HomePageModule } from '../pages/home/home.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ElementoPageModule } from '../pages/elemento/elemento.module';
+import { ListaElementosService } from '../services/elementos/elemento.service';
 export const firebaseConfig = {
 
   apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
@@ -28,6 +29,9 @@ export const firebaseConfig = {
   storageBucket: "sicma-54be2.appspot.com",
   messagingSenderId: "985040714090"
 };
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { IonicStorageModule } from '@ionic/storage';
+
  
 @NgModule({
   declarations: [
@@ -42,7 +46,8 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +58,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ListaElementosService
   ]
 })
 export class AppModule {}

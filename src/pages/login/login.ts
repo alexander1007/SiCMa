@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Usuario } from '../../models/usuario';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Usuario } from '../../app/models/usuario';
 
 
 /**
@@ -25,14 +25,14 @@ export class LoginPage {
 
  async ingresar(user: Usuario){
   this.navCtrl.setRoot('ElementoPage');
-        try{
-        const result =  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
-        console.log(result);
+      //   try{
+      //   const result =  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
+      //   console.log(result);
           
-      }
-      catch(e){
-        console.error(e);
-      }
+      // }
+      // catch(e){
+      //   console.error(e);
+      // }
 }
 
 
