@@ -1,14 +1,27 @@
-<ion-header>
- 
+
+  <ion-header>
+
+      <ion-navbar>
+          
+          <ion-title>
+            Elementos
+          </ion-title>
+          <p>Elija el elemento a construir</p>
+        </ion-navbar>
+  
   </ion-header>
-  
-  <ion-content class="card-background-page fondo" padding>
-    <ion-card ion-item *ngFor="let elemento of elementos">
-      <img [src]="elemento.fondo"/>
-      <div class="card-title">{{elemento.nombre}}</div>
-      <div class="card-subtitle">{{elemento.descripcion}}</div>
-    </ion-card>
-  
+  <ion-content class="card-background-page fondo" >
+      <ion-card  *ngFor="let elemento of elementos">
+          <img [src]="elemento.imagen"/>
+          <ion-card-content class="fondo_rojo">
+        
+              <h1 class="blanco">{{elemento.nombre}}</h1>
+              <p  class="blanco">
+                  {{elemento.descripcion}}
+              </p>
+          </ion-card-content>
+        </ion-card>
+
     
   </ion-content>
   
