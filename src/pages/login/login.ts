@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Usuario } from '../../app/models/usuario';
+import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
+import { ElementoPage } from '../elemento/elemento';
+//import { User } from 'firebase';
 
 
 /**
@@ -17,23 +20,49 @@ import { Usuario } from '../../app/models/usuario';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-   user = {} as Usuario;
+  user= { } as Usuario;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private afAuth: AngularFireAuth
+  private afAuth: AngularFireAuth,
+    private database: AngularFireDatabase,
+    private alertCtrl: AlertController
   ) {
   }
 
- async ingresar(user: Usuario){
-  this.navCtrl.setRoot('ElementoPage');
-      //   try{
-      //   const result =  this.afAuth.auth.signInWithEmailAndPassword(user.correo, user.contrasena);
-      //   console.log(result);
-          
-      // }
-      // catch(e){
-      //   console.error(e);
-      // }
+// autenticar
+ingresar(user: Usuario) 
+{
+console.log(user);
+
+  if(user.email!=null && user.password!=null){
+    this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password ) 
+    
+ .then((success)=>{
+
+   const authObserv= this.afAuth.authState.subscribe(auth => {
+   
+      this.navCtrl.setRoot(ElementoPage); 
+  }) // autenticar
+}).catch((err)=>{
+  let alert = this.alertCtrl.create({
+    title: 'Autenticación Incorrecta',
+    subTitle: "Verifica tú Correo y Contraseña",
+    buttons: ['Aceptar']
+  });
+  alert.present();
+}) 
+//pendiiente limpiar pagina de login al ir atras
 }
+else{
+  let alert = this.alertCtrl.create({
+    title: 'Autenticación Incorrecta',
+    subTitle: "Faltan datos",
+    buttons: ['Aceptar']
+  });
+  alert.present();
+}
+
+ }
 
 
 }

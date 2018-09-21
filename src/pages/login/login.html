@@ -6,17 +6,17 @@
     <ion-list class="tope">
 
         <ion-item class="login" >
-          <ion-input  type="text" [(ngModel)]="user.correo" placeholder="Correo"></ion-input>
+          <ion-input  type="text" [(ngModel)]="user.email" placeholder="Correo"></ion-input>
         </ion-item>
       <br>
         <ion-item class="login">
-          <ion-input  type="password" [(ngModel)]="user.contrasena" placeholder="Contraseña"></ion-input>
+          <ion-input  type="password" [(ngModel)]="user.password" placeholder="Contraseña"></ion-input>
         </ion-item>
       
       </ion-list>
 
       <div padding>
-          <button (click)="ingresar()" ion-button full class="azulSicma">Ingresar</button>
+          <button class="tamano" (click)="ingresar(user)" ion-button full class="azulSicma">Ingresar</button>
         </div>
 
 </ion-content>

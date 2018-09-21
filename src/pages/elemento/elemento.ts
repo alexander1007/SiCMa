@@ -33,6 +33,7 @@ export class ElementoPage {
 
 
     this.elementos = [];
+  
     this.elementoService.getListaElementos().valueChanges()
     .subscribe(data =>{
       console.log(data);
@@ -60,9 +61,7 @@ export class ElementoPage {
     imageRef.getDownloadURL().then(url =>{
       this.imagenes[index] = url;
     this.elementos[index].imagen = url;
-    console.log('generando');
-    
-    console.log(url);
+
     });
 }
   ionViewDidLoad() {

@@ -16,12 +16,14 @@ import { LoginPage } from '../pages/login/login';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+// se instala ionic cordova plugin add cordova-plugin-firebase y
+// npm install --save @ionic-native/firebase
 import { HomePageModule } from '../pages/home/home.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ElementoPageModule } from '../pages/elemento/elemento.module';
 import { ListaElementosService } from '../services/elementos/elemento.service';
-export const firebaseConfig = {
 
+export const firebaseConfig = {
   apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
   authDomain: "sicma-54be2.firebaseapp.com",
   databaseURL: "https://sicma-54be2.firebaseio.com",
