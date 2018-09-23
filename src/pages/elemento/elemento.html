@@ -11,8 +11,9 @@
   
   </ion-header>
   <ion-content class="card-background-page fondo" >
-      <ion-card  *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.$key)">
-          
+      <ion-card  *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
+      
+
           <img [src]="elemento.imagen"/>
           <ion-card-content class="fondo_rojo">
         

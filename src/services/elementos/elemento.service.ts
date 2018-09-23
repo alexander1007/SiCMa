@@ -4,7 +4,9 @@ import { Elemento } from "../../app/models/elemento";
 // se debe instalar npm i rxjs@^6.0 rxjs-compat
 @Injectable()
 export class ListaElementosService {
-    private listaElementos = this.db.list<Elemento>("elementos");
+    
+    private listaElementos = this.db.list("elementos");
+   // list<Elemento>("elementos");
     
     constructor(private db: AngularFireDatabase) { }
   //todos los elementos

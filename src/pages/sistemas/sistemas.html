@@ -2,20 +2,20 @@
 
   <ion-navbar>
       
-      <ion-title>
+      <ion-title class="margin_ri_39">
         Sistemas
       </ion-title>
-      <p>Elija el sistema en que desea construir</p>
+      <p class="margin_ri_34">Elija el sistema en que desea construir</p>
     </ion-navbar>
 
 </ion-header>
 <ion-content class="card-background-page fondo" >
   <ion-card  *ngFor="let sistema of sistemas">
       <img [src]="sistema.imagen"/>
-      <ion-card-content class="fondo_rojo">
+      <ion-card-content class="fondo_azul">
     
-          <h1 class="blanco">{{sistema.nombre}}</h1>
-          <p  class="blanco">
+          <h1 class="blanco ">{{sistema.nombre}}</h1>
+          <p  class="blanco ">
               {{sistema.descripcion}}
           </p>
       </ion-card-content>
