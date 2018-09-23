@@ -11,9 +11,6 @@ import { LoginPage } from './login';
   ],
 })
 export class LoginPageModule {
-  openPage(HomePage) {
-    this.navCtrl.setRoot(HomePage);
-  }
-  constructor(public navCtrl: NavController) {
-  }
-}
+ }
+ 
+

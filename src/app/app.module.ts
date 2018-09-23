@@ -31,6 +31,9 @@ export const firebaseConfig = {
 };
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { IonicStorageModule } from '@ionic/storage';
+import { SistemasPage } from '../pages/sistemas/sistemas';
+import { SistemasPageModule } from '../pages/sistemas/sistemas.module';
+import { ListaSistemasService } from '../services/sistemas/sistema.service';
 
  
 @NgModule({
@@ -39,6 +42,8 @@ import { IonicStorageModule } from '@ionic/storage';
    
   ],
   imports: [
+    
+    SistemasPageModule,
     BrowserModule,
     HomePageModule,
     LoginPageModule,
@@ -56,6 +61,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
   ],
   providers: [
+    ListaSistemasService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

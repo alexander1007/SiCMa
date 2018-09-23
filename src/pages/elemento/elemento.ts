@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { Elemento } from "../../app/models/elemento";
 import { log } from 'util';
+import { SistemasPage } from '../sistemas/sistemas';
 
 
 
@@ -21,7 +22,7 @@ import { log } from 'util';
   templateUrl: 'elemento.html',
 })
 export class ElementoPage {
-  //elementos: Array<{id:number, nombre: String, descripcion: String, fondo: String}>;
+
     elementos: any = [];
     imagenes: string[];
 
@@ -29,7 +30,7 @@ export class ElementoPage {
     public navParams: NavParams,
     public elementoService: ListaElementosService,
     public storage: Storage
-  ) {
+  ){
 
 
     this.elementos = [];
@@ -46,13 +47,13 @@ export class ElementoPage {
       }
 
     });
- 
-
-   
-
   }
   
+ abrirSistema(elemento){
+   console.log(elemento);
+ this.navCtrl.push(SistemasPage, {elemento: elemento});
 
+ }
 
   generarFotos(index){
     let storageRef = firebase.storage().ref();
