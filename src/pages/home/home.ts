@@ -12,7 +12,7 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
     this.elementos = [
-      {id:1, nombre:'Muro', descripcion: 'Utilizados para cerrar espacios', fondo:'/assets/imgs/muro.jpg'},
+      {id:1, nombre:'Muro/Pared', descripcion: 'Utilizados para cerrar espacios', fondo:'/assets/imgs/muro.jpg'},
       {id:2, nombre:'Cielo Raso', descripcion:'Uso Decorativo', fondo:'/assets/imgs/cielo.jpg'},
       {id:3, nombre:'Entrepiso', descripcion:'Division entre un piso y otro', fondo:'/assets/imgs/entrepiso.jpg'},
       {id:4, nombre:'Viga/Columna Concreto', descripcion:'Elemento en concreto', fondo:'/assets/imgs/concreto.jpg'},

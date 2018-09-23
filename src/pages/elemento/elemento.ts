@@ -35,7 +35,8 @@ export class ElementoPage {
     this.elementos = [];
   
     this.elementoService.getListaElementos().valueChanges()
-    .map(data =>{
+    .subscribe(data =>{
+      
       console.log(data);
       this.elementos = data;
       this.imagenes = Array(this.elementos.length);
@@ -68,3 +69,5 @@ export class ElementoPage {
   }
 
 }
+
+

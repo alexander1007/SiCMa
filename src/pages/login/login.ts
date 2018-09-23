@@ -19,6 +19,7 @@ import { ElementoPage } from '../elemento/elemento';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
   user= { } as Usuario;
 

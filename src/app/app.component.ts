@@ -23,6 +23,7 @@ export class MyApp {
 
   //rootPage: any = LoginPage;
   rootPage: any = LoginPage;
+  //rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
