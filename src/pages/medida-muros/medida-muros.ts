@@ -85,6 +85,9 @@ export class MedidaMurosPage {
 
   calcularMateriales(){
 //Validacion de campos vacios y que sean valores numericos
+this.mtcuadrados=0;
+this.valorTotalC=0;
+
     if (this.variable1==undefined){
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
@@ -159,7 +162,8 @@ export class MedidaMurosPage {
     
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MedidaMurosPage');
+    this.mtcuadrados=0;
+    this.valorTotalC=0;
   }
 
 }
