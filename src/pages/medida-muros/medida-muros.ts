@@ -21,6 +21,7 @@ import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
 export class MedidaMurosPage {
 
   mtcuadrados: number;
+  valorTotalC: number;
   sistema: string;
   elemento: string;
   titulo: string;
@@ -45,6 +46,7 @@ export class MedidaMurosPage {
     private alertCtrl: AlertController) {
 
       this.mtcuadrados=0;
+      this.valorTotalC=0;
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
 
@@ -133,14 +135,14 @@ export class MedidaMurosPage {
       this.materiales[index].cantidadTotal=Math.ceil(cantTotal);
     
       this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
-         
+      this.valorTotalC+=this.materiales[index].valorTotal;   
      }
-     this.abrirResultados(this.materiales);
+     this.abrirResultados(this.materiales, this.valorTotalC);
     }
 
-    abrirResultados(materiales){
+    abrirResultados(materiales, valorTotalC){
  
-     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales});
+     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC});
        
       }
 

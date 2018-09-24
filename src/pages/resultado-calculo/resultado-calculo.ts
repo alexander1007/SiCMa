@@ -16,10 +16,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ResultadoCalculoPage {
 
   materiales: any =[];
+  valorTotal: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.materiales= this.navParams.get('materiales');
-    console.log(this.materiales);
+    this.valorTotal= this.navParams.get('valorTotalC');
   }
 
   ionViewDidLoad() {
