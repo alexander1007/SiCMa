@@ -65,7 +65,7 @@ export class ElementoPage {
   }
   
  abrirSistema(elemento){
-   console.log(elemento);
+ 
  this.navCtrl.push(SistemasPage, {elemento: elemento});
 
  }

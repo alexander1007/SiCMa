@@ -38,6 +38,8 @@ import { SistemasPageModule } from '../pages/sistemas/sistemas.module';
 import { ListaSistemasService } from '../services/sistemas/sistema.service';
 import { MedidaMurosPageModule } from '../pages/medida-muros/medida-muros.module';
 import { ListaMedidasService } from '../services/medidas/medida.service';
+import { ResultadoCalculoPage } from '../pages/resultado-calculo/resultado-calculo';
+import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado-calculo.module';
 
  
 @NgModule({
@@ -47,6 +49,7 @@ import { ListaMedidasService } from '../services/medidas/medida.service';
   ],
   imports: [
     
+    ResultadoCalculoPageModule,    
     MedidaMurosPageModule,
     SistemasPageModule,
     BrowserModule,
