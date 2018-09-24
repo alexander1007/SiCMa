@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ListaSistemasService } from '../../services/sistemas/sistema.service';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
+import { MedidaMurosPage } from '../medida-muros/medida-muros';
 
 /**
  * Generated class for the SistemasPage page.
@@ -42,6 +43,11 @@ export class SistemasPage {
             this.generarFotos(index);
          }})  
 
+  }
+
+  abrirMedidas(sistema){
+    console.log(sistema);
+  this.navCtrl.push(MedidaMurosPage, {sistema: sistema});
   }
 
   generarFotos(index){

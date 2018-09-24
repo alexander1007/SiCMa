@@ -36,6 +36,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SistemasPage } from '../pages/sistemas/sistemas';
 import { SistemasPageModule } from '../pages/sistemas/sistemas.module';
 import { ListaSistemasService } from '../services/sistemas/sistema.service';
+import { MedidaMurosPageModule } from '../pages/medida-muros/medida-muros.module';
 
  
 @NgModule({
@@ -45,6 +46,7 @@ import { ListaSistemasService } from '../services/sistemas/sistema.service';
   ],
   imports: [
     
+    MedidaMurosPageModule,
     SistemasPageModule,
     BrowserModule,
     HomePageModule,
