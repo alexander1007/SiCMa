@@ -4,6 +4,7 @@ import { ListaMedidasService } from '../../services/medidas/medida.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
+import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
 
 /**
  * Generated class for the MedidaMurosPage page.
@@ -18,6 +19,8 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'medida-muros.html',
 })
 export class MedidaMurosPage {
+
+  mtcuadrados: number;
   sistema: string;
   elemento: string;
   titulo: string;
@@ -31,7 +34,7 @@ export class MedidaMurosPage {
 
   medidas: any =[];
   imagenes: string[];
-  sistemas: any=[];
+  materiales: any=[];
   
 
 
@@ -41,13 +44,12 @@ export class MedidaMurosPage {
     public db: AngularFireDatabase,
     private alertCtrl: AlertController) {
 
-
+      this.mtcuadrados=0;
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
 
       this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
     .subscribe(data =>{
-      console.log(data);
       this.medidas = data;
 
       this.titulo = this.medidas[0].titulo;
@@ -64,7 +66,7 @@ export class MedidaMurosPage {
     this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
     .subscribe(data =>{
       console.log(data);
-      this.sistemas = data;
+      this.materiales = data;
 
    
       //this.imagenes = Array(this.medidas.length);
@@ -121,7 +123,26 @@ export class MedidaMurosPage {
       return;
     }
 
+    this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
+
+    //Calculo de la cantidad total y el valor total
+    for (var index = 0; index < this.materiales.length; index++) {
+     
+     var cantTotal= parseFloat((this.materiales[index].cantidadxM2))*(this.mtcuadrados);
+     
+      this.materiales[index].cantidadTotal=Math.ceil(cantTotal);
+    
+      this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
+         
+     }
+     this.abrirResultados(this.materiales);
     }
+
+    abrirResultados(materiales){
+ 
+     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales});
+       
+      }
 
    generarFotos(index){
     let storageRef = firebase.storage().ref();
