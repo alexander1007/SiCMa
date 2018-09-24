@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ListaMedidasService } from '../../services/medidas/medida.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
@@ -32,12 +32,14 @@ export class MedidaMurosPage {
   medidas: any =[];
   imagenes: string[];
   sistemas: any=[];
+  
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public medidaService: ListaMedidasService,
     public storage: Storage,
-    public db: AngularFireDatabase) {
+    public db: AngularFireDatabase,
+    private alertCtrl: AlertController) {
 
 
       this.elemento= this.navParams.get('elemento');
@@ -78,26 +80,46 @@ export class MedidaMurosPage {
     }
 
   calcularMateriales(){
-//Validacion de campos vacios
+//Validacion de campos vacios y que sean valores numericos
     if (this.variable1==undefined){
-    alert("El valor del "+this.p_variable1+", no puede ir vacio. Ingrese un valor. ");
-    return;
-    }
-    if (this.variable2==undefined){
-      alert("El valor del "+this.p_variable2+", no puede ir vacio. Ingrese un valor. ");
-       return;
-      }
-    if (isNaN(parseInt(this.variable1))){
-      alert("El valor del "+this.p_variable1+", debe ser numerico. Ingrese un valor. ");
-       return;
-      }
-    if (isNaN(parseInt(this.variable2))){
-     alert("El valor del "+this.p_variable1+", debe ser numerico. Ingrese un valor. ");
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del '+this.p_variable1+', no puede ir vacio. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
       return;
-     }
-console.log("aqui estoy validando numero");
-      console.log(parseInt(this.variable1));
-      console.log(parseInt(this.variable2));
+    }
+         
+    if (this.variable2==undefined){
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del '+this.p_variable2+', no puede ir vacio. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
+
+    if (isNaN(parseInt(this.variable1))){
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del '+this.p_variable1+', debe ser numerico. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
+
+    if (isNaN(parseInt(this.variable2))){
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del '+this.p_variable1+', debe ser numerico. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
 
     }
 
