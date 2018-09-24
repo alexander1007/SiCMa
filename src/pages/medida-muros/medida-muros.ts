@@ -40,6 +40,8 @@ export class MedidaMurosPage {
     public db: AngularFireDatabase) {
 
 
+      this.elemento= this.navParams.get('elemento');
+      this.sistema= this.navParams.get('sistema');
 
       this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
     .subscribe(data =>{
