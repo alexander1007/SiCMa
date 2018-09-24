@@ -35,6 +35,7 @@ export class MedidaMurosPage {
 
   medidas: any =[];
   imagenes: string[];
+  imagenesMateriales: string[];
   materiales: any=[];
   
 
@@ -70,13 +71,12 @@ export class MedidaMurosPage {
       console.log(data);
       this.materiales = data;
 
-   
-      //this.imagenes = Array(this.medidas.length);
-      // for (var index = 0; index < this.medidas.length; index++) {
-      //   console.log(this.medidas[index].nombre);
-      //   this.imagenes[index] = `img/medidas/`+this.medidas[index].fondo;
-      //   //this.generarFotos(index);
-      //  }
+   // imagenes de los materiales
+      this.imagenesMateriales = Array(this.materiales.length);
+      for (var index = 0; index < this.materiales.length; index++) {
+        this.imagenes[index] = `img/materiales/`+this.materiales[index].imagen;
+        this.generarFotosMateriales(index);
+       }
     });
 
 
@@ -153,6 +153,15 @@ export class MedidaMurosPage {
       this.imagenes[index] = url;
     this.medidas[index].foto = url;
     this.url_imagen = this.medidas[0].foto;
+    })
+  }
+
+  generarFotosMateriales(index){
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(this.imagenes[index]);
+    imageRef.getDownloadURL().then(url =>{
+      this.imagenesMateriales[index] = url;
+    this.materiales[index].foto = url;
     })
   }
 

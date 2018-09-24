@@ -7,36 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Presupuesto: {{valorTotal}}</ion-title>
+    <ion-title  class="aling_left">Presupuesto Total: </ion-title>
+    <p class=" aling_left color_negro style_text"> <ion-icon name='cash'></ion-icon>
+       ${{valorTotal}} Pesos</p>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="card-background-page fondo">
   <ion-card *ngFor="let material of materiales">
-    <img [src]="material.imagen"/>
-    <ion-card-content>
-      <ion-card-title>
-        <h1 class="blanco">{{material.nombre}}</h1>
-        </ion-card-title>
-      <p>
+    <img [src]="material.foto"/>
+    <ion-card-content class="color_gris">
+        <h1 class="color_negro">{{material.nombre}}</h1>
+      <p class="color_negro tipoLetra"> 
         {{material.descripcion}}
       </p>
 
       <ion-row no-padding>
         <ion-col>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='ios-clipboard'></ion-icon>
+          <button ion-button clear small class="color_azul" icon-start>
+            <ion-icon name='clipboard'></ion-icon>
             Cantidad Total:{{material.cantidadTotal}} unidades.
           </button>
-
         </ion-col>
-        <ion-col text-center>
-        </ion-col>
+        </ion-row>
+        <ion-row no-padding>
 
-        <ion-col text-right>
-          <button ion-button clear small color="danger" icon-start>
-            <ion-icon name='ios-cash'></ion-icon>
+        <ion-col >
+          <button ion-button clear small class="color_verde" icon-start>
+            <ion-icon name='cash'></ion-icon>
             Valor Total: $ {{material.valorTotal}} pesos.
           </button>
         </ion-col>
