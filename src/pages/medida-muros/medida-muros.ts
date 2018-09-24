@@ -19,10 +19,10 @@ import { Storage } from '@ionic/storage';
 })
 export class MedidaMurosPage {
   elemento: string;
-  titulo: string = "Muro";
-  descripcion: string = "Ingrese Alto y Largo del muro";
-  p_variable1: string = "Alto";
-  p_variable2: string = "Ancho";
+  titulo: string;
+  descripcion: string;
+  p_variable1: string;
+  p_variable2: string;
 
 
   medidas: any =[];
@@ -38,6 +38,11 @@ export class MedidaMurosPage {
     .subscribe(data =>{
       console.log(data);
       this.medidas = data;
+
+      this.titulo = this.medidas.titulo;
+      this.descripcion = this.medidas.descripcion;
+      this.p_variable1 = this.medidas.variable1;
+      this.p_variable2 = this.medidas.variable2;
       this.imagenes = Array(this.medidas.length);
       for (var index = 0; index < this.medidas.length; index++) {
         console.log(this.medidas[index].nombre);
