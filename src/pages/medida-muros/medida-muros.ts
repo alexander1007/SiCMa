@@ -20,7 +20,6 @@ import { Storage } from '@ionic/storage';
 export class MedidaMurosPage {
   sistema: string;
   elemento: string;
-  sistema: string;
   titulo: string;
   descripcion: string;
   p_variable1: string;
@@ -40,8 +39,6 @@ export class MedidaMurosPage {
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
 
-      this.elemento= this.navParams.get('elemento');
-      this.sistema= this.navParams.get('sistema');
 
       this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
     .subscribe(data =>{
