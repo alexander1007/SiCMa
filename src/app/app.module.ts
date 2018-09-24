@@ -37,6 +37,7 @@ import { SistemasPage } from '../pages/sistemas/sistemas';
 import { SistemasPageModule } from '../pages/sistemas/sistemas.module';
 import { ListaSistemasService } from '../services/sistemas/sistema.service';
 import { MedidaMurosPageModule } from '../pages/medida-muros/medida-muros.module';
+import { ListaMedidasService } from '../services/medidas/medida.service';
 
  
 @NgModule({
@@ -65,6 +66,7 @@ import { MedidaMurosPageModule } from '../pages/medida-muros/medida-muros.module
 
   ],
   providers: [
+    ListaMedidasService,
     ListaSistemasService,
     StatusBar,
     SplashScreen,

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ListaMedidasService } from '../../services/medidas/medida.service';
+import { AngularFireDatabase } from 'angularfire2/database';
+import firebase from 'firebase';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the MedidaMurosPage page.
@@ -21,10 +25,40 @@ export class MedidaMurosPage {
   p_variable2: string = "Ancho";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.elemento= this.navParams.get('elemento');
+  medidas: any =[];
+  imagenes: string[];
 
-  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public medidaService: ListaMedidasService,
+    public storage: Storage,
+    public db: AngularFireDatabase) {
+
+      this.medidaService.getListaMedidas().valueChanges()
+    .subscribe(data =>{
+      console.log(data);
+      this.medidas = data;
+      this.imagenes = Array(this.medidas.length);
+      for (var index = 0; index < this.medidas.length; index++) {
+        console.log(this.medidas[index].nombre);
+        this.imagenes[index] = `img/medidas/`+this.medidas[index].fondo;
+        //this.generarFotos(index);
+       }
+    });
+    
+    }
+
+
+  //  generarFotos(index){
+  //   let storageRef = firebase.storage().ref();
+  //   let imageRef = storageRef.child(this.imagenes[index]);
+  //   imageRef.getDownloadURL().then(url =>{
+  //     this.imagenes[index] = url;
+  //   this.medidas[index].imagen = url;
+  //   })
+  // }
+
+    
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedidaMurosPage');
