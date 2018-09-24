@@ -18,6 +18,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'medida-muros.html',
 })
 export class MedidaMurosPage {
+  sistema: string;
   elemento: string;
   titulo: string;
   descripcion: string;
@@ -27,12 +28,16 @@ export class MedidaMurosPage {
 
   medidas: any =[];
   imagenes: string[];
+  sistemas: any=[];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public medidaService: ListaMedidasService,
     public storage: Storage,
     public db: AngularFireDatabase) {
+
+      this.elemento= this.navParams.get('elemento');
+      this.sistema= this.navParams.get('sistema');
 
       this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
     .subscribe(data =>{
@@ -50,6 +55,22 @@ export class MedidaMurosPage {
         //this.generarFotos(index);
        }
     });
+
+    this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
+    .subscribe(data =>{
+      console.log(data);
+      this.sistemas = data;
+
+   
+      //this.imagenes = Array(this.medidas.length);
+      // for (var index = 0; index < this.medidas.length; index++) {
+      //   console.log(this.medidas[index].nombre);
+      //   this.imagenes[index] = `img/medidas/`+this.medidas[index].fondo;
+      //   //this.generarFotos(index);
+      //  }
+    });
+
+
     
     }
 
