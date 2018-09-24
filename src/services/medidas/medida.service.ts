@@ -5,17 +5,17 @@ import { AngularFireDatabase,AngularFireList } from "angularfire2/database";
 export class ListaMedidasService {
     
     private listaMedidas = this.db.list("medidas");
-   // list<Elemento>("elementos");
+   
     
     constructor(private db: AngularFireDatabase) { }
-  //todos los elementos
+  //todas las medidas
     getListaMedidas() {
         return this.listaMedidas;
     }
 
-    //elemento por llave
-    getListaMedidasByKey(key:string) {
-        return this.db.list('/medidas/', ref=> ref.orderByChild('key').equalTo(key));
+    //medida por elemento
+    getListaMedidasByelemento(elemento:string) {
+        return this.db.list('/medidas/', ref=> ref.orderByChild('elemento').equalTo(elemento));
     }
 
 }
