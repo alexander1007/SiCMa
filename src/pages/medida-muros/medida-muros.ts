@@ -20,12 +20,13 @@ import { Storage } from '@ionic/storage';
 export class MedidaMurosPage {
   sistema: string;
   elemento: string;
-  sistema: string;
   titulo: string;
   descripcion: string;
   p_variable1: string;
   p_variable2: string;
   url_imagen : string;
+  variable1: string;
+  variable2: string;
 
 
   medidas: any =[];
@@ -37,8 +38,7 @@ export class MedidaMurosPage {
     public medidaService: ListaMedidasService,
     public storage: Storage,
     public db: AngularFireDatabase) {
-      this.elemento= this.navParams.get('elemento');
-      this.sistema= this.navParams.get('sistema');
+
 
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
@@ -77,6 +77,29 @@ export class MedidaMurosPage {
     
     }
 
+  calcularMateriales(){
+//Validacion de campos vacios
+    if (this.variable1==undefined){
+    alert("El valor del "+this.p_variable1+", no puede ir vacio. Ingrese un valor. ");
+    return;
+    }
+    if (this.variable2==undefined){
+      alert("El valor del "+this.p_variable2+", no puede ir vacio. Ingrese un valor. ");
+       return;
+      }
+    if (isNaN(parseInt(this.variable1))){
+      alert("El valor del "+this.p_variable1+", debe ser numerico. Ingrese un valor. ");
+       return;
+      }
+    if (isNaN(parseInt(this.variable2))){
+     alert("El valor del "+this.p_variable1+", debe ser numerico. Ingrese un valor. ");
+      return;
+     }
+console.log("aqui estoy validando numero");
+      console.log(parseInt(this.variable1));
+      console.log(parseInt(this.variable2));
+
+    }
 
    generarFotos(index){
     let storageRef = firebase.storage().ref();
