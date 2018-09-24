@@ -14,8 +14,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'medida-muros.html',
 })
 export class MedidaMurosPage {
+  elemento: string;
+  titulo: string = "Muro";
+  descripcion: string = "Ingrese Alto y Largo del muro";
+  p_variable1: string = "Alto";
+  p_variable2: string = "Ancho";
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.elemento= this.navParams.get('elemento');
+
   }
 
   ionViewDidLoad() {

@@ -1,3 +1,105 @@
 page-medida-muros {
+    .card-background-page {
 
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #222;
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+      }
+
+
+      .fondo{
+        background-image: url("/assets/imgs/fondo.png");
+        background-size: 352px 612px;
+        background-repeat: no-repeat;
+    }
+
+    .fondo_rojo{
+      background: rgba(229, 10, 10, 0.68);
+    }
+    .fondo_azul{
+        background: rgba(0, 120, 182, 0.75)
+      }
+
+    .blanco{
+      color: white;
+    }
+
+    .toolbar-background-md{
+      background: rgba(236, 207, 207, 0.8588235294117647);
+      opacity: 0.7;
+
+    }
+    .toolbar-content-md{
+      text-align: center;
+    color: rgb(81, 77, 77);
+    font-size: 15px;
+    font-weight: bold;
+    }
+    .toolbar-title-md{
+      font-size: 24px;
+    font-weight: bold;
+    color: rgb(81, 77, 77);
+    }
+    .margin_ri_34{
+        margin-right: 34px;
+    }
+    .margin_ri_39{
+        margin-right: 39px;
+    }
+
+    .aling_left{
+        text-align: left;
+    }
+
+    .tope{
+        margin-top: 22em;
+    }
+    .azulSicma{
+        background: #0078b6;
+        border-radius: 5px;
+    }
+    .login{
+    background: rgba(218, 218, 218, 0.9019607843137255);
+    color: black;
+    border-radius: 5px;background: rgba(218, 218, 218, 0.9019607843137255);
+    color: black;
+    border-radius: 5px;
+    }
+
+    .tamano{
+        height: 47px;
+    }
+    .fondo_rojo{
+        background: rgba(229, 10, 10, 1);
+      }
+      .text-right{
+        text-align: right; 
+    }
+    .colorLetra{
+ color: #0078b6;
+    }
+
+    .style_font{
+        color: black !important;
+    font-size: 20px  !important;
+    }
 }

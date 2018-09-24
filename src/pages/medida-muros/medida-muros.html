@@ -2,23 +2,32 @@
 
   <ion-navbar>
       
-      <ion-title>
-        Muros
-      </ion-title>
-      <p>Ingrese Alto y Largo del muro</p>
+      <ion-title class="aling_left">
+        {{titulo}}
+      </ion-title >
+      <p class="aling_left">{{descripcion}}</p>
     </ion-navbar>
 
 </ion-header>
 
 <ion-content class="card-background-page fondo" >
-    
-  
-  <ion-card-content class="fondo_rojo">
-        
-    <p class="blanco"> Alto <input type="text"/><br/></p>
-    <p  class="blanco">Largo <input type="text"/><br/>
-    </p>
-    
-    <button type="submit">Guardar</button>
-  </ion-card-content>
+  <ion-list class="tope">
 
+    <ion-item class="login">
+        <ion-label class="style_font"  stacked>{{p_variable1}}</ion-label>
+      <ion-input  type="text" [(ngModel)]="variable1"></ion-input>
+    </ion-item>
+  <br>
+    <ion-item class="login">
+        <ion-label class="style_font" stacked>{{p_variable2}}</ion-label>
+      <ion-input  type="password" [(ngModel)]="variable2"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+        
+  
+    
+    <div >
+      <button  (click)="clacularMateriales()" ion-button full class="azulSicma tamano">Calcular</button>
+    </div>
+</ion-content>
