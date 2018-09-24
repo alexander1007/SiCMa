@@ -20,10 +20,12 @@ import { Storage } from '@ionic/storage';
 export class MedidaMurosPage {
   sistema: string;
   elemento: string;
+  sistema: string;
   titulo: string;
   descripcion: string;
   p_variable1: string;
   p_variable2: string;
+  url_imagen : string;
 
 
   medidas: any =[];
@@ -35,6 +37,8 @@ export class MedidaMurosPage {
     public medidaService: ListaMedidasService,
     public storage: Storage,
     public db: AngularFireDatabase) {
+      this.elemento= this.navParams.get('elemento');
+      this.sistema= this.navParams.get('sistema');
 
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
@@ -44,16 +48,15 @@ export class MedidaMurosPage {
       console.log(data);
       this.medidas = data;
 
-      this.titulo = this.medidas.titulo;
-      this.descripcion = this.medidas.descripcion;
-      this.p_variable1 = this.medidas.variable1;
-      this.p_variable2 = this.medidas.variable2;
+      this.titulo = this.medidas[0].titulo;
+      this.descripcion = this.medidas[0].descripcion;
+      this.p_variable1 = this.medidas[0].variable1;
+      this.p_variable2 = this.medidas[0].variable2;
       this.imagenes = Array(this.medidas.length);
-      for (var index = 0; index < this.medidas.length; index++) {
-        console.log(this.medidas[index].nombre);
-        this.imagenes[index] = `img/medidas/`+this.medidas[index].fondo;
-        //this.generarFotos(index);
-       }
+    //  for (var index = 0; index < this.medidas.length; index++) {
+        this.imagenes[0] = `img/medidas/`+this.medidas[0].imagen;
+        this.generarFotos(0);
+      // }
     });
 
     this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
@@ -75,14 +78,15 @@ export class MedidaMurosPage {
     }
 
 
-  //  generarFotos(index){
-  //   let storageRef = firebase.storage().ref();
-  //   let imageRef = storageRef.child(this.imagenes[index]);
-  //   imageRef.getDownloadURL().then(url =>{
-  //     this.imagenes[index] = url;
-  //   this.medidas[index].imagen = url;
-  //   })
-  // }
+   generarFotos(index){
+    let storageRef = firebase.storage().ref();
+    let imageRef = storageRef.child(this.imagenes[index]);
+    imageRef.getDownloadURL().then(url =>{
+      this.imagenes[index] = url;
+    this.medidas[index].foto = url;
+    this.url_imagen = this.medidas[0].foto;
+    })
+  }
 
     
 
