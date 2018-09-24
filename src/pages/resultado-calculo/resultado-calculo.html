@@ -12,7 +12,38 @@
 
 </ion-header>
 
-
 <ion-content padding>
+  <ion-card *ngFor="let material of materiales">
+    <img [src]="material.imagen"/>
+    <ion-card-content>
+      <ion-card-title>
+        <h1 class="blanco">{{material.nombre}}</h1>
+        </ion-card-title>
+      <p>
+        {{material.descripcion}}
+      </p>
 
+      <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='ios-clipboard'></ion-icon>
+            Cantidad Total:{{material.cantidadTotal}} unidades.
+          </button>
+
+        </ion-col>
+        <ion-col text-center>
+        </ion-col>
+
+        <ion-col text-right>
+          <button ion-button clear small color="danger" icon-start>
+            <ion-icon name='ios-cash'></ion-icon>
+            Valor Total: $ {{material.valorTotal}} pesos.
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab mini><ion-icon name="ios-checkbox-outline"></ion-icon></button>
+</ion-fab>
 </ion-content>
