@@ -29,11 +29,17 @@ export class ResultadoCalculoPage {
     const alert = this.alertCtrl.create({
       title: 'SiCMa',
       subTitle: 'Gracias por preferirnos. Desea inciar un nuevo calculo?',
-      buttons: ['OK']
+      buttons: [{
+
+        text: 'Ok',
+        handler: () =>{
+          this.navCtrl.push(ElementoPage);
+        }
+      }]
     });
     alert.present();
 
-    this.navCtrl.push(ElementoPage);
+    
   }
 
   ionViewDidLoad() {
