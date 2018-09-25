@@ -45,7 +45,7 @@ export class SistemasPage {
   }
 
   abrirMedidas(sistema){
-    console.log(sistema);
+  
   this.navCtrl.push(MedidaMurosPage, {sistema: sistema, elemento: this.elemento });
   }
 

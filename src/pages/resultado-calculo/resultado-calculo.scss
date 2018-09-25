@@ -48,7 +48,7 @@ page-resultado-calculo {
 
     .toolbar-background-md{
       background: rgba(236, 207, 207, 0.8588235294117647);
-      opacity: 0.7;
+      opacity: 0.9;
 
     }
     .toolbar-content-md{
@@ -61,6 +61,7 @@ page-resultado-calculo {
       font-size: 24px;
     font-weight: bold;
     color: black;
+    margin-left: -14px;
     }
     .margin_ri_34{
         margin-right: 34px;
@@ -73,7 +74,7 @@ page-resultado-calculo {
   }
 
   .tipoLetra{
-    font-size: 22px;
+    font-size: 15px;
   }
   .color_verde{
     color: #17630b;
@@ -85,7 +86,21 @@ page-resultado-calculo {
     background: #e1e1e1;
   }
   .style_text{
-    font-size: 20px;
-    margin-left: 15px;
+    font-size: 25px;
+    margin-left: 3px;
+    margin-top: 5px;
+    color: #0e5f0e;
+  }
+  .tam_15{
+    font-size: 18px;
+  }
+  .tam_16{
+    font-size: 16px;
+  }
+  .fab-md{
+    background: rgb(229, 10, 45);
+  }
+  .fab-ios{
+    background: rgb(229, 10, 45);
   }
 }

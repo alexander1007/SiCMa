@@ -6,15 +6,15 @@
           <ion-title >
             Elementos
           </ion-title>
-          <p class="color_negro" >Elija el elemento a construir</p>
+          <p class="color_negro style_header" >Elija el elemento a construir</p>
         </ion-navbar>
   
   </ion-header>
   <ion-content class="card-background-page fondo" >
-      <ion-card  *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
+      <ion-card class="style_card"  *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
       
 
-          <img [src]="elemento.imagen"/>
+          <img class="img_card" [src]="elemento.imagen"/>
           <ion-card-content class="fondo_rojo">
         
               <h1 class="blanco">{{elemento.nombre}}</h1>
