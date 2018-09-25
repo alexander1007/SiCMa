@@ -18,7 +18,8 @@ export class ResultadoCalculoPage {
 
   materiales: any =[];
   recomendaciones: any =[];
-  valorTotal: number;
+  valorTotal: string;
+  valorTotalM :string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,
     public menu: MenuController) {
@@ -26,6 +27,13 @@ export class ResultadoCalculoPage {
     this.materiales= this.navParams.get('materiales');
     this.valorTotal= this.navParams.get('valorTotalC');
     this.recomendaciones=this.navParams.get('recomendaciones');
+
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+    this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000.00"
 
   }
    //esto es para desactivar los menu en la pantalla login
