@@ -5,6 +5,7 @@ import { Usuario } from '../../app/models/usuario';
 import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
 import { ElementoPage } from '../elemento/elemento';
 import { InicioPage } from '../inicio/inicio';
+import { ListaUsuariosService } from '../../services/usuarios/usuario.service';
 //import { User } from 'firebase';
 
 
@@ -23,14 +24,18 @@ import { InicioPage } from '../inicio/inicio';
 
 export class LoginPage {
   user= { } as Usuario;
+  usuarios: any=[];
+  tipo: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private afAuth: AngularFireAuth,
+    public usuarioService: ListaUsuariosService,
+    private afAuth: AngularFireAuth,
     private database: AngularFireDatabase,
     private alertCtrl: AlertController,
     public menu: MenuController
   ) {
     this.menu1Active();
+    
   }
 
    //esto es para desactivar los menu en la pantalla login
@@ -49,10 +54,16 @@ console.log(user);
  .then((success)=>{
 
    const authObserv= this.afAuth.authState.subscribe(auth => {
-   console.log(auth.uid);
-  // var tipo = 'asesor';
-   var tipo = 'cliente';
-      this.navCtrl.setRoot(InicioPage, {tipo:tipo}); 
+  
+   this.usuarioService.getListaUsuariosxuid(auth.uid).valueChanges()
+   .subscribe(data =>{
+  
+     this.usuarios= data;
+     this.tipo=this.usuarios[0].tipo;
+   })
+  
+ 
+      this.navCtrl.setRoot(InicioPage, {tipo:this.tipo}); 
   }) // autenticar
 }).catch((err)=>{
   let alert = this.alertCtrl.create({

@@ -43,6 +43,7 @@ import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado
 import { InventarioPageModule } from '../pages/inventario/inventario.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { ListaRecomendacionesService } from '../services/recomendaciones/recomendacion.service';
+import { ListaUsuariosService } from '../services/usuarios/usuario.service';
 
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
@@ -75,6 +76,7 @@ import { File } from '@ionic-native/file';
 
   ],
   providers: [
+    ListaUsuariosService,
     ListaRecomendacionesService,
     ListaMedidasService,
     ListaSistemasService,
