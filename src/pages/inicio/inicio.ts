@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, MenuController, Platform, LoadingC
 import { ElementoPage } from '../elemento/elemento';
 import { InventarioPage } from '../inventario/inventario';
 import { FileOpener } from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
+
 
 /**
  * Generated class for the InicioPage page.

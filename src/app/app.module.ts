@@ -84,6 +84,8 @@ import { File } from '@ionic-native/file';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ListaElementosService
-  ]
+,
+    File,
+		FileOpener  ]
 })
 export class AppModule {}
