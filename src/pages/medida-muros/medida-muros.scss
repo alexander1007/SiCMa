@@ -46,7 +46,7 @@ page-medida-muros {
 
     .toolbar-background-md{
       background: rgba(236, 207, 207, 0.8588235294117647);
-      opacity: 0.7;
+      opacity: 0.9;
 
     }
     .toolbar-content-md{
@@ -58,7 +58,8 @@ page-medida-muros {
     .toolbar-title-md{
       font-size: 24px;
     font-weight: bold;
-    color: rgb(81, 77, 77);
+    color: black;
+    margin-left: -14px;
     }
     .margin_ri_34{
         margin-right: 34px;
@@ -109,8 +110,18 @@ page-medida-muros {
     width: 87%;
     height: 248px;
     margin-top: 2;
-    margin-top: 5%;
+    margin-top:11%;
     margin-left: 6%;
     margin-right: auto;
+    border-radius: 29px;
     }
+
+    .color_negro{
+        color:black;
+    }
+    .margin_top8{
+        margin-top: 8px;
+    }
+
+  
 }

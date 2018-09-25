@@ -5,15 +5,15 @@
       <ion-title class="aling_left">
         {{titulo}}
       </ion-title >
-      <p class="aling_left">{{descripcion}}</p>
+      <p class="aling_left color_negro style_header">{{descripcion}}</p>
     </ion-navbar>
 
 </ion-header>
 
 <ion-content class="card-background-page fondo" >
 
-  <ion-list class="">
-      <img class="style_img" [src]="url_imagen"/>
+  <ion-list class="margin_top8">
+      <img class="style_img " [src]="url_imagen"/>
 
     <ion-item class="login">
         <ion-label class="style_font"  stacked>{{p_variable1}}</ion-label>
@@ -27,8 +27,6 @@
   
   </ion-list>
         
-  
-    
     <div >
       <button  (click)="calcularMateriales()" ion-button full class="azulSicma tamano">Calcular</button>
     </div>
