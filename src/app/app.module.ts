@@ -44,6 +44,8 @@ import { InventarioPageModule } from '../pages/inventario/inventario.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { ListaRecomendacionesService } from '../services/recomendaciones/recomendacion.service';
 
+import { FileOpener } from '@ionic-native/file-opener';
+import { File } from '@ionic-native/file';
  
 @NgModule({
   declarations: [

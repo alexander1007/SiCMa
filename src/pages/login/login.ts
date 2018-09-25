@@ -50,8 +50,8 @@ console.log(user);
 
    const authObserv= this.afAuth.authState.subscribe(auth => {
    console.log(auth.uid);
-   var tipo = 'asesor';
-  // var tipo = 'cliente';
+  // var tipo = 'asesor';
+   var tipo = 'cliente';
       this.navCtrl.setRoot(InicioPage, {tipo:tipo}); 
   }) // autenticar
 }).catch((err)=>{
