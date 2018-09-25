@@ -50,6 +50,7 @@ import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { DocumentViewer } from '@ionic-native/document-viewer';
+import { PedidoPageModule } from '../pages/pedido/pedido.module';
 
 
 
@@ -60,6 +61,7 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
    
   ],
   imports: [
+    PedidoPageModule,
     InventarioPageModule,
     InicioPageModule,
     ResultadoCalculoPageModule,    
