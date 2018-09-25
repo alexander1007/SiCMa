@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ListaElementosService } from '../../services/elementos/elemento.service';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
@@ -32,19 +32,10 @@ export class ElementoPage {
     public navParams: NavParams,
     public elementoService: ListaElementosService,
     public storage: Storage,
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    public menu: MenuController
   ){
-
-
-    // this.elementoRef = this.database.list('elementos');
-    // this.elementos = this.elementoRef.snapshotChanges()
-    // .map(changes => {
-    //   return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    // });
-
-    // this.elementos = [];
- 
-  
+  this.menu1Active();
 
     this.elementoService.getListaElementos().valueChanges()
     .subscribe(data =>{
@@ -63,6 +54,11 @@ export class ElementoPage {
 
   
   }
+
+    //esto es para desactivar los menu en la pantalla login
+    menu1Active() {
+      this.menu.enable(false);
+    } 
   
  abrirSistema(elemento){
  

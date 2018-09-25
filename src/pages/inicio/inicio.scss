@@ -1,3 +1,75 @@
 page-inicio {
+    .card-background-page {
 
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #222;
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+      }
+
+
+      .fondo{
+        background-image: url("/assets/imgs/fondo.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .color_negro{
+      color:black;
+  }
+    .fondo_rojo{
+      background: rgba(229, 10, 10, 0.68);
+    }
+    .fondo_azul{
+        background: rgba(0, 120, 182, 0.75)
+      }
+
+    .blanco{
+      color: white;
+    }
+
+    .toolbar-background-md{
+      background: rgba(236, 207, 207, 0.8588235294117647);
+      opacity: 0.9;
+
+    }
+    .toolbar-content-md{
+      text-align: center;
+    color: rgb(81, 77, 77);
+    font-size: 15px;
+    font-weight: bold;
+    }
+    .toolbar-title-md{
+      font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-left: -14px;
+    }
+    .margin_ri_34{
+        margin-right: 34px;
+    }
+    .margin_ri_39{
+        margin-right: 39px;
+    }
+    .aling_left{
+      text-align: left;
+  }
 }

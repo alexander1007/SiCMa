@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { ListaMedidasService } from '../../services/medidas/medida.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
@@ -28,10 +28,11 @@ export class MedidaMurosPage {
   descripcion: string;
   p_variable1: string;
   p_variable2: string;
+  p_variable3: string;
   url_imagen : string;
   variable1: string;
   variable2: string;
-
+  verVar3: boolean;
 
   medidas: any =[];
   imagenes: string[];
@@ -44,12 +45,16 @@ export class MedidaMurosPage {
     public medidaService: ListaMedidasService,
     public storage: Storage,
     public db: AngularFireDatabase,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    public menu: MenuController) {
+      this.verVar3 = false;
+      this.menu1Active();
 
       this.mtcuadrados=0;
       this.valorTotalC=0;
       this.elemento= this.navParams.get('elemento');
       this.sistema= this.navParams.get('sistema');
+   
 
       this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
     .subscribe(data =>{
@@ -59,6 +64,10 @@ export class MedidaMurosPage {
       this.descripcion = this.medidas[0].descripcion;
       this.p_variable1 = this.medidas[0].variable1;
       this.p_variable2 = this.medidas[0].variable2;
+      if(this.elemento == 'elemento4'){
+        this.verVar3 = true;
+        this.p_variable3 =  this.medidas[0].variable3;
+      }
       this.imagenes = Array(this.medidas.length);
     //  for (var index = 0; index < this.medidas.length; index++) {
         this.imagenes[0] = `img/medidas/`+this.medidas[0].imagen;
@@ -83,6 +92,10 @@ export class MedidaMurosPage {
     
     }
 
+        //esto es para desactivar los menu en la pantalla login
+        menu1Active() {
+          this.menu.enable(false);
+        } 
   calcularMateriales(){
 //Validacion de campos vacios y que sean valores numericos
 this.mtcuadrados=0;
@@ -134,8 +147,11 @@ this.valorTotalC=0;
     for (var index = 0; index < this.materiales.length; index++) {
      
      var cantTotal= parseFloat((this.materiales[index].cantidadxM2))*(this.mtcuadrados);
-     
+      if( this.verVar3 == true){
+          //logica de la variable 3
+      }
       this.materiales[index].cantidadTotal=Math.ceil(cantTotal);
+
     
       this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
       this.valorTotalC+=this.materiales[index].valorTotal;   
@@ -173,6 +189,8 @@ this.valorTotalC=0;
   ionViewDidLoad() {
     this.mtcuadrados=0;
     this.valorTotalC=0;
+    this.verVar3 = false;
+
   }
 
 }
