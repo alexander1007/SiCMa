@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Usuario } from '../../app/models/usuario';
 import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
@@ -27,9 +27,16 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private afAuth: AngularFireAuth,
     private database: AngularFireDatabase,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public menu: MenuController
   ) {
+    this.menu1Active();
   }
+
+   //esto es para desactivar los menu en la pantalla login
+   menu1Active() {
+    this.menu.enable(false);
+  } 
 
 // autenticar
 ingresar(user: Usuario) 
@@ -42,8 +49,10 @@ console.log(user);
  .then((success)=>{
 
    const authObserv= this.afAuth.authState.subscribe(auth => {
-   
-      this.navCtrl.setRoot(InicioPage); 
+   console.log(auth.uid);
+   var tipo = 'asesor';
+  // var tipo = 'cliente';
+      this.navCtrl.setRoot(InicioPage, {tipo:tipo}); 
   }) // autenticar
 }).catch((err)=>{
   let alert = this.alertCtrl.create({

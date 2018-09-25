@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ListaSistemasService } from '../../services/sistemas/sistema.service';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
@@ -26,9 +26,10 @@ export class SistemasPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public sistemaService: ListaSistemasService, 
-              public storage: Storage
+              public storage: Storage,
+              public menu: MenuController
             ) {
-            
+            this.menu1Active();
             this.elemento= this.navParams.get('elemento');
             this.sistemas=[];
             this.sistemaService.getListaSistemaxElemento(this.elemento).valueChanges()
@@ -43,6 +44,10 @@ export class SistemasPage {
          }})  
 
   }
+     //esto es para desactivar los menu en la pantalla login
+     menu1Active() {
+      this.menu.enable(false);
+    }
 
   abrirMedidas(sistema){
   

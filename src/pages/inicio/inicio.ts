@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
 import { InventarioPage } from '../inventario/inventario';
 
@@ -17,8 +17,14 @@ import { InventarioPage } from '../inventario/inventario';
 })
 export class InicioPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public menu: MenuController) {
+    this.menu1Active();
   }
+  //esto es para desactivar los menu en la pantalla login
+  menu1Active() {
+    this.menu.enable(false);
+  } 
 
   abrirElemento(){
     this.navCtrl.push(ElementoPage);
