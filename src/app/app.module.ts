@@ -47,6 +47,12 @@ import { ListaUsuariosService } from '../services/usuarios/usuario.service';
 
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { DocumentViewer } from '@ionic-native/document-viewer';
+
+
+
  
 @NgModule({
   declarations: [
@@ -67,6 +73,7 @@ import { File } from '@ionic-native/file';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+   
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -86,6 +93,9 @@ import { File } from '@ionic-native/file';
     ListaElementosService
 ,
     File,
-		FileOpener  ]
+    FileOpener,
+    FilePath,
+    FileChooser,
+    DocumentViewer  ]
 })
 export class AppModule {}

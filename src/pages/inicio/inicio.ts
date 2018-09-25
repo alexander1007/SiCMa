@@ -5,6 +5,12 @@ import { InventarioPage } from '../inventario/inventario';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
 
+import { FilePath } from '@ionic-native/file-path';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+
+
+
 
 /**
  * Generated class for the InicioPage page.
@@ -26,6 +32,9 @@ verInventario: boolean;
     public platform: Platform,
     public file: File,
     public fileOpener: FileOpener,
+    public fileChooser :FileChooser,
+    public filePath : FilePath,
+    private document: DocumentViewer,
     public loadingCtrl: LoadingController) {
     this.menu1Active();
     this.verInventario = true;
@@ -51,28 +60,13 @@ verInventario: boolean;
   }  
 
 
-  // openFile() {
-	// 	this.presentLoading();
-	// 	if (this.platform.is('cordova')) {
-			
-	// 		this.platform.ready().then(() => {
-	// 			this.pdfObjet.getBuffer((buffer) => {
-	// 				var blob = new Blob([ buffer ], { type: 'application/pdf' });
-	// 				this.file
-	// 					.writeFile(this.file.dataDirectory, 'Bitacora.pdf', blob, { replace: true })
-	// 					.then((fileEntry) => {
-	// 						this.fileOpener.open(
-	// 							this.file.dataDirectory + 'Bitacora.pdf',
-	// 							'application/pdf'
-	// 						);
-	// 					});
-	// 			});
-	// 			return true;
-	// 		});
-	// 	}
+  openFile() {
+    const options: DocumentViewerOptions ={
+      title: 'Portafolio'
+    }
+    this.document.viewDocument('assets/files/articulo1.pdf', 'application/pdf', options);
 
-	// 	this.pdfObjet.download();
-	// }
+	}
 
 	presentLoading() {
     const loader = this.loadingCtrl.create({
