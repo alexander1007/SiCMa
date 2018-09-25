@@ -32,6 +32,7 @@ export class MedidaMurosPage {
   url_imagen : string;
   variable1: string;
   variable2: string;
+  variable3: string;
   verVar3: boolean;
 
   medidas: any =[];
@@ -141,15 +142,21 @@ this.valorTotalC=0;
       return;
     }
 
-    this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
+    if( this.verVar3 == true){
+      //logica de la variable 3
+
+      this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2))*(parseFloat(this.variable3)));
+  }
+    else{
+     this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
+  }
+   
 
     //Calculo de la cantidad total y el valor total
     for (var index = 0; index < this.materiales.length; index++) {
      
      var cantTotal= parseFloat((this.materiales[index].cantidadxM2))*(this.mtcuadrados);
-      if( this.verVar3 == true){
-          //logica de la variable 3
-      }
+      
       this.materiales[index].cantidadTotal=Math.ceil(cantTotal);
 
     

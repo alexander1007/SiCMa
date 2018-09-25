@@ -43,6 +43,7 @@ import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado
 import { InventarioPageModule } from '../pages/inventario/inventario.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { ListaRecomendacionesService } from '../services/recomendaciones/recomendacion.service';
+import { ListaUsuariosService } from '../services/usuarios/usuario.service';
 
  
 @NgModule({
@@ -73,6 +74,7 @@ import { ListaRecomendacionesService } from '../services/recomendaciones/recomen
 
   ],
   providers: [
+    ListaUsuariosService,
     ListaRecomendacionesService,
     ListaMedidasService,
     ListaSistemasService,
