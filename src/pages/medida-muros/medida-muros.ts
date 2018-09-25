@@ -36,6 +36,7 @@ export class MedidaMurosPage {
   verVar3: boolean;
 
   medidas: any =[];
+  recomendaciones: any =[];
   imagenes: string[];
   imagenesMateriales: string[];
   materiales: any=[];
@@ -163,12 +164,16 @@ this.valorTotalC=0;
       this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
       this.valorTotalC+=this.materiales[index].valorTotal;   
      }
-     this.abrirResultados(this.materiales, this.valorTotalC);
+
+     //aqui debe ir la logica para traer las recomendaaciones 
+      this.recomendaciones=[]; // esta es la variable
+     //se debe enviar las recomendaciones por parametro
+     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
     }
 
-    abrirResultados(materiales, valorTotalC){
+    abrirResultados(materiales, valorTotalC, recomendaciones){
  
-     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC});
+     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC, recomendaciones: this.recomendaciones});
        
       }
 

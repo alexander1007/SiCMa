@@ -11,6 +11,17 @@
     <p class=" aling_left color_negro style_text style_header"> <ion-icon name='cash'></ion-icon>
        ${{valorTotal}} Pesos</p>
   </ion-navbar>
+  <ion-navbar class="interna">
+    <ion-row>
+      <ion-col class=" center groupTabs">
+        <button class="tab tab1" (click)="openPage('ResultadoCalculoPage')">Materiales</button>
+      </ion-col>
+      <ion-col class="center">
+        <button class="tab tab2" (click)="openPage('RecomendacionesPage')"> Recomendaciones</button>
+      </ion-col>
+     
+    </ion-row>
+   </ion-navbar>
 
 </ion-header>
 

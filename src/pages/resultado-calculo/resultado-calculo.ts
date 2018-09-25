@@ -17,6 +17,7 @@ import { ElementoPage } from '../elemento/elemento';
 export class ResultadoCalculoPage {
 
   materiales: any =[];
+  recomendaciones: any =[];
   valorTotal: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,
@@ -24,6 +25,8 @@ export class ResultadoCalculoPage {
     this.menu1Active();
     this.materiales= this.navParams.get('materiales');
     this.valorTotal= this.navParams.get('valorTotalC');
+    this.recomendaciones=this.navParams.get('recomendaciones');
+
   }
    //esto es para desactivar los menu en la pantalla login
    menu1Active() {
@@ -48,7 +51,13 @@ export class ResultadoCalculoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultadoCalculoPage');
+    this.materiales= this.navParams.get('materiales');
+    this.valorTotal= this.navParams.get('valorTotalC');
+    this.recomendaciones=this.navParams.get('recomendaciones');
   }
+
+  openPage(page){
+    this.navCtrl.push(page, {materiales: this.materiales, valorTotalC:this.valorTotal, recomendaciones:this.recomendaciones});
+}
 
 }

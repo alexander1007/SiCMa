@@ -8,6 +8,9 @@ import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 
 
@@ -35,7 +38,10 @@ verInventario: boolean;
     public fileChooser :FileChooser,
     public filePath : FilePath,
     private document: DocumentViewer,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private transfer: FileTransfer,
+    private iab: InAppBrowser
+  ) {
     this.menu1Active();
     this.verInventario = true;
     this.tipo= this.navParams.get('tipo');
@@ -57,16 +63,34 @@ verInventario: boolean;
 
   abrirInventario(){
     this.navCtrl.push(InventarioPage);
-  }  
+  }  options
 
 
   openFile() {
-    const options: DocumentViewerOptions ={
-      title: 'Portafolio'
-    }
-    this.document.viewDocument('assets/files/articulo1.pdf', 'application/pdf', options);
+    this.presentLoading();
+   let url = encodeURIComponent('https://firebasestorage.googleapis.com/v0/b/sicma-54be2.appspot.com/o/file%2Fportafolio.pdf?alt=media&token=1ce095b8-0f0b-435a-a2bf-6220902ff540');
+this.iab.create('https://docs.google.com/viewer?url='+ url);   
 
-	}
+
+  }
+  
+  downloadAndOpenPdf() {
+    this.presentLoading();
+
+    let path = null;
+ 
+    if (this.platform.is('ios')) {
+      path = this.file.documentsDirectory;
+    } else if (this.platform.is('android')) {
+      path = this.file.dataDirectory;
+    }
+ 
+    const transfer = this.transfer.create();
+    transfer.download('https://devdactic.com/html/5-simple-hacks-LBT.pdf', path + 'myfile.pdf').then(entry => {
+      let url = entry.toURL();
+      this.document.viewDocument(url, 'application/pdf', {});
+    });
+  }
 
 	presentLoading() {
     const loader = this.loadingCtrl.create({

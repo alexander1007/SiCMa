@@ -1,4 +1,4 @@
-page-resultado-calculo {
+page-recomendaciones {
     .card-background-page {
 
         ion-card {
@@ -113,14 +113,13 @@ page-resultado-calculo {
         border-right-color: white;
         border-right-style: inset;
        }
-
-    .tab{
+       .tab{
         font-size: 18px;
         background-color: #e50a2d;
         color: white;
       
     }
-    .tab1{
+    .tab2{
         text-decoration: underline;
     }
 
@@ -132,5 +131,16 @@ page-resultado-calculo {
         text-decoration: underline;
     }
 
+}
+
+.style_p{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+.style_card{
+    background: #a0fccf;
+    border-radius: 8px;
 }
 }
