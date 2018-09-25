@@ -47,6 +47,7 @@ import { ListaUsuariosService } from '../services/usuarios/usuario.service';
 
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
+import { PedidoPageModule } from '../pages/pedido/pedido.module';
  
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { File } from '@ionic-native/file';
    
   ],
   imports: [
+    PedidoPageModule,
     InventarioPageModule,
     InicioPageModule,
     ResultadoCalculoPageModule,    

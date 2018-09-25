@@ -60,10 +60,12 @@ console.log(user);
   
      this.usuarios= data;
      this.tipo=this.usuarios[0].tipo;
+     this.navCtrl.setRoot(InicioPage, {tipo:this.tipo});
+     console.log(this.tipo);
    })
   
  
-      this.navCtrl.setRoot(InicioPage, {tipo:this.tipo}); 
+      
   }) // autenticar
 }).catch((err)=>{
   let alert = this.alertCtrl.create({
