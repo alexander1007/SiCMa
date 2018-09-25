@@ -42,6 +42,7 @@ import { ResultadoCalculoPage } from '../pages/resultado-calculo/resultado-calcu
 import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado-calculo.module';
 import { InventarioPageModule } from '../pages/inventario/inventario.module';
 import { InicioPageModule } from '../pages/inicio/inicio.module';
+import { ListaRecomendacionesService } from '../services/recomendaciones/recomendacion.service';
 
  
 @NgModule({
@@ -72,6 +73,7 @@ import { InicioPageModule } from '../pages/inicio/inicio.module';
 
   ],
   providers: [
+    ListaRecomendacionesService,
     ListaMedidasService,
     ListaSistemasService,
     StatusBar,
