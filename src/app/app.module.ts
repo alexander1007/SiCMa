@@ -40,6 +40,8 @@ import { MedidaMurosPageModule } from '../pages/medida-muros/medida-muros.module
 import { ListaMedidasService } from '../services/medidas/medida.service';
 import { ResultadoCalculoPage } from '../pages/resultado-calculo/resultado-calculo';
 import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado-calculo.module';
+import { InventarioPageModule } from '../pages/inventario/inventario.module';
+import { InicioPageModule } from '../pages/inicio/inicio.module';
 
  
 @NgModule({
@@ -48,7 +50,8 @@ import { ResultadoCalculoPageModule } from '../pages/resultado-calculo/resultado
    
   ],
   imports: [
-    
+    InventarioPageModule,
+    InicioPageModule,
     ResultadoCalculoPageModule,    
     MedidaMurosPageModule,
     SistemasPageModule,

@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Usuario } from '../../app/models/usuario';
 import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
 import { ElementoPage } from '../elemento/elemento';
+import { InicioPage } from '../inicio/inicio';
 //import { User } from 'firebase';
 
 
@@ -42,7 +43,7 @@ console.log(user);
 
    const authObserv= this.afAuth.authState.subscribe(auth => {
    
-      this.navCtrl.setRoot(ElementoPage); 
+      this.navCtrl.setRoot(InicioPage); 
   }) // autenticar
 }).catch((err)=>{
   let alert = this.alertCtrl.create({
