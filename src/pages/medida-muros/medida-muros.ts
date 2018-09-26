@@ -157,7 +157,7 @@ this.valorTotalC=0;
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 2
+    minimumFractionDigits: 0
   });
     //Calculo de la cantidad total y el valor total
     for (var index = 0; index < this.materiales.length; index++) {
