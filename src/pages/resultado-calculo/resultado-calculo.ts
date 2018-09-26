@@ -17,13 +17,24 @@ import { ElementoPage } from '../elemento/elemento';
 export class ResultadoCalculoPage {
 
   materiales: any =[];
-  valorTotal: number;
+  recomendaciones: any =[];
+  valorTotal: string;
+  valorTotalM :string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,
     public menu: MenuController) {
     this.menu1Active();
     this.materiales= this.navParams.get('materiales');
     this.valorTotal= this.navParams.get('valorTotalC');
+    this.recomendaciones=this.navParams.get('recomendaciones');
+
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+    this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000.00"
+
   }
    //esto es para desactivar los menu en la pantalla login
    menu1Active() {
@@ -48,7 +59,13 @@ export class ResultadoCalculoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultadoCalculoPage');
+    this.materiales= this.navParams.get('materiales');
+    this.valorTotal= this.navParams.get('valorTotalC');
+    this.recomendaciones=this.navParams.get('recomendaciones');
   }
+
+  openPage(page){
+    this.navCtrl.push(page, {materiales: this.materiales, valorTotalC:this.valorTotal, recomendaciones:this.recomendaciones});
+}
 
 }

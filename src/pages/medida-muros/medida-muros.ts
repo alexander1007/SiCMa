@@ -36,6 +36,7 @@ export class MedidaMurosPage {
   verVar3: boolean;
 
   medidas: any =[];
+  recomendaciones: any =[];
   imagenes: string[];
   imagenesMateriales: string[];
   materiales: any=[];
@@ -151,7 +152,12 @@ this.valorTotalC=0;
      this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
   }
    
-
+//declaracin de moneda
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
     //Calculo de la cantidad total y el valor total
     for (var index = 0; index < this.materiales.length; index++) {
      
@@ -161,14 +167,20 @@ this.valorTotalC=0;
 
     
       this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
+      this.materiales[index].valorTotalS =formatter.format( parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
       this.valorTotalC+=this.materiales[index].valorTotal;   
+
      }
-     this.abrirResultados(this.materiales, this.valorTotalC);
+
+     //aqui debe ir la logica para traer las recomendaaciones 
+      this.recomendaciones=[]; // esta es la variable
+     //se debe enviar las recomendaciones por parametro
+     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
     }
 
-    abrirResultados(materiales, valorTotalC){
+    abrirResultados(materiales, valorTotalC, recomendaciones){
  
-     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC});
+     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC, recomendaciones: this.recomendaciones});
        
       }
 
