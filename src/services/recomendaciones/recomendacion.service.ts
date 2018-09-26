@@ -7,7 +7,7 @@ export class ListaRecomendacionesService{
 
 constructor(private db: AngularFireDatabase) { }
 
-getListaRecomendacionesxsistema(sistema: string){
+getListaRecomendacionesxsistema(sistema:string){
 
     return this.db.list('/recomendaciones/', ref=> ref.orderByChild('sistema').equalTo(sistema));
 }

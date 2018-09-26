@@ -5,6 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
+import { ListaRecomendacionesService } from '../../services/recomendaciones/recomendacion.service';
 
 /**
  * Generated class for the MedidaMurosPage page.
@@ -45,6 +46,7 @@ export class MedidaMurosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public medidaService: ListaMedidasService,
+    public recomendacionService: ListaRecomendacionesService,
     public storage: Storage,
     public db: AngularFireDatabase,
     private alertCtrl: AlertController,
@@ -79,8 +81,7 @@ export class MedidaMurosPage {
 
     this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
     .subscribe(data =>{
-      console.log(data);
-      this.materiales = data;
+     this.materiales = data;
 
    // imagenes de los materiales
       this.imagenesMateriales = Array(this.materiales.length);
@@ -152,7 +153,7 @@ this.valorTotalC=0;
      this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
   }
    
-//declaracin de moneda
+//declaracion de moneda
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -172,15 +173,20 @@ this.valorTotalC=0;
 
      }
 
-     //aqui debe ir la logica para traer las recomendaaciones 
-      this.recomendaciones=[]; // esta es la variable
-     //se debe enviar las recomendaciones por parametro
-     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
+     this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
+     .subscribe(data =>{
+      this.recomendaciones = data;
+  
+       //se debe enviar las recomendaciones por parametro
+      this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
+      });
+     
+    
     }
 
     abrirResultados(materiales, valorTotalC, recomendaciones){
- 
-     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC, recomendaciones: this.recomendaciones});
+     
+     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC, recomendaciones: recomendaciones});
        
       }
 

@@ -26,10 +26,10 @@
 <ion-content padding class="card-background-page fondo">
   <p class="style_p">El éxito de sus proyectos es nuestra mayor satisfacción.</p>
 
-  <ion-card class="style_card" >
+  <ion-card class="style_card"  *ngFor="let recomendacion of recomendaciones" (click)="abrirResultados(recomendacion.key)">
     
       <ion-card-content>
-        recomendacion1
+          {{recomendacion.descripcion}}
       </ion-card-content>
     </ion-card>
 

@@ -37,6 +37,8 @@ export class RecomendacionesPage {
   }
 
   openPage(page){
-    this.navCtrl.push(page, {materiales: this.materiales, valorTotalC:this.valorTotal, recomendaciones:this.recomendaciones});
-}
+    this.navCtrl.push(page, {materiales: this.materiales, valorTotalC:this.valorTotal, recomendaciones: this.recomendaciones});
+console.log("aqui voy con recomendaciones");
+    console.log(this.recomendaciones);
+  }
 }

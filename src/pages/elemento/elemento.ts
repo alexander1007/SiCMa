@@ -39,7 +39,7 @@ export class ElementoPage {
 
     this.elementoService.getListaElementos().valueChanges()
     .subscribe(data =>{
-      console.log(data);
+      
       this.elementos = data;
       this.imagenes = Array(this.elementos.length);
       for (var index = 0; index < this.elementos.length; index++) {
