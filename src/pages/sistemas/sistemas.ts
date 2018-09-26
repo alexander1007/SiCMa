@@ -17,6 +17,9 @@ import { MedidaMurosPage } from '../medida-muros/medida-muros';
   selector: 'page-sistemas',
   templateUrl: 'sistemas.html',
 })
+/**
+ * Class 
+ */
 export class SistemasPage {
 
   sistemas: any=[];
