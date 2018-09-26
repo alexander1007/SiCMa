@@ -31,7 +31,7 @@ export class ResultadoCalculoPage {
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
-      minimumFractionDigits: 2
+      minimumFractionDigits: 0
     });
     this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000.00"
 
