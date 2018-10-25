@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PedidoPage } from '../pedido/pedido';
+import { ListaInventariosService } from '../../services/inventario/inventario.service';
+import * as moment from 'moment';
 
 /**
  * Generated class for the InventarioPage page.
@@ -17,12 +19,42 @@ import { PedidoPage } from '../pedido/pedido';
 export class InventarioPage {
 
   producto: string;
+  inventarios: any=[];
+  fecha: any;
+  hora:any;
+  tiempo:string;
+  idInv: string;
 
   productos: Array<{id:number, nombre: String}>;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public inventariosService: ListaInventariosService, ) {
+
+      this.fecha= moment().format('YYYYMMDD');
+      this.hora=moment().format('LT');
+      this.tiempo= this.hora.substr(-2);
+
+      if(this.tiempo=='PM'){
+
+        this.idInv='tarde';
+      }
+      else{
+        this.idInv='mañana';
+      }
+
+      console.log(this.fecha);
+      console.log(this.hora);
+      console.log(this.tiempo);
+      console.log(this.idInv);
+
+    this.inventariosService.getListaInventarios(this.fecha, this.idInv).valueChanges()
+    .subscribe(data =>{
+      
+      this.inventarios = data;
+      console.log(this.inventarios);
 
     this.initializeItems();
-  }
+    })
+}
 
   initializeItems(){
     this.productos=[

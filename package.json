@@ -52,6 +52,7 @@
     "firebase": "^5.4.2",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "moment": "^2.22.2",
     "ng2-pdf-viewer": "^5.1.2",
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.2",

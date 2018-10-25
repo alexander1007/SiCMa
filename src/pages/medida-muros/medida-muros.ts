@@ -164,7 +164,7 @@ this.valorTotalC=0;
      
      var cantTotal= parseFloat((this.materiales[index].cantidadxM2))*(this.mtcuadrados);
       
-      this.materiales[index].cantidadTotal=Math.ceil(cantTotal);
+      this.materiales[index].cantidadTotal=cantTotal;
 
     
       this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
