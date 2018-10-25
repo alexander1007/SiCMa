@@ -18,7 +18,7 @@ export class ListaMedidasService {
         return this.db.list('/medidas/', ref=> ref.orderByChild('elemento').equalTo(elemento));
     }
 
-    getListaMaterialesbySistema(sistema:string){
+    getListaMaterialesbySistema( sistema:string){
         return this.db.list('/materiales/', ref=> ref.orderByChild('sistema').equalTo(sistema));
     }
 

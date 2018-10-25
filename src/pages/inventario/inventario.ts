@@ -18,14 +18,15 @@ import * as moment from 'moment';
 })
 export class InventarioPage {
 
+  pedido: { id: number; nombre: string; peso: string; precio: string; stock: string; }[];
   producto: string;
-  inventarios: any=[];
+  productos: any=[];
   fecha: any;
   hora:any;
   tiempo:string;
   idInv: string;
 
-  productos: Array<{id:number, nombre: String}>;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public inventariosService: ListaInventariosService, ) {
 
@@ -49,29 +50,18 @@ export class InventarioPage {
     this.inventariosService.getListaInventarios(this.fecha, this.idInv).valueChanges()
     .subscribe(data =>{
       
-      this.inventarios = data;
-      console.log(this.inventarios);
+      this.productos = data;
+      
 
     this.initializeItems();
     })
 }
 
   initializeItems(){
-    this.productos=[
-      {id:1, nombre:'LIBRAS PUNTILLA 2"CC'},
-      {id:2, nombre:'CODO 4 X 90 CXC SANIT.'},
-      {id:3, nombre:'CARRETA 2000 SUPER ANTIPINCHASOS PES.'},
-      {id:4, nombre:'PALAS GARLANCHAS 6056-2'},
-      {id:5, nombre:'PEGACOR INTERIOR GRIS X 30 KG'},
-      {id:5, nombre:'PERFIL ENTREPISO C.16 X 6 mt'},
-      {id:6, nombre:'PLASTOCRETE DM x 4.5 KG'},
-      {id:7, nombre:'VARILLA A.R 1/2"'},
-      {id:8, nombre:'VINILTEX BLANCO x GL'},
-      {id:9, nombre:'TEJA FIBROCEMENTO 5C #10'},
-      {id:10, nombre:'SOLD WA ACP 611 1/8'}
-    ]
-
+   
   }
+
+  
   getItems(ev) {
     
     this.initializeItems();
@@ -92,6 +82,10 @@ export class InventarioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventarioPage');
+  }
+
+  addNote(producto){
+
   }
 
 }
