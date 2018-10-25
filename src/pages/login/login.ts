@@ -90,7 +90,7 @@ else{
 
 
  ionViewDidLoad() {
-    // this.user.email = "alex@s.com";
-    // this.user.password = "123456";
+    this.user.email = "alex@s.com";
+    this.user.password = "123456";
 }
 }

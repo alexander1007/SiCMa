@@ -14,10 +14,30 @@
 
 
 <ion-content padding class="card-background-page fondo">
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list>
+
+    <button (click)="agregarProducto()" ion-button full class="azulSicma tamano">Agregar Producto</button>
+
+    <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+    
+    <!-- <ion-list>
         <button ion-item *ngFor="let producto of productos" (click)="abrirPedido(producto)">
           {{producto.nombre}}
         </button>  
-      </ion-list>
+      </ion-list> -->
+  
+<ion-card class="desing-card" *ngFor="let producto of pedido" >
+<ion-card-content>
+ <h3 class="negrita">{{producto.nombre}}</h3>
+ <ion-row>
+   <ion-col col-6><p><span> Stock: </span>{{producto.stock}}</p></ion-col>
+   <ion-col col-6><p> <span> Precio: </span>$ {{producto.precio}}</p></ion-col>  
+ </ion-row>
+ <ion-row>
+   
+ </ion-row>
+</ion-card-content>
+</ion-card>
+<ion-fab right bottom>
+  <button ion-fab  (click)= "terminarPedido()"><ion-icon name="checkmark"></ion-icon></button>
+</ion-fab>
 </ion-content>

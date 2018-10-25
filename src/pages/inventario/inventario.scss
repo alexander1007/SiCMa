@@ -5,15 +5,30 @@ page-inventario {
         background-position: center;
         background-repeat: no-repeat;
     }
+    .azulSicma{
+      background: #488aff;
+      border-radius: 75px;
+  }
     .fondo_rojo{
         background: rgba(229, 10, 10, 0.68);
       }
       .fondo_azul{
-          background: rgba(0, 120, 182, 0.75)
+          background: rgba(0, 120, 182, 0.75);
         }
   
       .blanco{
         color: white;
       }
+
+      .desing-card{
+        background: #e6e6e6;
+    border-radius: 5px;
+    border-right: red solid 5px;
+      }
+
+      .negrita{
+        font-weight: bold;
+      }
+      
 
 }
