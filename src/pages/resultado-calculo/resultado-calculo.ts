@@ -33,7 +33,7 @@ export class ResultadoCalculoPage {
       currency: 'USD',
       minimumFractionDigits: 0
     });
-    this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000.00"
+    this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000"
 
   }
    //esto es para desactivar los menu en la pantalla login
