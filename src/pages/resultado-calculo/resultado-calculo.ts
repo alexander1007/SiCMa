@@ -16,31 +16,32 @@ import { ElementoPage } from '../elemento/elemento';
 })
 export class ResultadoCalculoPage {
 
-  materiales: any =[];
-  recomendaciones: any =[];
+  materiales: any = [];
+  recomendaciones: any = [];
   valorTotal: string;
-  valorTotalM :string;
+  valorTotalM: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
     public menu: MenuController) {
     this.menu1Active();
-    this.materiales= this.navParams.get('materiales');
-    this.valorTotal= this.navParams.get('valorTotalC');
-    this.recomendaciones=this.navParams.get('recomendaciones');
+    this.materiales = this.navParams.get('materiales');
+    this.valorTotal = this.navParams.get('valorTotalC');
+    this.recomendaciones = this.navParams.get('recomendaciones');
+    console.log(this.materiales);
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0
     });
-    this.valorTotalM= formatter.format( parseFloat(this.valorTotal)) // "$1,000"
+    this.valorTotalM = formatter.format(parseFloat(this.valorTotal)) // "$1,000"
 
   }
-   //esto es para desactivar los menu en la pantalla login
-   menu1Active() {
+  //esto es para desactivar los menu en la pantalla login
+  menu1Active() {
     this.menu.enable(false);
   }
-  abrirElemento(){
+  abrirElemento() {
 
     const alert = this.alertCtrl.create({
       title: 'SiCMa',
@@ -48,24 +49,24 @@ export class ResultadoCalculoPage {
       buttons: [{
 
         text: 'Ok',
-        handler: () =>{
+        handler: () => {
           this.navCtrl.push(ElementoPage);
         }
       }]
     });
     alert.present();
 
-    
+
   }
 
   ionViewDidLoad() {
-    this.materiales= this.navParams.get('materiales');
-    this.valorTotal= this.navParams.get('valorTotalC');
-    this.recomendaciones=this.navParams.get('recomendaciones');
+    this.materiales = this.navParams.get('materiales');
+    this.valorTotal = this.navParams.get('valorTotalC');
+    this.recomendaciones = this.navParams.get('recomendaciones');
   }
 
-  openPage(page){
-    this.navCtrl.push(page, {materiales: this.materiales, valorTotalC:this.valorTotal, recomendaciones:this.recomendaciones});
-}
+  openPage(page) {
+    this.navCtrl.push(page, { materiales: this.materiales, valorTotalC: this.valorTotal, recomendaciones: this.recomendaciones });
+  }
 
 }

@@ -8,7 +8,10 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "test": "karma start ./testing/karma.conf.js"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -63,7 +66,24 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.1.11",
     "@ionic/lab": "1.0.8",
-    "typescript": "~2.6.2"
+    "@types/jasmine": "^3.3.8",
+    "@types/jasminewd2": "^2.0.6",
+    "angular2-template-loader": "^0.6.2",
+    "html-loader": "^0.5.5",
+    "jasmine": "^3.3.1",
+    "karma": "^4.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-jasmine-html-reporter": "^1.4.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^3.0.5",
+    "null-loader": "^0.1.1",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.0.2",
+    "typescript": "~2.9.2",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   },
   "description": "An Ionic project",
   "cordova": {

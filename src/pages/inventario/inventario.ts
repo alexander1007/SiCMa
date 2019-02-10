@@ -18,7 +18,7 @@ import * as moment from 'moment';
 })
 export class InventarioPage {
 
-  pedido: { id: number; nombre: string; peso: string; precio: string; stock: string; }[];
+  pedido: any=[];
   producto: string;
   productos: any=[];
   fecha: any;
@@ -51,8 +51,8 @@ export class InventarioPage {
     .subscribe(data =>{
       
       this.productos = data;
-      
-
+      this.pedido=this.productos;
+console.log(this.pedido);
     this.initializeItems();
     })
 }
