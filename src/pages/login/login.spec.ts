@@ -1,5 +1,5 @@
 
-
+//prueba donde se muestra que el mail tiene los caracteres necesarios
 describe("test2", () => {
     var validar;
     var email = 'Alex@s.com'
@@ -15,7 +15,7 @@ describe("test2", () => {
     });
 });
 
-
+//prueba de la cantidad de caracteres de la contraseña
 describe("test3", () => {
     var password = '123456'
     it("prueba para campo contraseña sea minimo 6 caracteres", () => {

@@ -1,6 +1,6 @@
 
 
-
+//prueba que el valor ingresado sea numerico
 describe("test6", () => {
     var valorTotal = 1000;
 
