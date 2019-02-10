@@ -1,5 +1,5 @@
-describe("test", () => {
-    it("test for an sum", () => {
-        expect(5 + 5).toEqual(10);
+describe("test1", () => {
+    it("prueba de funcionamiento del sistema", () => {
+        expect('SiCMa').toBeTruthy();
     });
 });
