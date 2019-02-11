@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Usuario } from '../../app/models/usuario';
-import { AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFireDatabase } from '@angular/fire/database';
 //import { ElementoPage } from '../elemento/elemento';
 import { InicioPage } from '../inicio/inicio';
 import { ListaUsuariosService } from '../../services/usuarios/usuario.service';
