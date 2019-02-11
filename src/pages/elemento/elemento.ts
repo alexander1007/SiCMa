@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 
 import { SistemasPage } from '../sistemas/sistemas';
-import { AngularFireDatabase } from "angularfire2/database"; import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from "angularfire2/database";
 import 'rxjs/add/operator/map';
 
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, NavController } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
 
 @NgModule({
@@ -11,6 +11,6 @@ import { LoginPage } from './login';
   ],
 })
 export class LoginPageModule {
- }
- 
+}
+
 
