@@ -3,8 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -61,18 +60,18 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
 
 
 
- 
+
 @NgModule({
   declarations: [
     MyApp,
-   
+
   ],
   imports: [
     RecomendacionesPageModule,
     PedidoPageModule,
     InventarioPageModule,
     InicioPageModule,
-    ResultadoCalculoPageModule,    
+    ResultadoCalculoPageModule,
     MedidaMurosPageModule,
     SistemasPageModule,
     BrowserModule,
@@ -83,13 +82,13 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-   
+
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
- 
+
 
   ],
   providers: [
@@ -100,16 +99,16 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
     ListaSistemasService,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     ListaElementosService
-,
+    ,
     File,
     FileOpener,
     FilePath,
     FileChooser,
     DocumentViewer,
     FileTransfer,
-    PdfViewerModule ,
-    InAppBrowser ]
+    PdfViewerModule,
+    InAppBrowser]
 })
-export class AppModule {}
+export class AppModule { }

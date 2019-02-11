@@ -7,7 +7,7 @@ import { File } from '@ionic-native/file';
 
 import { FilePath } from '@ionic-native/file-path';
 import { FileChooser } from '@ionic-native/file-chooser';
-import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
@@ -28,15 +28,15 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'inicio.html',
 })
 export class InicioPage {
-tipo : string;
-verInventario: boolean;
+  tipo: string;
+  verInventario: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public menu: MenuController,
     public platform: Platform,
     public file: File,
     public fileOpener: FileOpener,
-    public fileChooser :FileChooser,
-    public filePath : FilePath,
+    public fileChooser: FileChooser,
+    public filePath: FilePath,
     private document: DocumentViewer,
     public loadingCtrl: LoadingController,
     private transfer: FileTransfer,
@@ -44,9 +44,9 @@ verInventario: boolean;
   ) {
     this.menu1Active();
     this.verInventario = true;
-    this.tipo= this.navParams.get('tipo');
+    this.tipo = this.navParams.get('tipo');
     console.log(this.tipo);
-    if( this.tipo=='cliente'){
+    if (this.tipo == 'cliente') {
       this.verInventario = false;
     }
 
@@ -55,36 +55,36 @@ verInventario: boolean;
   //esto es para desactivar los menu en la pantalla login
   menu1Active() {
     this.menu.enable(false);
-  } 
+  }
 
-  abrirElemento(){
+  abrirElemento() {
     this.navCtrl.push(ElementoPage);
   }
 
-  abrirInventario(){
+  abrirInventario() {
     this.navCtrl.push(InventarioPage);
-  }  options
+  } options
 
 
   openFile() {
     this.presentLoading();
-   let url = encodeURIComponent('https://firebasestorage.googleapis.com/v0/b/sicma-54be2.appspot.com/o/file%2Fportafolio.pdf?alt=media&token=1ce095b8-0f0b-435a-a2bf-6220902ff540');
-this.iab.create('https://docs.google.com/viewer?url='+ url);   
+    let url = encodeURIComponent('https://firebasestorage.googleapis.com/v0/b/sicma-54be2.appspot.com/o/file%2Fportafolio.pdf?alt=media&token=1ce095b8-0f0b-435a-a2bf-6220902ff540');
+    this.iab.create('https://docs.google.com/viewer?url=' + url);
 
 
   }
-  
+
   downloadAndOpenPdf() {
     this.presentLoading();
 
     let path = null;
- 
+
     if (this.platform.is('ios')) {
       path = this.file.documentsDirectory;
     } else if (this.platform.is('android')) {
       path = this.file.dataDirectory;
     }
- 
+
     const transfer = this.transfer.create();
     transfer.download('https://devdactic.com/html/5-simple-hacks-LBT.pdf', path + 'myfile.pdf').then(entry => {
       let url = entry.toURL();
@@ -92,7 +92,7 @@ this.iab.create('https://docs.google.com/viewer?url='+ url);
     });
   }
 
-	presentLoading() {
+  presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "Por favor espere...",
       duration: 3000

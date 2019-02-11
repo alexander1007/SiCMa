@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Usuario } from '../../app/models/usuario';
-import { AngularFireObject, AngularFireDatabase } from '@angular/fire/database';
-import { ElementoPage } from '../elemento/elemento';
+//import { AngularFireDatabase } from '@angular/fire/database';
+
 import { InicioPage } from '../inicio/inicio';
 import { ListaUsuariosService } from '../../services/usuarios/usuario.service';
 //import { User } from 'firebase';
@@ -30,7 +30,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioService: ListaUsuariosService,
     private afAuth: AngularFireAuth,
-    private database: AngularFireDatabase,
+    //  private database: AngularFireDatabase,
     private alertCtrl: AlertController,
     public menu: MenuController
   ) {
@@ -55,6 +55,7 @@ export class LoginPage {
           console.log("cualquier cosa aqui voy");
           const authObserv = this.afAuth.authState.subscribe(auth => {
             console.log(auth);
+            console.log(authObserv);
             this.usuarioService.getListaUsuariosxuid(auth.uid).valueChanges()
               .subscribe(data => {
                 console.log("le doy aqui a ver");
