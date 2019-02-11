@@ -94,7 +94,7 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-android-support-gradle-release": {
-        "ANDROID_SUPPORT_VERSION": "27.+"
+        "ANDROID_SUPPORT_VERSION": "27.0.0"
       },
       "cordova-plugin-file": {},
       "cordova-plugin-file-opener2": {},
