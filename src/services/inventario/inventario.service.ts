@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase,AngularFireList } from "angularfire2/database";
-import { Sistema } from "../../app/models/sistema";
+import { AngularFireDatabase } from "angularfire2/database";
+//import { Sistema } from "../../app/models/sistema";
 
 @Injectable()
 export class ListaInventariosService{
