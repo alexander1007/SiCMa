@@ -22,6 +22,12 @@ import 'rxjs/add/operator/map';
   selector: 'page-elemento',
   templateUrl: 'elemento.html',
 })
+/**
+ * Clase que contiene la logica necesaria correspondiente a los elementos
+ *  que son mostrados en la aplicación
+ * @author Alexander
+ * @version 1.0
+ */
 export class ElementoPage {
 
   elementos: any = [];

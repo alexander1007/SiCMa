@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 
+/**
+ * Clase que contiene las medidas y materiales por sistema 
+ * @author Alexander - Sophia
+ * @version 1.0
+ */
 @Injectable()
 export class ListaMedidasService {
 

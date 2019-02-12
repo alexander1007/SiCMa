@@ -2,6 +2,11 @@ import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 
 // se debe instalar npm i rxjs@^6.0 rxjs-compat
+/**
+ * Clase que contiene la lista de elementos de construcción del sistema
+ * @author Alexander - Sophia
+ * @version 1.0
+ */
 @Injectable()
 export class ListaElementosService {
     
