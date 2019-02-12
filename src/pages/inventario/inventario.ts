@@ -18,52 +18,53 @@ import * as moment from 'moment';
 })
 export class InventarioPage {
 
-  pedido: any=[];
+  pedido: any = [];
   producto: string;
-  productos: any=[];
+  productos: any = [];
   fecha: any;
-  hora:any;
-  tiempo:string;
+  hora: any;
+  tiempo: string;
   idInv: string;
+  nue: string;
 
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
     public inventariosService: ListaInventariosService, ) {
 
-      this.fecha= moment().format('YYYYMMDD');
-      this.hora=moment().format('LT');
-      this.tiempo= this.hora.substr(-2);
+    this.fecha = moment().format('YYYYMMDD');
+    this.hora = moment().format('LT');
+    this.tiempo = this.hora.substr(-2);
 
-      if(this.tiempo=='PM'){
+    if (this.tiempo == 'PM') {
 
-        this.idInv='tarde';
-      }
-      else{
-        this.idInv='mañana';
-      }
+      this.idInv = 'tarde';
+    }
+    else {
+      this.idInv = 'mañana';
+    }
 
-      console.log(this.fecha);
-      console.log(this.hora);
-      console.log(this.tiempo);
-      console.log(this.idInv);
+    console.log(this.fecha);
+    console.log(this.hora);
+    console.log(this.tiempo);
+    console.log(this.idInv);
 
     this.inventariosService.getListaInventarios(this.fecha, this.idInv).valueChanges()
-    .subscribe(data =>{
-      
-      this.productos = data;
-      this.pedido=this.productos;
-console.log(this.pedido);
-    this.initializeItems();
-    })
-}
+      .subscribe(data => {
 
-  initializeItems(){
-   
+        this.productos = data;
+        this.pedido = this.productos;
+        console.log(this.pedido);
+        this.initializeItems();
+      })
   }
 
-  
+  initializeItems() {
+
+  }
+
+
   getItems(ev) {
-    
+
     this.initializeItems();
 
     var val = ev.target.value;
@@ -74,17 +75,18 @@ console.log(this.pedido);
       })
     }
   }
+  //para hacer commit
 
- 
-  abrirPedido(producto){
-    this.navCtrl.push(PedidoPage, {producto: producto});
-  }  
+
+  abrirPedido(producto) {
+    this.navCtrl.push(PedidoPage, { producto: producto });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InventarioPage');
   }
 
-  addNote(producto){
+  addNote(producto) {
 
   }
 
