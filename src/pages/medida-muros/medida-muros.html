@@ -1,38 +1,38 @@
 <ion-header>
 
   <ion-navbar>
-      
-      <ion-title class="aling_left">
-        {{titulo}}
-      </ion-title >
-      <p class="aling_left color_negro style_header">{{descripcion}}</p>
-    </ion-navbar>
+
+    <ion-title class="aling_left">
+      {{titulo}}
+    </ion-title>
+    <p class="aling_left color_negro style_header">{{descripcion}}</p>
+  </ion-navbar>
 
 </ion-header>
 
-<ion-content class="card-background-page fondo" >
+<ion-content class="card-background-page fondo">
 
   <ion-list class="margin_top8">
-      <img class="style_img " [src]="url_imagen"/>
+    <img class="style_img " [src]="url_imagen" />
 
     <ion-item class="login">
-        <ion-label class="style_font"  stacked>{{p_variable1}}</ion-label>
-      <ion-input  type="text" [(ngModel)]="variable1"></ion-input>
+      <ion-label class="style_font" stacked>{{p_variable1}}</ion-label>
+      <ion-input type="text" (keyup)="onKeyUp()" [(ngModel)]="variable1"></ion-input>
     </ion-item>
-  <br>
+    <br>
     <ion-item class="login">
-        <ion-label class="style_font" stacked>{{p_variable2}}</ion-label>
-      <ion-input  type="text" [(ngModel)]="variable2"></ion-input>
+      <ion-label class="style_font" stacked>{{p_variable2}}</ion-label>
+      <ion-input type="text" (keyup)="onKeyUp1()" [(ngModel)]="variable2"></ion-input>
     </ion-item>
     <br>
     <ion-item class="login" [hidden]="!verVar3">
       <ion-label class="style_font" stacked>{{p_variable3}}</ion-label>
-    <ion-input  type="text" [(ngModel)]="variable3"></ion-input>
-  </ion-item>
-  
+      <ion-input type="text" (keyup)="onKeyUp2()" [(ngModel)]="variable3"></ion-input>
+    </ion-item>
+
   </ion-list>
-        
-    <div >
-      <button  (click)="calcularMateriales()" ion-button full class="azulSicma tamano">Calcular</button>
-    </div>
+
+  <div>
+    <button (click)="calcularMateriales()" ion-button full class="azulSicma tamano">Calcular</button>
+  </div>
 </ion-content>

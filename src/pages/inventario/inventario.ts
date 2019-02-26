@@ -62,7 +62,7 @@ export class InventarioPage {
 
   }
 
-
+  
   getItems(ev) {
 
     this.initializeItems();

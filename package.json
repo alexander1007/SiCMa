@@ -52,12 +52,14 @@
     "cordova-plugin-ionic-webview": "^2.1.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "dynatrace-cordova-plugin": "7.2.3-1000",
     "firebase": "^5.4.2",
     "gradle": "^1.0.9",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "moment": "^2.24.0",
     "ng2-pdf-viewer": "^5.1.2",
+    "node-pre-gyp": "^0.12.0",
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.2",
     "rxjs-compat": "^6.3.2",
@@ -70,6 +72,7 @@
     "@types/jasmine": "^3.3.8",
     "@types/jasminewd2": "^2.0.6",
     "angular2-template-loader": "^0.6.2",
+    "appium": "^1.11.1",
     "html-loader": "^0.5.5",
     "jasmine": "^3.3.1",
     "karma": "^4.0.0",
@@ -103,7 +106,8 @@
       "cordova-plugin-filechooser": {},
       "cordova-plugin-document-viewer": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "dynatrace-cordova-plugin": {}
     },
     "platforms": [
       "android"

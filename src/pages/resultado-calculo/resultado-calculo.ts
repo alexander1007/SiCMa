@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
+import { InicioPage } from '../inicio/inicio';
 
 /**
  * Generated class for the ResultadoCalculoPage page.
@@ -59,6 +60,23 @@ export class ResultadoCalculoPage {
 
   }
 
+  abrirElemento2() {
+
+    const alert = this.alertCtrl.create({
+      title: 'SiCMa',
+      subTitle: 'Gracias por preferirnos. Desea regresar al Inicio',
+      buttons: [{
+
+        text: 'Ok',
+        handler: () => {
+          this.navCtrl.push(InicioPage);
+        }
+      }]
+    });
+    alert.present();
+
+
+  }
   ionViewDidLoad() {
     this.materiales = this.navParams.get('materiales');
     this.valorTotal = this.navParams.get('valorTotalC');
