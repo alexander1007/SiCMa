@@ -55,6 +55,7 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RecomendacionesPageModule } from '../pages/recomendaciones/recomendaciones.module';
 import { ListaInventariosService } from '../services/inventario/inventario.service';
+import { ProyectoPageModule } from '../pages/proyecto/proyecto.module';
 
 
 
@@ -77,6 +78,7 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
     BrowserModule,
     HomePageModule,
     LoginPageModule,
+    ProyectoPageModule,
     ElementoPageModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),

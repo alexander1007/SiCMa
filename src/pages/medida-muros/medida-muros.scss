@@ -27,7 +27,7 @@ page-medida-muros {
 
 
       .fondo{
-        background-image: url("/assets/imgs/fondo.png");
+        background-image: url("/assets/imgs/fondo1.png");
         background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -45,21 +45,17 @@ page-medida-muros {
     }
 
     .toolbar-background-md{
-      background: rgba(236, 207, 207, 0.8588235294117647);
-      opacity: 0.9;
+        background: transparent !important;
+    }
 
+    .header-md::after {
+        position: relative;
     }
-    .toolbar-content-md{
-      text-align: center;
-    color: rgb(81, 77, 77);
-    font-size: 15px;
-    font-weight: bold;
+    .toolbar-title .toolbar-title-md{
+        color:white;
     }
-    .toolbar-title-md{
-      font-size: 24px;
-    font-weight: bold;
-    color: black;
-    margin-left: -14px;
+    .back-button{
+        color:white;
     }
     .margin_ri_34{
         margin-right: 34px;
@@ -80,11 +76,12 @@ page-medida-muros {
         border-radius: 5px;
     }
     .login{
-    background: rgba(218, 218, 218, 0.9019607843137255);
-    color: black;
-    border-radius: 5px;background: rgba(218, 218, 218, 0.9019607843137255);
-    color: black;
-    border-radius: 5px;
+        border-radius: 5px;
+        color: black;
+        -webkit-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        -moz-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        margin-bottom: 10px;
     }
 
     .tamano{
@@ -106,14 +103,13 @@ page-medida-muros {
     }
 
     .style_img{
-        padding: 15px;
-    width: 87%;
-    height: 248px;
-    margin-top: 2;
-    margin-top:11%;
-    margin-left: 6%;
-    margin-right: auto;
-    border-radius: 29px;
+        padding: 10px;
+        width: 87%;
+        height: 248px;
+        margin-top: 18%;
+        margin-left: 6%;
+        margin-right: auto;
+        border-radius: 29px;
     }
 
     .color_negro{
@@ -122,6 +118,24 @@ page-medida-muros {
     .margin_top8{
         margin-top: 8px;
     }
+    .style_header {
+        font-size: 17px !important;
+        margin-bottom: 7px !important;
+    }
 
+
+        .div-descripcion{
+            margin-bottom: 22px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            -webkit-box-shadow: 7px 7px 15px -2px rgba(61,107,174,0.51);
+            -moz-box-shadow: 7px 7px 15px -2px rgba(61,107,174,0.51);
+            box-shadow: 7px 7px 15px -2px rgba(61,107,174,0.51);
+            
+          }
+    
   
 }

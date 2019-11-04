@@ -10,6 +10,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ProyectoPage } from '../proyecto/proyecto';
 
 
 
@@ -58,7 +59,7 @@ export class InicioPage {
   }
 
   abrirElemento() {
-    this.navCtrl.push(ElementoPage);
+    this.navCtrl.push(ProyectoPage);
   }
 
   abrirInventario() {
