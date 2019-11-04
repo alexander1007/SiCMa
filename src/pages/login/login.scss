@@ -6,24 +6,25 @@ page-login {
         background-repeat: no-repeat;
     }
 
-    .tope{
-        margin-top: 22em;
+    .margen-inferior{
+        margin-bottom: 24px;
     }
     .azulSicma{
         background: #0078b6;
-        border-radius: 75px;
+        border-radius: 5px;
     }
     .login{
-    background: rgba(218, 218, 218, 0.9019607843137255);
-    color: black;
-    border-radius: 5px;background: rgba(218, 218, 218, 0.9019607843137255);
-    color: black;
+   
     border-radius: 5px;
+    color: black;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+    box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+    margin-bottom: 10px;
+
     }
 
-    .tamano{
-        height: 47px;
-    }
+
     .fondo_rojo{
         background: rgba(229, 10, 10, 1);
         border-radius: 75px;
@@ -32,7 +33,7 @@ page-login {
         text-align: right; 
     }
     .colorLetra{
- color: #0078b6;
+     color: #0078b6;
     }
     .color_negro{
         color:black;

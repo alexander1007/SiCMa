@@ -27,7 +27,7 @@ page-inicio {
 
 
       .fondo{
-        background-image: url("/assets/imgs/fondo_inicio.png");
+        background-image: url("/assets/imgs/fondo-inicio.png");
         background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -79,5 +79,20 @@ page-inicio {
     color: black;
     font-weight: bold;
     font-size: 17px;
+  }
+
+  .opcion-texto{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 19px;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .opcion-img{
+    width: 77px;
+  }
+  .opcion-flex{
+    display: flex;
   }
 }

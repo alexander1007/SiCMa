@@ -1,28 +1,27 @@
-
-
-
 <ion-content class="card-background-page fondo" padding>
+  <ion-row class="margen-inferior">
+    <ion-col>
+      <div></div>
+    </ion-col>
+    <ion-col col-6>
+      <div>
+        <img src="../assets/imgs/logo.png">
+      </div>
+    </ion-col>
+    <ion-col>
+      <div></div>
+    </ion-col>
+  </ion-row>
+  <ion-item class="login">
+    <ion-input type="text" [(ngModel)]="user.email" placeholder="Correo"></ion-input>
+  </ion-item>
+  <ion-item class="login">
+    <ion-input type="password" [(ngModel)]="user.password" placeholder="Contraseña"></ion-input>
+  </ion-item>
+  <ion-grid>
+    <button (click)="ingresar(user)" ion-button full class="azulSicma ">Ingresar</button>
 
-    <ion-list class="tope">
+  </ion-grid>
 
-        <ion-item class="login" >
-          <ion-input  type="text" [(ngModel)]="user.email" placeholder="Correo"></ion-input>
-        </ion-item>
-      <br>
-        <ion-item class="login">
-          <ion-input  type="password" [(ngModel)]="user.password" placeholder="Contraseña"></ion-input>
-        </ion-item>
-      
-      </ion-list>
-
-      <div >
-          <button  (click)="ingresar(user)" ion-button full class="azulSicma tamano">Ingresar</button>
-        </div>
-        <div >
-          <button (click)="registro(user)" ion-button full class="fondo_rojo tamano">Registrarse</button>
-        </div>  
-        <div class="text-right">
-          <a href="" class="button colorLetra" >¿Recordar Contraseña?</a>
-        </div>
 
 </ion-content>

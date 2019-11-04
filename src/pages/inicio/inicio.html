@@ -8,31 +8,56 @@
 
 
 <ion-content padding class="fondo">
-  <img class=" " src="/assets/imgs/armetales.png"/>
-<ion-row>
-  <ion-col col-6 class="center">
-      <a  (click)="openFile()" class="style_a"><img src="/assets/icon/portafolio.png">Portafolio</a>
+  <!--   <img class=" " src="/assets/imgs/armetales.png"/>
+ -->
+  <ion-card style="    margin-top: 20em;" (click)="abrirElemento()">
+    <div class="opcion-flex">
+      <img class="opcion-img" src="/assets/icon/calcular.png">
+      <p class="opcion-texto">Crear Proyecto</p>
+    </div>
 
-  </ion-col>
-  <ion-col col-6 class="center">
-      <a (click)="abrirElemento()"  class="style_a"><img src="/assets/icon/calcular.png">Calcular Materiales</a>
+  </ion-card>
+  <ion-card (click)="abrirInventario()" [hidden]="!verInventario">
+    <div class="opcion-flex">
+      <img class="opcion-img" src="/assets/icon/pedido.png">
+      <p class="opcion-texto">Cotizaciones</p>
+    </div>
+
+  </ion-card>
+  <ion-card>
+    <div class="opcion-flex">
+      <img class="opcion-img" src="/assets/icon/portafolio.png">
+      <p class="opcion-texto">Manuales</p>
+    </div>
+
+  </ion-card>
+  <!--   <ion-row style="    margin-top: 9em;">
+    <ion-col col-6 class="center">
+      <a (click)="openFile()" class="style_a">
+        <img src="/assets/icon/portafolio.png">Portafolio</a>
+
+    </ion-col>
+    <ion-col col-6 class="center">
+      <a (click)="abrirElemento()" class="style_a">
+        <img src="/assets/icon/calcular.png">Calcular Materiales</a>
 
 
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col col-3>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-3>
 
-  </ion-col>
-  <ion-col col-6 class="center">
-    <a  (click)="abrirInventario()" [hidden]="!verInventario"  class="style_a"><img src="/assets/icon/pedido.png">Hacer Pedido</a>
+    </ion-col>
+    <ion-col col-6 class="center">
+      <a (click)="abrirInventario()" [hidden]="!verInventario" class="style_a">
+        <img src="/assets/icon/pedido.png">Hacer Pedido</a>
 
-  </ion-col>
-  <ion-col col-3>
+    </ion-col>
+    <ion-col col-3>
 
     </ion-col>
 
-</ion-row>
+  </ion-row> -->
 
 
 </ion-content>

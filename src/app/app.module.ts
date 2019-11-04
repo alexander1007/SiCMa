@@ -52,7 +52,6 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 import { PedidoPageModule } from '../pages/pedido/pedido.module';
 import { FileTransfer } from '@ionic-native/file-transfer';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RecomendacionesPageModule } from '../pages/recomendaciones/recomendaciones.module';
 import { ListaInventariosService } from '../services/inventario/inventario.service';
@@ -109,7 +108,6 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
     FileChooser,
     DocumentViewer,
     FileTransfer,
-    PdfViewerModule,
     InAppBrowser]
 })
 export class AppModule { }
