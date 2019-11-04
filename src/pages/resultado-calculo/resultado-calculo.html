@@ -4,33 +4,28 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header style="    margin-top: -12px;">
 
   <ion-navbar>
-    <ion-title  class="aling_left">Presupuesto Total: </ion-title>
-    <p class=" aling_left color_negro style_text style_header"> <ion-icon name='cash'></ion-icon>
-       {{valorTotalM}} Pesos</p>
-  </ion-navbar>
-  <ion-navbar class="interna">
-    <ion-row>
-      <ion-col class=" center groupTabs">
-        <button class="tab tab1" (click)="openPage('ResultadoCalculoPage')">Materiales</button>
-      </ion-col>
-      <ion-col class="center">
-        <button class="tab tab2" (click)="openPage('RecomendacionesPage')"> Recomendaciones</button>
-      </ion-col>
-     
-    </ion-row>
-   </ion-navbar>
+    <ion-title class="aling_left">Presupuesto Total: </ion-title>
 
+  </ion-navbar>
+
+  <div class="div-total">
+    <p class=" aling_center color_negro style_text style_header">
+      <ion-icon name='cash'></ion-icon>
+      {{valorTotalM}} Pesos</p>
+  </div>
 </ion-header>
 
 <ion-content padding class="card-background-page fondo">
   <ion-card class="style_card" *ngFor="let material of materiales">
-    <img class="img_card" [src]="material.foto"/>
+    <img class="img_card" [src]="material.foto" />
     <ion-card-content class="color_gris">
-        <h2 class="color_negro"><b>{{material.nombre}}</b></h2>
-      <p class="color_negro tipoLetra"> 
+      <h2 class="color_negro">
+        <b>{{material.nombre}}</b>
+      </h2>
+      <p class="color_negro tipoLetra">
         {{material.descripcion}}
       </p>
 
@@ -38,22 +33,26 @@
         <ion-col col-12>
           <button ion-button clear small class="color_azul tam_15" icon-start>
             <ion-icon name='clipboard'></ion-icon>
-            Cantidad Total: <br>{{material.cantidadTotal}} unidades.
+            Cantidad Total:
+            <br>{{material.cantidadTotal}} unidades.
           </button>
         </ion-col>
-        </ion-row>
-        <ion-row no-padding>
+      </ion-row>
+      <ion-row no-padding>
 
-        <ion-col  col-12>
+        <ion-col col-12>
           <button ion-button clear small class="color_verde tam_16" icon-start>
             <ion-icon name='cash'></ion-icon>
-            Valor Total:<br> {{material.valorTotalS}} pesos.
+            Valor Total:
+            <br> {{material.valorTotalS}} pesos.
           </button>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
   <ion-fab right bottom>
-    <button ion-fab  (click)= "abrirElemento()"><ion-icon name="ios-checkbox-outline"></ion-icon></button>
-</ion-fab>
+    <button ion-fab (click)="abrirElemento()">
+      <ion-icon name="ios-checkbox-outline"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

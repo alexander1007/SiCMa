@@ -1,29 +1,29 @@
+<ion-header>
 
-  <ion-header>
+    <ion-navbar>
 
-      <ion-navbar>
-          
-          <ion-title >
+        <ion-title>
             Elementos
-          </ion-title>
-          <p class="color_negro style_header" >Elija el elemento a construir</p>
-        </ion-navbar>
-  
-  </ion-header>
-  <ion-content class="card-background-page fondo" >
-      <ion-card class="style_card"  *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
-      
+        </ion-title>
 
-          <img class="img_card" [src]="elemento.imagen"/>
-          <ion-card-content class="fondo_rojo">
-        
-              <h1 class="blanco">{{elemento.nombre}}</h1>
-              <p  class="blanco">
-                  {{elemento.descripcion}}
-              </p>
-          </ion-card-content>
-        </ion-card>
+    </ion-navbar>
+    <div class="div-descripcion">
+        <p class="color_negro texto-seleccion">Seleccione el elemento a construir</p>
+    </div>
+</ion-header>
+<ion-content class="card-background-page fondo">
+    <ion-card class="style_card" *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
 
-    
-  </ion-content>
-  
+        <img class="img_card" [src]="elemento.imagen" />
+
+        <ion-card-content class="fondo_rojo">
+
+            <h1 class="blanco titulos-card">{{elemento.nombre}}</h1>
+            <p class="blanco">
+                {{elemento.descripcion}}
+            </p>
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>

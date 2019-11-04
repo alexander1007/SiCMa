@@ -30,18 +30,18 @@ export class MedidaMurosPage {
   p_variable1: string;
   p_variable2: string;
   p_variable3: string;
-  url_imagen : string;
+  url_imagen: string;
   variable1: string;
   variable2: string;
   variable3: string;
   verVar3: boolean;
 
-  medidas: any =[];
-  recomendaciones: any =[];
+  medidas: any = [];
+  recomendaciones: any = [];
   imagenes: string[];
   imagenesMateriales: string[];
-  materiales: any=[];
-  
+  materiales: any = [];
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -51,169 +51,170 @@ export class MedidaMurosPage {
     public db: AngularFireDatabase,
     private alertCtrl: AlertController,
     public menu: MenuController) {
-      this.verVar3 = false;
-      this.menu1Active();
+    this.verVar3 = false;
+    this.menu1Active();
 
-      this.mtcuadrados=0;
-      this.valorTotalC=0;
-      this.elemento= this.navParams.get('elemento');
-      this.sistema= this.navParams.get('sistema');
-   
+    this.mtcuadrados = 0;
+    this.valorTotalC = 0;
+    this.elemento = this.navParams.get('elemento');
+    this.sistema = this.navParams.get('sistema');
 
-      this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
-    .subscribe(data =>{
-      this.medidas = data;
 
-      this.titulo = this.medidas[0].titulo;
-      this.descripcion = this.medidas[0].descripcion;
-      this.p_variable1 = this.medidas[0].variable1;
-      this.p_variable2 = this.medidas[0].variable2;
-      if(this.elemento == 'elemento4'){
-        this.verVar3 = true;
-        this.p_variable3 =  this.medidas[0].variable3;
-      }
-      this.imagenes = Array(this.medidas.length);
-    //  for (var index = 0; index < this.medidas.length; index++) {
-        this.imagenes[0] = `img/medidas/`+this.medidas[0].imagen;
+    this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
+      .subscribe(data => {
+        console.log('medida ', data);
+        this.medidas = data;
+
+        this.titulo = this.medidas[0].titulo;
+        this.descripcion = this.medidas[0].descripcion;
+        this.p_variable1 = this.medidas[0].variable1;
+        this.p_variable2 = this.medidas[0].variable2;
+        if (this.elemento == 'elemento4' || this.elemento == 'elemento6') {
+          this.verVar3 = true;
+          this.p_variable3 = this.medidas[0].variable3;
+        }
+        this.imagenes = Array(this.medidas.length);
+        //  for (var index = 0; index < this.medidas.length; index++) {
+        this.imagenes[0] = `img/medidas/` + this.medidas[0].imagen;
         this.generarFotos(0);
-      // }
-    });
+        // }
+      });
 
     this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
-    .subscribe(data =>{
-     this.materiales = data;
+      .subscribe(data => {
+        this.materiales = data;
 
-   // imagenes de los materiales
-      this.imagenesMateriales = Array(this.materiales.length);
-      for (var index = 0; index < this.materiales.length; index++) {
-        this.imagenes[index] = `img/materiales/`+this.materiales[index].imagen;
-        this.generarFotosMateriales(index);
-       }
-    });
-
-
-    
-    }
-
-        //esto es para desactivar los menu en la pantalla login
-        menu1Active() {
-          this.menu.enable(false);
-        } 
-  calcularMateriales(){
-//Validacion de campos vacios y que sean valores numericos
-this.mtcuadrados=0;
-this.valorTotalC=0;
-
-    if (this.variable1==undefined){
-      const alert = this.alertCtrl.create({
-        title: 'SiCMa',
-        subTitle: 'El valor del '+this.p_variable1+', no puede ir vacio. Ingrese un valor. ',
-        buttons: ['OK']
+        // imagenes de los materiales
+        this.imagenesMateriales = Array(this.materiales.length);
+        for (var index = 0; index < this.materiales.length; index++) {
+          this.imagenes[index] = `img/materiales/` + this.materiales[index].imagen;
+          this.generarFotosMateriales(index);
+        }
       });
-      alert.present();
-      return;
-    }
-         
-    if (this.variable2==undefined){
+
+
+
+  }
+
+  //esto es para desactivar los menu en la pantalla login
+  menu1Active() {
+    this.menu.enable(false);
+  }
+  calcularMateriales() {
+    //Validacion de campos vacios y que sean valores numericos
+    this.mtcuadrados = 0;
+    this.valorTotalC = 0;
+
+    if (this.variable1 == undefined) {
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
-        subTitle: 'El valor del '+this.p_variable2+', no puede ir vacio. Ingrese un valor. ',
+        subTitle: 'El valor del ' + this.p_variable1 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
       alert.present();
       return;
     }
 
-    if (isNaN(parseInt(this.variable1))){
+    if (this.variable2 == undefined) {
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
-        subTitle: 'El valor del '+this.p_variable1+', debe ser numerico. Ingrese un valor. ',
+        subTitle: 'El valor del ' + this.p_variable2 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
       alert.present();
       return;
     }
 
-    if (isNaN(parseInt(this.variable2))){
+    if (isNaN(parseInt(this.variable1))) {
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
-        subTitle: 'El valor del '+this.p_variable1+', debe ser numerico. Ingrese un valor. ',
+        subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
         buttons: ['OK']
       });
       alert.present();
       return;
     }
 
-    if( this.verVar3 == true){
+    if (isNaN(parseInt(this.variable2))) {
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
+
+    if (this.verVar3 == true) {
       //logica de la variable 3
 
-      this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2))*(parseFloat(this.variable3)));
-  }
-    else{
-     this.mtcuadrados=(parseFloat(this.variable1)*(parseFloat(this.variable2)));
-  }
-   
-//declaracion de moneda
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0
-  });
-    //Calculo de la cantidad total y el valor total
-    for (var index = 0; index < this.materiales.length; index++) {
-     
-     var cantTotal= parseFloat((this.materiales[index].cantidadxM2))*(this.mtcuadrados);
-      
-      this.materiales[index].cantidadTotal=cantTotal;
-
-    
-      this.materiales[index].valorTotal=(this.materiales[index].valor)*(this.materiales[index].cantidadTotal);
-      this.materiales[index].valorTotalS =formatter.format( parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
-      this.valorTotalC+=this.materiales[index].valorTotal;   
-
-     }
-
-     this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
-     .subscribe(data =>{
-      this.recomendaciones = data;
-  
-       //se debe enviar las recomendaciones por parametro
-      this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
-      });
-     
-    
+      this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)) * (parseFloat(this.variable3)));
+    }
+    else {
+      this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
     }
 
-    abrirResultados(materiales, valorTotalC, recomendaciones){
-     
-     this.navCtrl.push(ResultadoCalculoPage, {materiales: materiales, valorTotalC: valorTotalC, recomendaciones: recomendaciones});
-       
-      }
+    //declaracion de moneda
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    });
+    //Calculo de la cantidad total y el valor total
+    for (var index = 0; index < this.materiales.length; index++) {
 
-   generarFotos(index){
+      var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
+
+      this.materiales[index].cantidadTotal = cantTotal;
+
+
+      this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
+      this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
+      this.valorTotalC += this.materiales[index].valorTotal;
+
+    }
+
+    this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
+      .subscribe(data => {
+        this.recomendaciones = data;
+
+        //se debe enviar las recomendaciones por parametro
+        this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
+      });
+
+
+  }
+
+  abrirResultados(materiales, valorTotalC, recomendaciones) {
+
+    this.navCtrl.push(ResultadoCalculoPage, { materiales: materiales, valorTotalC: valorTotalC, recomendaciones: recomendaciones });
+
+  }
+
+  generarFotos(index) {
     let storageRef = firebase.storage().ref();
     let imageRef = storageRef.child(this.imagenes[index]);
-    imageRef.getDownloadURL().then(url =>{
+    imageRef.getDownloadURL().then(url => {
       this.imagenes[index] = url;
-    this.medidas[index].foto = url;
-    this.url_imagen = this.medidas[0].foto;
+      this.medidas[index].foto = url;
+      this.url_imagen = this.medidas[0].foto;
     })
   }
 
-  generarFotosMateriales(index){
+  generarFotosMateriales(index) {
     let storageRef = firebase.storage().ref();
     let imageRef = storageRef.child(this.imagenes[index]);
-    imageRef.getDownloadURL().then(url =>{
+    imageRef.getDownloadURL().then(url => {
       this.imagenesMateriales[index] = url;
-    this.materiales[index].foto = url;
+      this.materiales[index].foto = url;
     })
   }
 
-    
+
 
   ionViewDidLoad() {
-    this.mtcuadrados=0;
-    this.valorTotalC=0;
+    this.mtcuadrados = 0;
+    this.valorTotalC = 0;
     this.verVar3 = false;
 
   }

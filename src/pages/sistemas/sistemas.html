@@ -1,26 +1,28 @@
 <ion-header>
 
-  <ion-navbar>
-      
-      <ion-title class="aling_left">
-        Sistemas
-      </ion-title>
-      <p class="aling_left color_negro style_header">Elija el sistema en que desea construir</p>
+    <ion-navbar>
+
+        <ion-title class="aling_left">
+            Sistemas
+        </ion-title>
     </ion-navbar>
+    <div class="div-descripcion">
+    <p id="seleccion-sistema" class="color_negro texto-seleccion">Seleccione el sistema que desea construir</p>
+
+    </div>
 
 </ion-header>
-<ion-content class="card-background-page fondo" >
-  <ion-card class="style_card"  *ngFor="let sistema of sistemas" (click)="abrirMedidas(sistema.key)">
-      <img class="img_card" [src]="sistema.foto"/>
-      <ion-card-content class="fondo_azul">
-    
-          <h1 class="blanco ">{{sistema.nombre}}</h1>
-          <p  class="blanco ">
-              {{sistema.descripcion}}
-          </p>
-      </ion-card-content>
+<ion-content class="card-background-page fondo">
+    <ion-card class="style_card" *ngFor="let sistema of sistemas" (click)="abrirMedidas(sistema.key)">
+        <img class="img_card" [src]="sistema.foto" />
+        <ion-card-content class="fondo_azul">
+
+            <h1 class="blanco titulos-card">{{sistema.nombre}}</h1>
+            <p class="blanco ">
+                {{sistema.descripcion}}
+            </p>
+        </ion-card-content>
     </ion-card>
 
 
 </ion-content>
-

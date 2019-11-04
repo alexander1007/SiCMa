@@ -1,3 +1,40 @@
 page-proyecto {
+    .fondo{
+        background-image: url("/assets/imgs/fondo1.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .toolbar-background-md{
+        background: transparent !important;
+    }
 
+    .header-md::after {
+        position: relative;
+    }
+    .toolbar-title .toolbar-title-md{
+        color:white;
+    }
+    .back-button{
+        color:white;
+    }
+    .login{
+   
+        border-radius: 5px;
+        color: black;
+        -webkit-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        -moz-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        margin-bottom: 10px;
+    
+        }
+
+        #img-casa{
+            max-width: 110%;
+            margin-left: -10px;
+        }
+        .azulSicma{
+            background: #0078b6;
+            border-radius: 5px;
+        }
 }
