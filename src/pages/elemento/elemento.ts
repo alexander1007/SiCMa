@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, MenuController, Navbar } from 'ionic-angular';
 import { ListaElementosService } from '../../services/elementos/elemento.service';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
@@ -9,6 +9,8 @@ import { SistemasPage } from '../sistemas/sistemas';
 import { AngularFireDatabase } from "angularfire2/database";
 // import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { InicioPage } from '../inicio/inicio';
+import { ProyectoPage } from '../proyecto/proyecto';
 
 
 
@@ -25,6 +27,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'elemento.html',
 })
 export class ElementoPage {
+  @ViewChild(Navbar) navBar: Navbar;
 
   elementos: any = [];
   imagenes: string[];
@@ -42,9 +45,11 @@ export class ElementoPage {
       .subscribe(data => {
 
         this.elementos = data;
+        this.elementos.sort(function (a, b) {
+          return a.nombre.localeCompare(b.nombre);
+        });
         this.imagenes = Array(this.elementos.length);
         for (var index = 0; index < this.elementos.length; index++) {
-          console.log(this.elementos[index].nombre);
           this.imagenes[index] = `img/elementos/` + this.elementos[index].fondo;
           this.generarFotos(index);
 
@@ -77,6 +82,9 @@ export class ElementoPage {
     });
   }
   ionViewDidLoad() {
+    this.navBar.backButtonClick = (ev: UIEvent) => {
+      this.navCtrl.push(ProyectoPage);
+    }
   }
 
 }

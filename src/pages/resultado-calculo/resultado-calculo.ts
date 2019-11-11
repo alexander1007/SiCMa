@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, MenuController, Navbar } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
+import { InicioPage } from '../inicio/inicio';
+import { MedidaMurosPage } from '../medida-muros/medida-muros';
 
 /**
  * Generated class for the ResultadoCalculoPage page.
@@ -15,7 +17,7 @@ import { ElementoPage } from '../elemento/elemento';
   templateUrl: 'resultado-calculo.html',
 })
 export class ResultadoCalculoPage {
-
+  @ViewChild(Navbar) navBar: Navbar;
   materiales: any = [];
   recomendaciones: any = [];
   valorTotal: string;
@@ -27,7 +29,6 @@ export class ResultadoCalculoPage {
     this.materiales = this.navParams.get('materiales');
     this.valorTotal = this.navParams.get('valorTotalC');
     this.recomendaciones = this.navParams.get('recomendaciones');
-    console.log(this.materiales);
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -44,13 +45,14 @@ export class ResultadoCalculoPage {
   abrirElemento() {
 
     const alert = this.alertCtrl.create({
-      title: 'SiCMa',
+      title: 'PlaCMa',
       subTitle: 'Gracias por preferirnos. Desea inciar un nuevo calculo?',
       buttons: [{
 
         text: 'Ok',
         handler: () => {
           this.navCtrl.push(ElementoPage);
+
         }
       }]
     });
@@ -63,10 +65,13 @@ export class ResultadoCalculoPage {
     this.materiales = this.navParams.get('materiales');
     this.valorTotal = this.navParams.get('valorTotalC');
     this.recomendaciones = this.navParams.get('recomendaciones');
+
   }
 
   openPage(page) {
     this.navCtrl.push(page, { materiales: this.materiales, valorTotalC: this.valorTotal, recomendaciones: this.recomendaciones });
   }
+
+
 
 }

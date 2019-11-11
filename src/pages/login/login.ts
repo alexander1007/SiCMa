@@ -6,6 +6,7 @@ import { Usuario } from '../../app/models/usuario';
 //import { ElementoPage } from '../elemento/elemento';
 import { InicioPage } from '../inicio/inicio';
 import { ListaUsuariosService } from '../../services/usuarios/usuario.service';
+import { Storage } from '@ionic/storage';
 //import { User } from 'firebase';
 
 
@@ -33,7 +34,8 @@ export class LoginPage {
     private afAuth: AngularFireAuth,
     //  private database: AngularFireDatabase,
     private alertCtrl: AlertController,
-    public menu: MenuController
+    public menu: MenuController,
+    private storage: Storage
   ) {
     this.menu1Active();
 
@@ -49,22 +51,20 @@ export class LoginPage {
     console.log(user);
 
     if (user.email != null && user.password != null) {
-      console.log("chere");
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
 
         .then((success) => {
-          console.log("cualquier cosa aqui voy");
           const authObserv = this.afAuth.authState.subscribe(auth => {
             console.log(authObserv);
             this.usuarioService.getListaUsuariosxuid(auth.uid).valueChanges()
               .subscribe(data => {
-                console.log("le doy aqui a ver");
-                console.log(data);
+                this.storage.set('idUsuario', auth.uid);
                 this.usuarios = data;
-
+                this.storage.set('emailUsuario', user.email);
+                this.storage.set('login', true);
                 this.tipo = this.usuarios[0].tipo;
                 this.navCtrl.setRoot(InicioPage, { tipo: this.tipo });
-                console.log(this.tipo);
+
               })
 
 

@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { LoginPage } from '../pages/login/login';
+import { Storage } from '@ionic/storage';
+import { InicioPage } from '../pages/inicio/inicio';
 
 /* export const firebaseConfig={
   apiKey: "AIzaSyBztP9PGq1yKQVEq0l1sZsG7U8uQ58X_44",
@@ -19,20 +21,32 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  login: boolean;
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any = LoginPage;
-  rootPage: any = LoginPage;
+  rootPage: any;
   //rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    public menu: MenuController,
+    public menu: MenuController, private storage: Storage
   ) {
     this.initializeApp();
     this.menu1Active();
 
+    // obtiene el nombre del usuario autenticado
+    this.storage.get('login').then((val) => {
+      this.login = val;
+      if (this.login == true) {
+        this.rootPage = InicioPage;
+
+      } else {
+        this.rootPage = LoginPage;
+      }
+
+    });
     // used for an example of ngFor and navigation
     this.pages = [
 
@@ -42,7 +56,7 @@ export class MyApp {
   //esto es para desactivar los menu en la pantalla login
   menu1Active() {
     this.menu.enable(false);
-  } 
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {

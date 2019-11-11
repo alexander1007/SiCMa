@@ -2,21 +2,21 @@
   <div class="div-descripcion">
     <h2 style="    margin-top: 13em; text-align: center;">Seleccione una opcion:</h2>
   </div>
-  <ion-card (click)="abrirElemento()">
+  <ion-card (click)="abrirElemento()" class="borde-inferior">
     <div class="opcion-flex">
       <img class="opcion-img" src="/assets/icon/calcular.png">
       <p class="opcion-texto">Crear Proyecto</p>
     </div>
 
   </ion-card>
-  <ion-card (click)="abrirInventario()" [hidden]="!verInventario">
+  <ion-card class="borde-inferior" (click)="abrirInventario()" [hidden]="!verInventario">
     <div class="opcion-flex">
       <img class="opcion-img" src="/assets/icon/pedido.png">
       <p class="opcion-texto">Cotizaciones</p>
     </div>
 
   </ion-card>
-  <ion-card>
+  <ion-card class="borde-inferior">
     <div class="opcion-flex">
       <img class="opcion-img" src="/assets/icon/portafolio.png">
       <p class="opcion-texto">Manuales</p>

@@ -56,6 +56,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RecomendacionesPageModule } from '../pages/recomendaciones/recomendaciones.module';
 import { ListaInventariosService } from '../services/inventario/inventario.service';
 import { ProyectoPageModule } from '../pages/proyecto/proyecto.module';
+import { ProyectoService } from '../services/proyecto/proyecto.service';
 
 
 
@@ -99,6 +100,7 @@ import { ProyectoPageModule } from '../pages/proyecto/proyecto.module';
     ListaRecomendacionesService,
     ListaMedidasService,
     ListaSistemasService,
+    ProyectoService,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

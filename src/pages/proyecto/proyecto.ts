@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar, Platform } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
+import { ProyectoService } from '../../services/proyecto/proyecto.service';
+import { InicioPage } from '../inicio/inicio';
+import { SistemasPage } from '../sistemas/sistemas';
 
 /**
  * Generated class for the ProyectoPage page.
@@ -15,17 +18,27 @@ import { ElementoPage } from '../elemento/elemento';
   templateUrl: 'proyecto.html',
 })
 export class ProyectoPage {
+  @ViewChild(Navbar) navBar: Navbar;
   cliente: any;
   identificacion: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public proyectoService: ProyectoService, private platform: Platform) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProyectoPage');
+    this.navBar.backButtonClick = (ev: UIEvent) => {
+      this.navCtrl.push(InicioPage);
+    }
   }
-
   crearPoryecto() {
+    var proyecto = {
+      cliente: this.cliente,
+      identificacion: this.identificacion
+    }
+    this.proyectoService.guardarProyecto(proyecto);
     this.navCtrl.push(ElementoPage);
   }
+
 
 }

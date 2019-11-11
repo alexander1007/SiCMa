@@ -10,7 +10,6 @@ export class ListaSistemasService {
     }
 
     getListaSistemaxElemento(elemento: string) {
-        console.log(this.listaSistemas);
 
         return this.db.list('/sistemas/', ref => ref.orderByChild('elemento').equalTo(elemento));
     }

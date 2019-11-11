@@ -20,39 +20,47 @@
 
 <ion-content padding class="card-background-page fondo">
   <ion-card class="style_card" *ngFor="let material of materiales">
-    <img class="img_card" [src]="material.foto" />
-    <ion-card-content class="color_gris">
-      <h2 class="color_negro">
+    <ion-header class="titulo-card-material">
+      <h2 class="blanco">
         <b>{{material.nombre}}</b>
       </h2>
-      <p class="color_negro tipoLetra">
-        {{material.descripcion}}
-      </p>
-
+    </ion-header>
+    <img class="img_card img-material" [src]="material.foto" />
+    <ion-card-content class="color_gris">
+      <div class="div-descripcion">
+        <p class="color_negro tipoLetra">
+          {{material.descripcion}}
+        </p>
+      </div>
       <ion-row no-padding>
-        <ion-col col-12>
-          <button ion-button clear small class="color_azul tam_15" icon-start>
-            <ion-icon name='clipboard'></ion-icon>
-            Cantidad Total:
-            <br>{{material.cantidadTotal}} unidades.
-          </button>
+        <ion-col col-5 class="borde-superior">
+          <div>
+            <a style="color:#296f1e; ">
+              Cantidad Total:
+              <br>{{material.cantidadTotal}} unidades.
+            </a>
+
+          </div>
+        </ion-col>
+        <ion-col col-2>
+        </ion-col>
+        <ion-col col-5 class="borde-superior2">
+          <div>
+            <a>
+              Valor Total:
+              <br> {{material.valorTotalS}} pesos.
+            </a>
+
+          </div>
         </ion-col>
       </ion-row>
-      <ion-row no-padding>
 
-        <ion-col col-12>
-          <button ion-button clear small class="color_verde tam_16" icon-start>
-            <ion-icon name='cash'></ion-icon>
-            Valor Total:
-            <br> {{material.valorTotalS}} pesos.
-          </button>
-        </ion-col>
-      </ion-row>
     </ion-card-content>
   </ion-card>
-  <ion-fab right bottom>
-    <button ion-fab (click)="abrirElemento()">
-      <ion-icon name="ios-checkbox-outline"></ion-icon>
-    </button>
-  </ion-fab>
+
+  <ion-grid>
+    <button (click)="abrirElemento()" ion-button full class="azulSicma tamano">Finalizar</button>
+
+  </ion-grid>
+
 </ion-content>

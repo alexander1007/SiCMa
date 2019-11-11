@@ -62,7 +62,6 @@ export class MedidaMurosPage {
 
     this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
       .subscribe(data => {
-        console.log('medida ', data);
         this.medidas = data;
 
         this.titulo = this.medidas[0].titulo;
@@ -83,7 +82,9 @@ export class MedidaMurosPage {
     this.medidaService.getListaMaterialesbySistema(this.sistema).valueChanges()
       .subscribe(data => {
         this.materiales = data;
-
+        this.materiales.sort(function (a, b) {
+          return a.descripcion.localeCompare(b.descripcion);
+        });
         // imagenes de los materiales
         this.imagenesMateriales = Array(this.materiales.length);
         for (var index = 0; index < this.materiales.length; index++) {
@@ -165,11 +166,11 @@ export class MedidaMurosPage {
 
       var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
 
-      this.materiales[index].cantidadTotal = cantTotal;
+      this.materiales[index].cantidadTotal = cantTotal.toFixed(2);
 
 
       this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
-      this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
+      this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)); // "$1,000.00" 
       this.valorTotalC += this.materiales[index].valorTotal;
 
     }
