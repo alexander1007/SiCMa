@@ -20,5 +20,17 @@ export class ProyectoService {
         detalleProyecto.id = key;
         this.storage.set('idDetalleProyecto', detalleProyecto.id);
         this.db.database.ref('detalleProyectos/' + detalleProyecto.id).set(detalleProyecto);
+        return key;
+    }
+    guardarResultadoProyecto(materiales) {
+        let key = this.db.list('/resultadoProyectos/').push(materiales).key;
+        materiales.id = key;
+        this.storage.set('idResultadoProyecto', materiales.id);
+        this.db.database.ref('resultadoProyectos/' + materiales.id).set(materiales);
+    }
+
+    actualizarValorDetalle(detalleProducto) {
+        this.db.database.ref('detalleProyectos/' + detalleProducto.id).set(detalleProducto);
+
     }
 }

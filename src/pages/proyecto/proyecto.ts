@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Navbar, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, Platform, AlertController } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { InicioPage } from '../inicio/inicio';
@@ -22,7 +22,7 @@ export class ProyectoPage {
   cliente: any;
   identificacion: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public proyectoService: ProyectoService, private platform: Platform) {
+    public proyectoService: ProyectoService, private platform: Platform, private alertCtrl: AlertController) {
 
   }
 
@@ -31,7 +31,27 @@ export class ProyectoPage {
       this.navCtrl.push(InicioPage);
     }
   }
+
   crearPoryecto() {
+    // validaciones
+    if (this.cliente == '' || this.cliente == undefined) {
+      const alert = this.alertCtrl.create({
+        title: 'PlaCMa',
+        subTitle: 'El nombre del cliente es requerido. Ingrese un valor.',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
+    if (this.identificacion == '' || this.identificacion == undefined) {
+      const alert = this.alertCtrl.create({
+        title: 'PlaCMa',
+        subTitle: 'La identificación/NIT del cliente es requerida. Ingrese un valor.',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
     var proyecto = {
       cliente: this.cliente,
       identificacion: this.identificacion

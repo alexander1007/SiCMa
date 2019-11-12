@@ -20,6 +20,7 @@ interface info {
 })
 export class MedidaMurosPage {
 
+  idDetalle: any;
   mtcuadrados: number;
   valorTotalC: number;
   sistema: string;
@@ -110,7 +111,7 @@ export class MedidaMurosPage {
 
     if (this.variable1 == undefined) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -120,7 +121,7 @@ export class MedidaMurosPage {
 
     if (this.variable2 == undefined) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable2 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -130,7 +131,7 @@ export class MedidaMurosPage {
 
     if (isNaN(parseInt(this.variable1))) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -140,7 +141,7 @@ export class MedidaMurosPage {
 
     if (isNaN(parseInt(this.variable2))) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -158,7 +159,8 @@ export class MedidaMurosPage {
       p_variable3: '',
       variable1: this.variable1,
       variable2: this.variable2,
-      variable3: ''
+      variable3: '',
+      valorTotal: ''
     }
     if (this.verVar3 == true) {
       //logica de la variable 3
@@ -171,6 +173,7 @@ export class MedidaMurosPage {
     }
     // guardamos los datos del detalle del proyecto
     this.guardarDetalle(infoSave);
+
     //declaracion de moneda
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -179,17 +182,18 @@ export class MedidaMurosPage {
     });
     //Calculo de la cantidad total y el valor total
     for (var index = 0; index < this.materiales.length; index++) {
-
       var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
-
       this.materiales[index].cantidadTotal = cantTotal.toFixed(2);
-
-
       this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
       this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)); // "$1,000.00" 
       this.valorTotalC += this.materiales[index].valorTotal;
-
+      this.materiales[index].idDetalle = this.idDetalle;
     }
+    // actualizar valor total presupuesto
+    this.agregarValorTotal(infoSave, this.valorTotalC);
+    // guarda la data resultad del calculo
+    this.guardarResultado(this.materiales);
+    // abre la pantalla que permite mostrar los materiales necesarios
     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
     // this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
     //   .subscribe(data => {
@@ -232,9 +236,34 @@ export class MedidaMurosPage {
     this.verVar3 = false;
 
   }
-  // funcion que permite guardar la info del detalle del proyecto
-  guardarDetalle(infoSave) {
-    this.proyectoService.guardarProyectoDetalle(infoSave);
-  }
 
+  /**
+   * funcion que permite guardar la info del detalle del proyecto
+   * Se obtiene el id del detalle
+   * @param infoSave Arreglo con la info para el detalle del proyecto
+   * 
+   */
+  guardarDetalle(infoSave) {
+    this.idDetalle = this.proyectoService.guardarProyectoDetalle(infoSave);
+  }
+  /**
+   * funcion que permite guardar la info del detalle del proyecto
+   * Se obtiene el id del detalle
+   * @param infoMateriales Arreglo con la info para el resultado del proyecto
+   * 
+   */
+  guardarResultado(infoMateriales) {
+    this.proyectoService.guardarResultadoProyecto(infoMateriales);
+  }
+  /**
+   * funcion que permite actuaizar o agregar el valor del presupuesto total
+   * al detalle del proyecto
+   * @param valorTotal Valor total presupuesto
+   * 
+   */
+  agregarValorTotal(infoSave, valorTotal) {
+    infoSave.valorTotal = valorTotal;
+    this.proyectoService.actualizarValorDetalle(infoSave);
+
+  }
 }
