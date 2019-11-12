@@ -34,6 +34,7 @@ export class MedidaMurosPage {
   variable1: string;
   variable2: string;
   variable3: string;
+  ancho: number;
   verVar3: boolean;
 
   medidas: any = [];
@@ -41,6 +42,8 @@ export class MedidaMurosPage {
   imagenes: string[];
   imagenesMateriales: string[];
   materiales: any = [];
+  verVar4: boolean;
+  resultadoTejas: any[];
 
 
 
@@ -69,8 +72,12 @@ export class MedidaMurosPage {
         this.descripcion = this.medidas[0].descripcion;
         this.p_variable1 = this.medidas[0].variable1;
         this.p_variable2 = this.medidas[0].variable2;
-        if (this.elemento == 'elemento4' || this.elemento == 'elemento6') {
-          this.verVar3 = true;
+        if (this.elemento == 'elemento4' || this.elemento == 'elemento6' || this.elemento == 'elemento3') {
+          if (this.sistema == "sistema8") {
+            this.verVar3 = false;
+            this.verVar4 = true;
+          } else { this.verVar3 = true; }
+
           this.p_variable3 = this.medidas[0].variable3;
         }
         this.imagenes = Array(this.medidas.length);
@@ -104,21 +111,12 @@ export class MedidaMurosPage {
     //Validacion de campos vacios y que sean valores numericos
     this.mtcuadrados = 0;
     this.valorTotalC = 0;
+    this.ancho = 0;
 
     if (this.variable1 == undefined) {
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', no puede ir vacio. Ingrese un valor. ',
-        buttons: ['OK']
-      });
-      alert.present();
-      return;
-    }
-
-    if (this.variable2 == undefined) {
-      const alert = this.alertCtrl.create({
-        title: 'SiCMa',
-        subTitle: 'El valor del ' + this.p_variable2 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
       alert.present();
@@ -135,21 +133,180 @@ export class MedidaMurosPage {
       return;
     }
 
-    if (isNaN(parseInt(this.variable2))) {
+    if (this.variable2 == undefined) {
       const alert = this.alertCtrl.create({
         title: 'SiCMa',
-        subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
+        subTitle: 'El valor del ' + this.p_variable2 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
       alert.present();
       return;
     }
 
-    if (this.verVar3 == true) {
-      //logica de la variable 3
-
-      this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)) * (parseFloat(this.variable3)));
+    if (isNaN(parseInt(this.variable2))) {
+      const alert = this.alertCtrl.create({
+        title: 'SiCMa',
+        subTitle: 'El valor del ' + this.p_variable2 + ', debe ser numerico. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
     }
+
+
+
+    if (this.verVar3 == true || this.verVar4 == true) {
+
+      if (this.variable3 == undefined) {
+        const alert = this.alertCtrl.create({
+          title: 'SiCMa',
+          subTitle: 'El valor del ' + this.p_variable3 + ', no puede ir vacio. Ingrese un valor. ',
+          buttons: ['OK']
+        });
+        alert.present();
+        return;
+      }
+      if (isNaN(parseInt(this.variable3))) {
+        const alert = this.alertCtrl.create({
+          title: 'SiCMa',
+          subTitle: 'El valor del ' + this.p_variable3 + ', debe ser numerico. Ingrese un valor. ',
+          buttons: ['OK']
+        });
+        alert.present();
+        return;
+      }
+
+      if (this.sistema == 'sistema7' || this.sistema == 'sistema8' || this.sistema == 'sistema9' || this.sistema == 'sistema10') {
+
+        if (this.sistema == 'sistema7') {
+          this.variable3 = "1.40";
+          this.ancho = (parseFloat(this.variable1) / 1);
+          if (parseFloat(this.variable2) <= 5.9) {
+            var cantAux = ((parseFloat(this.variable2) / 5.6) * this.ancho);
+            var cantTotal = cantAux;
+            console.log(cantAux);
+          }
+          if (parseFloat(this.variable2) > 5.9 && parseFloat(this.variable2) <= 11.8) {
+            var cantAux = ((parseFloat(this.variable2) / 11.2) * this.ancho);
+            var cantTotal = cantAux;
+            console.log(cantAux);
+          }
+          if (parseFloat(this.variable2) > 11.8) {
+            var real = (parseFloat(this.variable2) / 11.2);
+            var cantAux = (parseFloat(this.variable2) / 11.2) - (Math.trunc(parseFloat(this.variable2) / 11.2));
+            var totalL = ((Math.trunc(parseFloat(this.variable2) / 11.2)) * this.ancho);
+            var cantAux2 = cantAux * 12.39;
+            var cantAux3 = cantAux2 / 5.6 * this.ancho;
+            var cantAux4 = cantAux3 - (Math.trunc(cantAux3));
+            console.log("real");
+            console.log(real);
+            console.log("cantAux");
+            console.log(cantAux);
+            console.log("totalL");
+            console.log(totalL);
+            console.log("cantAux2");
+            console.log(cantAux2);
+            console.log("cantAux3");
+            console.log(cantAux3);
+            console.log("cantAux4");
+            console.log(cantAux4);
+
+            if (cantAux4 < 0.5) {
+              cantTotal = Math.trunc(cantAux3);
+            }
+
+            console.log("tejas x 11.8m");
+            console.log(real);
+            console.log("cantidad de tejas total x 11.8m");
+            console.log(totalL);
+            console.log("tejascantidad de tejas total x 5.9m");
+            console.log(cantAux3);
+            console.log("cantidad de tejas total x 5.9m");
+            console.log(cantTotal);
+
+          }
+          //Calculo de la cantidad total y el valor total
+          for (var index = 0; index < this.materiales.length; index++) {
+
+            this.materiales[index].cantidadTotal = totalL;
+            this.materiales[index].cantidadTotal = cantAux3;
+
+
+
+
+            // this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
+            // this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
+            // this.valorTotalC += this.materiales[index].valorTotal;
+
+          }
+        }
+
+        if (this.sistema == 'sistema8') {
+
+          this.ancho = (parseFloat(this.variable1) / 0.873);
+
+          //solo para teja #4
+          if (this.variable3 == "1.08") {
+            var posicion = [2.91, 2.30, 1.69, 1.38, 1.08];
+            this.resultadoTejas = this.calcularNumTejas(posicion);
+          }
+
+          if (parseFloat(this.variable3) == 1.15) {
+            var posicion = [0, 2.30, 0, 0, 1.08];
+            this.resultadoTejas = this.calcularNumTejas(posicion);
+          }
+
+          if (parseFloat(this.variable3) == 1.38) {
+            var posicion = [2.91, 0, 1.69, 1.38, 0];
+            this.resultadoTejas = this.calcularNumTejas(posicion);
+          }
+
+          if (parseFloat(this.variable3) == 1.46) {
+            var posicion = [2.91, 0, 1.69, 0, 0];
+            this.resultadoTejas = this.calcularNumTejas(posicion);
+          }
+
+          if (parseFloat(this.variable3) == 1.69) {
+            var posicion = [0, 0, 1.69, 0, 0];
+            this.resultadoTejas = this.calcularNumTejas(posicion);
+          }
+
+          console.log(this.resultadoTejas);
+
+        }
+
+        if (this.sistema == 'sistema9') {
+          if (this.variable3 > "1.2") {
+            const alert = this.alertCtrl.create({
+              title: 'SiCMa',
+              subTitle: 'El valor de la ' + this.p_variable3 + ', para este sistema es máximo 1.2m. ',
+              buttons: ['OK']
+            });
+            alert.present();
+            return;
+          }
+          this.ancho = (parseFloat(this.variable1) / 0.73);
+        }
+
+        if (this.sistema == 'sistema10') {
+          if (this.variable3 > "1") {
+            const alert = this.alertCtrl.create({
+              title: 'SiCMa',
+              subTitle: 'El valor de la ' + this.p_variable3 + ', para este sistema es máximo 1m. ',
+              buttons: ['OK']
+            });
+            alert.present();
+            return;
+          }
+          this.ancho = (parseFloat(this.variable1) / 0.873);
+        }
+      }
+
+      else
+        //logica de la variable 3
+        this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)) * (parseFloat(this.variable3)));
+    }
+
     else {
       this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
     }
@@ -208,6 +365,108 @@ export class MedidaMurosPage {
       this.imagenesMateriales[index] = url;
       this.materiales[index].foto = url;
     })
+  }
+
+  calcularNumTejas(posicion) {
+    var resultado = [posicion.length];
+    var resta;
+    var calculo;
+    var residuo;
+    var aux = (parseFloat(this.variable2));
+
+    for (var i = 0; i < posicion.length; i++) {
+      console.log("primer if", aux);
+      if (aux > 0) {
+        console.log("debajo primer if", posicion[i]);
+        if (posicion[i] > 0) {
+          resta = aux - posicion[i];
+          console.log("resta ", resta);
+
+          if (resta > 0) {
+            console.log("resta2 ", resta);
+            if (resta >= 1) {
+              calculo = aux / posicion[i];
+              console.log('resultado ', calculo);
+
+              resultado[i] = Math.trunc(calculo);
+              if (resultado[i] > 0) {
+                residuo = calculo - resultado[i];
+                aux = residuo * posicion[i];
+              }
+              else {
+                resultado[i] = 0;
+              }
+            }
+            else {
+              console.log("pone el mnensaje amor", aux);
+              if ((posicion[i] - aux) < 0) {
+                console.log('posicion', posicion[i - 1]);
+                if (posicion[i - 1] > 0) {
+                  console.log('resultado puto ', resultado[i - 1]);
+
+                  resultado[i - 1] = (resultado[i - 1] / this.ancho) + 1;
+                  console.log('resultado puto2 ', resultado[i - 1]);
+
+                  resultado[i - 1] = resultado[i - 1] * (this.ancho);
+                  console.log('resultado puto multiplicado ', resultado[i - 1]);
+
+                  resultado[i] = 0;
+                  aux = 0;
+                }
+                else {
+                  console.log('suma ', parseFloat(resultado[i]) + 2);
+                  if (resultado[i] > 0) {
+                    resultado[i] = parseFloat(resultado[i]) + 2;
+                  } else {
+                    calculo = aux / posicion[i];
+                    resultado[i] = Math.trunc(calculo);
+                    if (resultado[i] > 0) {
+                      residuo = calculo - resultado[i];
+                      aux = residuo * posicion[i];
+                    }
+                    else {
+                      resultado[i] = 0;
+                    }
+                  }
+                }
+              }
+              else {
+                resultado[i] = 0;
+              }
+            }
+          }
+
+          else {
+            console.log("variable2", this.variable2, posicion[4]);
+
+            if (this.variable2 < posicion[4]) {
+              if (i == 4) {
+                console.log("entra al 4");
+                resultado[4] = 1;
+                aux = 0;
+
+              } else {
+                resultado[i] = 0;
+              }
+
+            }
+            else {
+              resultado[i] = 1;
+              aux = 0;
+            }
+
+          }
+        }
+        else {
+          resultado[i] = 0;
+        }
+      }
+      else {
+        resultado[i] = 0;
+      }
+      resultado[i] = resultado[i] * (this.ancho);
+    }
+    return resultado;
   }
 
 

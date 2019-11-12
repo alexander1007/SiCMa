@@ -26,6 +26,15 @@
   <ion-item class="login" [hidden]="!verVar3">
     <ion-input type="text" [(ngModel)]="variable3" placeholder={{p_variable3}}></ion-input>
   </ion-item>
+  <ion-item class="login" [hidden]="!verVar4">
+    <ion-select [(ngModel)]="variable3">
+      <ion-option value="1.08">1.08</ion-option>
+      <ion-option value="1.15">1.15</ion-option>
+      <ion-option value="1.38">1.38</ion-option>
+      <ion-option value="1.46">1.46</ion-option>
+      <ion-option value="1.69">1.69</ion-option>
+    </ion-select>
+  </ion-item>
 
 
   <ion-grid>
