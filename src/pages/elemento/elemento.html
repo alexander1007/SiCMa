@@ -12,7 +12,7 @@
     </div>
 </ion-header>
 <ion-content class="card-background-page fondo">
-    <ion-card class="style_card" *ngFor="let elemento of elementos" (click)="abrirSistema(elemento.key)">
+    <ion-card class="style_card" *ngFor="let elemento of elementos" (click)="abrirSistema(elemento)">
 
         <img class="img_card" [src]="elemento.imagen" />
 

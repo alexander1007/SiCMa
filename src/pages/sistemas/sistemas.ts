@@ -12,7 +12,12 @@ import { ElementoPage } from '../elemento/elemento';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+interface info {
+  idProyecto: string,
+  idUsuario: string,
+  elemento: string
 
+}
 @IonicPage()
 @Component({
   selector: 'page-sistemas',
@@ -23,6 +28,8 @@ export class SistemasPage {
   sistemas: any = [];
   imagenes: string[];
   elemento: string;
+  info: info;
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -54,8 +61,14 @@ export class SistemasPage {
   }
 
   abrirMedidas(sistema) {
-
-    this.navCtrl.push(MedidaMurosPage, { sistema: sistema, elemento: this.elemento });
+    this.info = this.navParams.get('infoSave');
+    var infoSave = {
+      idProyecto: this.info.idProyecto,
+      idUsuario: this.info.idUsuario,
+      elemento: this.info.elemento,
+      sistema: sistema.nombre
+    }
+    this.navCtrl.push(MedidaMurosPage, { sistema: sistema.key, elemento: this.elemento, infoSave: infoSave });
   }
 
   generarFotos(index) {

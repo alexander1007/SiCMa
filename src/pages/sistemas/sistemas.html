@@ -13,7 +13,7 @@
 
 </ion-header>
 <ion-content class="card-background-page fondo">
-    <ion-card class="style_card" *ngFor="let sistema of sistemas" (click)="abrirMedidas(sistema.key)">
+    <ion-card class="style_card" *ngFor="let sistema of sistemas" (click)="abrirMedidas(sistema)">
         <img class="img_card" [src]="sistema.foto" />
         <ion-card-content class="fondo_azul">
 

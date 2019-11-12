@@ -6,14 +6,13 @@ import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
 import { ListaRecomendacionesService } from '../../services/recomendaciones/recomendacion.service';
-
-/**
- * Generated class for the MedidaMurosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { ProyectoService } from '../../services/proyecto/proyecto.service';
+interface info {
+  idProyecto: string,
+  idUsuario: string,
+  elemento: string,
+  sistema: string
+}
 @IonicPage()
 @Component({
   selector: 'page-medida-muros',
@@ -41,7 +40,7 @@ export class MedidaMurosPage {
   imagenes: string[];
   imagenesMateriales: string[];
   materiales: any = [];
-
+  info: info;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -50,7 +49,8 @@ export class MedidaMurosPage {
     public storage: Storage,
     public db: AngularFireDatabase,
     private alertCtrl: AlertController,
-    public menu: MenuController) {
+    public menu: MenuController,
+    public proyectoService: ProyectoService) {
     this.verVar3 = false;
     this.menu1Active();
 
@@ -58,6 +58,8 @@ export class MedidaMurosPage {
     this.valorTotalC = 0;
     this.elemento = this.navParams.get('elemento');
     this.sistema = this.navParams.get('sistema');
+    this.info = this.navParams.get('infoSave');
+
 
 
     this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
@@ -145,16 +147,30 @@ export class MedidaMurosPage {
       alert.present();
       return;
     }
-
+    // se crea variable para el almacenamiento
+    var infoSave = {
+      idProyecto: this.info.idProyecto,
+      idUsuario: this.info.idUsuario,
+      elemento: this.info.elemento,
+      sistema: this.info.sistema,
+      p_variable1: this.p_variable1,
+      p_variable2: this.p_variable2,
+      p_variable3: '',
+      variable1: this.variable1,
+      variable2: this.variable2,
+      variable3: ''
+    }
     if (this.verVar3 == true) {
       //logica de la variable 3
-
+      infoSave.p_variable3 = this.p_variable3;
+      infoSave.variable3 = this.variable3
       this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)) * (parseFloat(this.variable3)));
     }
     else {
       this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
     }
-
+    // guardamos los datos del detalle del proyecto
+    this.guardarDetalle(infoSave);
     //declaracion de moneda
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -174,15 +190,12 @@ export class MedidaMurosPage {
       this.valorTotalC += this.materiales[index].valorTotal;
 
     }
-
-    this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
-      .subscribe(data => {
-        this.recomendaciones = data;
-
-        //se debe enviar las recomendaciones por parametro
-        this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
-      });
-
+    this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
+    // this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
+    //   .subscribe(data => {
+    //     this.recomendaciones = data;
+    //     //se debe enviar las recomendaciones por parametro
+    //   });
 
   }
 
@@ -218,6 +231,10 @@ export class MedidaMurosPage {
     this.valorTotalC = 0;
     this.verVar3 = false;
 
+  }
+  // funcion que permite guardar la info del detalle del proyecto
+  guardarDetalle(infoSave) {
+    this.proyectoService.guardarProyectoDetalle(infoSave);
   }
 
 }

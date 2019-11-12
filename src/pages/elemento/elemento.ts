@@ -27,6 +27,8 @@ import { ProyectoPage } from '../proyecto/proyecto';
   templateUrl: 'elemento.html',
 })
 export class ElementoPage {
+  usuarioId: any;
+  proyectoId: any;
   @ViewChild(Navbar) navBar: Navbar;
 
   elementos: any = [];
@@ -56,8 +58,15 @@ export class ElementoPage {
         }
 
       });
+    // obtenemos el id del proyecto creado
+    this.storage.get('idProyecto').then((val) => {
+      this.proyectoId = val;
+    });
 
-
+    // obtenemos el id del usuario autenticado
+    this.storage.get('idUsuario').then((val) => {
+      this.usuarioId = val;
+    });
 
   }
 
@@ -67,8 +76,12 @@ export class ElementoPage {
   }
 
   abrirSistema(elemento) {
-
-    this.navCtrl.push(SistemasPage, { elemento: elemento });
+    var infoSave = {
+      idProyecto: this.proyectoId,
+      idUsuario: this.usuarioId,
+      elemento: elemento.nombre
+    }
+    this.navCtrl.push(SistemasPage, { elemento: elemento.key, infoSave: infoSave });
 
   }
 
