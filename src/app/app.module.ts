@@ -57,6 +57,7 @@ import { RecomendacionesPageModule } from '../pages/recomendaciones/recomendacio
 import { ListaInventariosService } from '../services/inventario/inventario.service';
 import { ProyectoPageModule } from '../pages/proyecto/proyecto.module';
 import { ProyectoService } from '../services/proyecto/proyecto.service';
+import { HistorialPageModule } from '../pages/historial/historial.module';
 
 
 
@@ -81,6 +82,7 @@ import { ProyectoService } from '../services/proyecto/proyecto.service';
     LoginPageModule,
     ProyectoPageModule,
     ElementoPageModule,
+    HistorialPageModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,

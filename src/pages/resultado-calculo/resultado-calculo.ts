@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, MenuController, N
 import { ElementoPage } from '../elemento/elemento';
 import { InicioPage } from '../inicio/inicio';
 import { MedidaMurosPage } from '../medida-muros/medida-muros';
+import { ProyectoPage } from '../proyecto/proyecto';
 
 /**
  * Generated class for the ResultadoCalculoPage page.
@@ -46,15 +47,27 @@ export class ResultadoCalculoPage {
 
     const alert = this.alertCtrl.create({
       title: 'PlaCMa',
-      subTitle: 'Gracias por preferirnos. Desea inciar un nuevo calculo?',
-      buttons: [{
-
-        text: 'Ok',
-        handler: () => {
-          this.navCtrl.push(ElementoPage);
-
+      subTitle: 'Gracias por preferirnos. Seleccione: ?',
+      buttons: [
+        {
+          text: 'Agregar nuwvo calculo',
+          handler: () => {
+            this.navCtrl.push(ElementoPage);
+          }
+        },
+        {
+          text: 'Crear Nuevo Proyecto',
+          handler: () => {
+            this.navCtrl.push(ProyectoPage);
+          }
+        },
+        {
+          text: 'Ir al inicio',
+          handler: () => {
+            this.navCtrl.push(InicioPage);
+          }
         }
-      }]
+      ]
     });
     alert.present();
 

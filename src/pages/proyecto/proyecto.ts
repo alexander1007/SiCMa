@@ -4,6 +4,9 @@ import { ElementoPage } from '../elemento/elemento';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { InicioPage } from '../inicio/inicio';
 import { SistemasPage } from '../sistemas/sistemas';
+import * as moment from 'moment';
+import { HistorialPage } from '../historial/historial';
+
 
 /**
  * Generated class for the ProyectoPage page.
@@ -18,11 +21,14 @@ import { SistemasPage } from '../sistemas/sistemas';
   templateUrl: 'proyecto.html',
 })
 export class ProyectoPage {
+  fecha: string;
   @ViewChild(Navbar) navBar: Navbar;
   cliente: any;
   identificacion: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public proyectoService: ProyectoService, private platform: Platform, private alertCtrl: AlertController) {
+    this.fecha = moment().format('YYYY/MM/DD H:mm:ss');
+    this.alertaInfoApp();
 
   }
 
@@ -54,11 +60,25 @@ export class ProyectoPage {
     }
     var proyecto = {
       cliente: this.cliente,
-      identificacion: this.identificacion
+      identificacion: this.identificacion,
+      fecha: this.fecha
     }
     this.proyectoService.guardarProyecto(proyecto);
     this.navCtrl.push(ElementoPage);
   }
 
 
+  abrirHistorico() {
+    this.navCtrl.push(HistorialPage);
+
+  }
+  // muestra un mensaje al usuario, para que este acepte, abvierte que la aplicacion solo es un asesor
+  alertaInfoApp() {
+    const alert = this.alertCtrl.create({
+      title: 'PlaCMa',
+      subTitle: 'La información y los cálculos presentados en esta aplicación, no <b>reemplazarán</b> u <b>homologarán</b> las especificaciones o diseños de un profesional.<br> Todos los cálculos tienen incluido un desperdicio del 5%. ',
+      buttons: ['Aceptar']
+    });
+    alert.present();
+  }
 }

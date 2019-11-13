@@ -195,11 +195,6 @@ export class MedidaMurosPage {
     this.guardarResultado(this.materiales);
     // abre la pantalla que permite mostrar los materiales necesarios
     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
-    // this.recomendacionService.getListaRecomendacionesxsistema(this.sistema).valueChanges()
-    //   .subscribe(data => {
-    //     this.recomendaciones = data;
-    //     //se debe enviar las recomendaciones por parametro
-    //   });
 
   }
 
