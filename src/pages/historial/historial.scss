@@ -1,3 +1,43 @@
 page-historial {
 
+    .fondo{
+        background-image: url("/assets/imgs/fondo3.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .toolbar-background-md{
+        background: transparent !important;
+    }
+    .header-md::after {
+        position: relative;
+    }
+
+    .style-card{
+        padding: 7px;
+        border-top-right-radius: 34px;
+        background: rgba(71,128,189,1);
+        background: -moz-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(71,128,189,1)), color-stop(59%, rgba(38,101,227,1)), color-stop(100%, rgba(134,165,219,1)));
+        background: -webkit-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
+        background: -o-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
+        background: -ms-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
+        background: linear-gradient(to bottom, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4780bd', endColorstr='#86a5db', GradientType=0 );
+    }
+
+    .style-label{
+        color: white;
+        font-weight: bold;
+    }
+
+    .style-h4{
+        color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    }
+
+    .style-p{
+        color: white;
+    }
 }

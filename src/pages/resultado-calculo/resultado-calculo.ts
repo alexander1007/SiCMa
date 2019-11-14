@@ -50,7 +50,7 @@ export class ResultadoCalculoPage {
       subTitle: 'Gracias por preferirnos. Seleccione: ?',
       buttons: [
         {
-          text: 'Agregar nuwvo calculo',
+          text: 'Agregar nuevo cálculo',
           handler: () => {
             this.navCtrl.push(ElementoPage);
           }

@@ -6,6 +6,8 @@ import { InicioPage } from '../inicio/inicio';
 import { SistemasPage } from '../sistemas/sistemas';
 import * as moment from 'moment';
 import { HistorialPage } from '../historial/historial';
+import { Storage } from '@ionic/storage';
+
 
 
 /**
@@ -21,14 +23,20 @@ import { HistorialPage } from '../historial/historial';
   templateUrl: 'proyecto.html',
 })
 export class ProyectoPage {
+  usuarioId: any;
   fecha: string;
   @ViewChild(Navbar) navBar: Navbar;
   cliente: any;
   identificacion: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public proyectoService: ProyectoService, private platform: Platform, private alertCtrl: AlertController) {
+    public proyectoService: ProyectoService, private platform: Platform, private alertCtrl: AlertController,
+    public storage: Storage) {
     this.fecha = moment().format('YYYY/MM/DD H:mm:ss');
     this.alertaInfoApp();
+    // obtenemos el id del usuario autenticado
+    this.storage.get('idUsuario').then((val) => {
+      this.usuarioId = val;
+    });
 
   }
 
@@ -61,7 +69,8 @@ export class ProyectoPage {
     var proyecto = {
       cliente: this.cliente,
       identificacion: this.identificacion,
-      fecha: this.fecha
+      fecha: this.fecha,
+      usuarioId: this.usuarioId
     }
     this.proyectoService.guardarProyecto(proyecto);
     this.navCtrl.push(ElementoPage);
@@ -76,7 +85,7 @@ export class ProyectoPage {
   alertaInfoApp() {
     const alert = this.alertCtrl.create({
       title: 'PlaCMa',
-      subTitle: 'La información y los cálculos presentados en esta aplicación, no <b>reemplazarán</b> u <b>homologarán</b> las especificaciones o diseños de un profesional.<br> Todos los cálculos tienen incluido un desperdicio del 5%. ',
+      subTitle: 'La información y los cálculos presentados en esta aplicación, no <b>reemplazarán</b> u <b>homologarán</b> las especificaciones o diseños de un profesional.<br><br> Todos los cálculos tienen incluido un desperdicio del <b>5%</b> en los materiales. ',
       buttons: ['Aceptar']
     });
     alert.present();
