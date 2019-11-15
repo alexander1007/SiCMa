@@ -58,6 +58,7 @@ import { ListaInventariosService } from '../services/inventario/inventario.servi
 import { ProyectoPageModule } from '../pages/proyecto/proyecto.module';
 import { ProyectoService } from '../services/proyecto/proyecto.service';
 import { HistorialPageModule } from '../pages/historial/historial.module';
+import { DetalleProyectoPageModule } from '../pages/detalle-proyecto/detalle-proyecto.module';
 
 
 
@@ -87,7 +88,7 @@ import { HistorialPageModule } from '../pages/historial/historial.module';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-
+    DetalleProyectoPageModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

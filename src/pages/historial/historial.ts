@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { Storage } from '@ionic/storage';
+import { DetalleProyectoPage } from '../detalle-proyecto/detalle-proyecto';
 
 /**
  * Generated class for the HistorialPage page.
@@ -43,10 +44,11 @@ export class HistorialPage {
         this.initializeItems();
       });
   }
-
+  // permite tener un arreglo paralelo para hacer los filtros
   initializeItems() {
     this.proyectos$ = this.proyectos;
   }
+  // permite hacer el filtro del metodo buscar
   getItems(searchbar) {
     // Reset items back to all of the items
     this.initializeItems();
@@ -61,5 +63,10 @@ export class HistorialPage {
 
     }
   }
+  //
+  abrirDetalleProyecto(proyectoId) {
+    this.navCtrl.push(DetalleProyectoPage, { proyectoId: proyectoId });
+  }
+
 
 }

@@ -187,7 +187,6 @@ export class MedidaMurosPage {
       this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
       this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)); // "$1,000.00" 
       this.valorTotalC += this.materiales[index].valorTotal;
-      this.materiales[index].idDetalle = this.idDetalle;
     }
     // actualizar valor total presupuesto
     this.agregarValorTotal(infoSave, this.valorTotalC);
@@ -248,7 +247,7 @@ export class MedidaMurosPage {
    * 
    */
   guardarResultado(infoMateriales) {
-    this.proyectoService.guardarResultadoProyecto(infoMateriales);
+    this.proyectoService.guardarResultadoProyecto(infoMateriales, this.idDetalle);
   }
   /**
    * funcion que permite actuaizar o agregar el valor del presupuesto total

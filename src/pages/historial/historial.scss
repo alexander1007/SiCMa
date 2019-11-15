@@ -16,28 +16,28 @@ page-historial {
     .style-card{
         padding: 7px;
         border-top-right-radius: 34px;
-        background: rgba(71,128,189,1);
-        background: -moz-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
-        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(71,128,189,1)), color-stop(59%, rgba(38,101,227,1)), color-stop(100%, rgba(134,165,219,1)));
-        background: -webkit-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
-        background: -o-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
-        background: -ms-linear-gradient(top, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
-        background: linear-gradient(to bottom, rgba(71,128,189,1) 0%, rgba(38,101,227,1) 59%, rgba(134,165,219,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4780bd', endColorstr='#86a5db', GradientType=0 );
+        background: rgba(147,206,222,1);
+        background: -moz-linear-gradient(45deg, rgba(147,206,222,1) 0%, rgba(116,152,207,1) 41%, rgba(73,102,189,1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(41%, rgba(116,152,207,1)), color-stop(100%, rgba(73,102,189,1)));
+        background: -webkit-linear-gradient(45deg, rgba(147,206,222,1) 0%, rgba(116,152,207,1) 41%, rgba(73,102,189,1) 100%);
+        background: -o-linear-gradient(45deg, rgba(147,206,222,1) 0%, rgba(116,152,207,1) 41%, rgba(73,102,189,1) 100%);
+        background: -ms-linear-gradient(45deg, rgba(147,206,222,1) 0%, rgba(116,152,207,1) 41%, rgba(73,102,189,1) 100%);
+        background: linear-gradient(45deg, rgba(147,206,222,1) 0%, rgba(116,152,207,1) 41%, rgba(73,102,189,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#4966bd', GradientType=1 );
     }
 
     .style-label{
-        color: white;
+        color: black;
         font-weight: bold;
     }
 
     .style-h4{
-        color: white;
+        color: black;
     letter-spacing: 1px;
     text-transform: uppercase;
     }
 
     .style-p{
-        color: white;
+        color: black;
     }
 }

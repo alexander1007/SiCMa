@@ -10,7 +10,7 @@
 <ion-content padding class="card-background-page fondo">
 
   <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
-  <ion-card *ngFor="let proyecto of proyectos$" class="style-card">
+  <ion-card *ngFor="let proyecto of proyectos$" class="style-card" (click)="abrirDetalleProyecto(proyecto.id)">
     <p class="style-p center " style="    font-weight: bold;">Proyecto</p>
 
     <ion-label class="style-label">

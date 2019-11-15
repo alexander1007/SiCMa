@@ -1,11 +1,21 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { Storage } from '@ionic/storage';
+import { Subscription, Observable } from "rxjs";
 //import { Elemento } from "../../app/models/elemento";
 // se debe instalar npm i rxjs@^6.0 rxjs-compat
+export interface res {
+    id: string
+
+}
 @Injectable()
 export class ProyectoService {
 
+
+    materialesResult: {}[];
+    detalleProyecto: {}[];
+    materiales: Subscription;
+    detalle: Subscription;
     constructor(private db: AngularFireDatabase, private storage: Storage) { }
 
     guardarProyecto(proyecto) {
@@ -21,9 +31,10 @@ export class ProyectoService {
         this.db.database.ref('detalleProyectos/' + detalleProyecto.id).set(detalleProyecto);
         return key;
     }
-    guardarResultadoProyecto(materiales) {
+    guardarResultadoProyecto(materiales, detalleId) {
         let key = this.db.list('/resultadoProyectos/').push(materiales).key;
         materiales.id = key;
+        materiales.idDetalle = detalleId;
         this.db.database.ref('resultadoProyectos/' + materiales.id).set(materiales);
     }
 
@@ -34,6 +45,16 @@ export class ProyectoService {
 
     listarProyectosUsuario(usuario) {
         return this.db.list('/proyectos/', ref => ref.orderByChild('usuarioId').equalTo(usuario));
+    }
+
+    listarDetalleProyecto(proyecto) {
+        return this.db.list('/detalleProyectos/', ref => ref.orderByChild('idProyecto').equalTo(proyecto));
+
+
+
+    }
+    listarMaterialesProyecto(id) {
+        return this.db.list('/resultadoProyectos/', ref => ref.orderByChild('idDetalle').equalTo(id));
 
     }
 }
