@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, MenuController, Navbar } from 'ionic-angular';
 import { ListaMedidasService } from '../../services/medidas/medida.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
 import { ListaRecomendacionesService } from '../../services/recomendaciones/recomendacion.service';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
+import { SistemasPage } from '../sistemas/sistemas';
 interface info {
   idProyecto: string,
   idUsuario: string,
@@ -19,12 +20,15 @@ interface info {
   templateUrl: 'medida-muros.html',
 })
 export class MedidaMurosPage {
-
+  usuarioId: any;
+  proyectoId: any;
+  @ViewChild(Navbar) navBar: Navbar;
+  idResultado: string;
   idDetalle: any;
   mtcuadrados: number;
   valorTotalC: number;
-  sistema: string;
-  elemento: string;
+  sistema: any;
+  elemento: any;
   titulo: string;
   descripcion: string;
   p_variable1: string;
@@ -42,6 +46,7 @@ export class MedidaMurosPage {
   imagenesMateriales: string[];
   materiales: any = [];
   info: info;
+  editar: boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -59,6 +64,21 @@ export class MedidaMurosPage {
     this.valorTotalC = 0;
     this.elemento = this.navParams.get('elemento');
     this.sistema = this.navParams.get('sistema');
+    this.editar = this.navParams.get('editar');
+    // obtenemos el id del proyecto creado
+    this.storage.get('idProyecto').then((val) => {
+      this.proyectoId = val;
+    });
+    // obtenemos el id del usuario autenticado
+    this.storage.get('idUsuario').then((val) => {
+      this.usuarioId = val;
+    });
+    if (this.editar) {
+      this.idDetalle = this.navParams.get('detalleId');
+      this.idResultado = this.navParams.get('idResultado');
+      this.eliminarCalculo(this.idResultado);
+    }
+    console.log('editar', this.editar);
     this.info = this.navParams.get('infoSave');
 
 
@@ -71,7 +91,7 @@ export class MedidaMurosPage {
         this.descripcion = this.medidas[0].descripcion;
         this.p_variable1 = this.medidas[0].variable1;
         this.p_variable2 = this.medidas[0].variable2;
-        if (this.elemento == 'elemento4' || this.elemento == 'elemento6') {
+        if (this.elemento['key'] == 'elemento4' || this.elemento['key'] == 'elemento6') {
           this.verVar3 = true;
           this.p_variable3 = this.medidas[0].variable3;
         }
@@ -149,18 +169,37 @@ export class MedidaMurosPage {
       return;
     }
     // se crea variable para el almacenamiento
-    var infoSave = {
-      idProyecto: this.info.idProyecto,
-      idUsuario: this.info.idUsuario,
-      elemento: this.info.elemento,
-      sistema: this.info.sistema,
-      p_variable1: this.p_variable1,
-      p_variable2: this.p_variable2,
-      p_variable3: '',
-      variable1: this.variable1,
-      variable2: this.variable2,
-      variable3: '',
-      valorTotal: ''
+    var infoSave;
+    console.log('yhyh', this.info);
+    if (!this.editar) {
+      infoSave = {
+        idProyecto: this.info.idProyecto,
+        idUsuario: this.info.idUsuario,
+        elemento: this.info.elemento,
+        sistema: this.info.sistema,
+        p_variable1: this.p_variable1,
+        p_variable2: this.p_variable2,
+        p_variable3: '',
+        variable1: this.variable1,
+        variable2: this.variable2,
+        variable3: '',
+        valorTotal: ''
+      }
+    } else {
+
+      infoSave = {
+        idProyecto: this.proyectoId,
+        idUsuario: this.usuarioId,
+        elemento: this.elemento['nombre'],
+        sistema: this.sistema['nombre'],
+        p_variable1: this.p_variable1,
+        p_variable2: this.p_variable2,
+        p_variable3: '',
+        variable1: this.variable1,
+        variable2: this.variable2,
+        variable3: '',
+        valorTotal: ''
+      }
     }
     if (this.verVar3 == true) {
       //logica de la variable 3
@@ -172,7 +211,10 @@ export class MedidaMurosPage {
       this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
     }
     // guardamos los datos del detalle del proyecto
-    this.guardarDetalle(infoSave);
+    if (!this.editar) {
+      this.guardarDetalle(infoSave);
+    }
+
 
     //declaracion de moneda
     const formatter = new Intl.NumberFormat('en-US', {
@@ -181,8 +223,8 @@ export class MedidaMurosPage {
       minimumFractionDigits: 0
     });
     //Calculo de la cantidad total y el valor total
-    for (var index = 0; index < this.materiales.length; index++) {
-      var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
+    for (let index = 0; index < this.materiales.length; index++) {
+      let cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
       this.materiales[index].cantidadTotal = cantTotal.toFixed(2);
       this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
       this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)); // "$1,000.00" 
@@ -199,7 +241,11 @@ export class MedidaMurosPage {
 
   abrirResultados(materiales, valorTotalC, recomendaciones) {
 
-    this.navCtrl.push(ResultadoCalculoPage, { materiales: materiales, valorTotalC: valorTotalC, recomendaciones: recomendaciones });
+    this.navCtrl.push(ResultadoCalculoPage, {
+      materiales: materiales, valorTotalC: valorTotalC,
+      recomendaciones: recomendaciones, detalleId: this.idDetalle, idResultado: this.idResultado,
+      elemento: this.elemento, sistema: this.sistema
+    });
 
   }
 
@@ -228,6 +274,10 @@ export class MedidaMurosPage {
     this.mtcuadrados = 0;
     this.valorTotalC = 0;
     this.verVar3 = false;
+    this.navBar.backButtonClick = (ev: UIEvent) => {
+      this.eliminarDetalle(this.idDetalle);
+      this.navCtrl.push(SistemasPage, { elemento: this.elemento, editar: true });
+    }
 
   }
 
@@ -247,7 +297,7 @@ export class MedidaMurosPage {
    * 
    */
   guardarResultado(infoMateriales) {
-    this.proyectoService.guardarResultadoProyecto(infoMateriales, this.idDetalle);
+    this.idResultado = this.proyectoService.guardarResultadoProyecto(infoMateriales, this.idDetalle);
   }
   /**
    * funcion que permite actuaizar o agregar el valor del presupuesto total
@@ -256,8 +306,20 @@ export class MedidaMurosPage {
    * 
    */
   agregarValorTotal(infoSave, valorTotal) {
+    if (this.editar) {
+      infoSave.id = this.idDetalle;
+    }
     infoSave.valorTotal = valorTotal;
     this.proyectoService.actualizarValorDetalle(infoSave);
+
+  }
+
+  eliminarDetalle(idDetalle) {
+    this.proyectoService.eliminarDetalle(idDetalle);
+  }
+
+  eliminarCalculo(idResultado) {
+    this.proyectoService.eliminarResultado(idResultado);
 
   }
 }

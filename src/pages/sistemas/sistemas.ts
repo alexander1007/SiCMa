@@ -24,12 +24,14 @@ interface info {
   templateUrl: 'sistemas.html',
 })
 export class SistemasPage {
+  usuarioId: any;
+  proyectoId: any;
   @ViewChild(Navbar) navBar: Navbar;
   sistemas: any = [];
   imagenes: string[];
   elemento: string;
   info: info;
-
+  editar: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,8 +39,24 @@ export class SistemasPage {
     public storage: Storage,
     public menu: MenuController
   ) {
+    this.editar = this.navParams.get('editar');
+
+    if (this.editar) {
+      // obtenemos el id del proyecto creado
+      this.storage.get('idProyecto').then((val) => {
+        this.proyectoId = val;
+      });
+
+      // obtenemos el id del usuario autenticado
+      this.storage.get('idUsuario').then((val) => {
+        this.usuarioId = val;
+      });
+
+    }
     this.menu1Active();
     this.elemento = this.navParams.get('elemento');
+    this.editar = this.navParams.get('editar');
+
     this.sistemas = [];
     this.sistemaService.getListaSistemaxElemento(this.elemento).valueChanges()
       .subscribe(data => {
@@ -62,13 +80,23 @@ export class SistemasPage {
 
   abrirMedidas(sistema) {
     this.info = this.navParams.get('infoSave');
-    var infoSave = {
-      idProyecto: this.info.idProyecto,
-      idUsuario: this.info.idUsuario,
-      elemento: this.info.elemento,
-      sistema: sistema.nombre
+    var infoSave;
+    if (!this.editar) {
+      infoSave = {
+        idProyecto: this.info.idProyecto,
+        idUsuario: this.info.idUsuario,
+        elemento: this.info.elemento,
+        sistema: sistema.nombre
+      }
+    } else {
+      infoSave = {
+        idProyecto: this.proyectoId,
+        idUsuario: this.usuarioId,
+        elemento: this.elemento['nombre'],
+        sistema: sistema.nombre
+      }
     }
-    this.navCtrl.push(MedidaMurosPage, { sistema: sistema.key, elemento: this.elemento, infoSave: infoSave });
+    this.navCtrl.push(MedidaMurosPage, { sistema: sistema, elemento: this.elemento, infoSave: infoSave, editar: false });
   }
 
   generarFotos(index) {

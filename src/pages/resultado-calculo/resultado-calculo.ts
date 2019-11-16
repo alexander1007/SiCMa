@@ -18,6 +18,10 @@ import { ProyectoPage } from '../proyecto/proyecto';
   templateUrl: 'resultado-calculo.html',
 })
 export class ResultadoCalculoPage {
+  sistema: any;
+  elemento: any;
+  idResultado: any;
+  idDetalle: any;
   @ViewChild(Navbar) navBar: Navbar;
   materiales: any = [];
   recomendaciones: any = [];
@@ -30,6 +34,11 @@ export class ResultadoCalculoPage {
     this.materiales = this.navParams.get('materiales');
     this.valorTotal = this.navParams.get('valorTotalC');
     this.recomendaciones = this.navParams.get('recomendaciones');
+    this.idDetalle = this.navParams.get('detalleId');
+    this.idResultado = this.navParams.get('idResultado');
+    this.elemento = this.navParams.get('elemento');
+    this.sistema = this.navParams.get('sistema');
+
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -77,7 +86,13 @@ export class ResultadoCalculoPage {
   ionViewDidLoad() {
     this.materiales = this.navParams.get('materiales');
     this.valorTotal = this.navParams.get('valorTotalC');
-    this.recomendaciones = this.navParams.get('recomendaciones');
+    this.navBar.backButtonClick = (ev: UIEvent) => {
+      this.navCtrl.push(MedidaMurosPage, {
+        detalleId: this.idDetalle, idResultado: this.idResultado,
+        elemento: this.elemento, sistema: this.sistema, editar: true
+      });
+    }
+    //  this.recomendaciones = this.navParams.get('recomendaciones');
 
   }
 

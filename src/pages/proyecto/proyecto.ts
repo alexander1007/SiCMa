@@ -23,14 +23,25 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'proyecto.html',
 })
 export class ProyectoPage {
+  proyectoId: any;
   usuarioId: any;
   fecha: string;
+  editar: boolean = false;
   @ViewChild(Navbar) navBar: Navbar;
   cliente: any;
   identificacion: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public proyectoService: ProyectoService, private platform: Platform, private alertCtrl: AlertController,
     public storage: Storage) {
+
+    this.editar = this.navParams.get('editar');
+    if (this.editar) {
+      this.cliente = this.navParams.get('cliente');
+      this.identificacion = this.navParams.get('identificacion');
+    }
+
+
+
     this.fecha = moment().format('YYYY/MM/DD H:mm:ss');
     this.alertaInfoApp();
     // obtenemos el id del usuario autenticado
@@ -66,14 +77,23 @@ export class ProyectoPage {
       alert.present();
       return;
     }
-    var proyecto = {
+    let proyecto = {
       cliente: this.cliente,
       identificacion: this.identificacion,
       fecha: this.fecha,
       usuarioId: this.usuarioId
     }
-    this.proyectoService.guardarProyecto(proyecto);
-    this.navCtrl.push(ElementoPage);
+    if(!this.editar){
+      this.proyectoService.guardarProyecto(proyecto);
+    }else{
+          // obtenemos el id del proyecto creado
+    this.storage.get('idProyecto').then((val) => {
+      this.proyectoId = val;
+      this.proyectoService.editarProyecto(proyecto, this.proyectoId);
+    });
+    }
+
+    this.navCtrl.push(ElementoPage, { cliente: this.cliente, identificacion: this.identificacion });
   }
 
 

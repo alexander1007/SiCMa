@@ -27,6 +27,8 @@ import { ProyectoPage } from '../proyecto/proyecto';
   templateUrl: 'elemento.html',
 })
 export class ElementoPage {
+  identificacion: any;
+  cliente: any;
   usuarioId: any;
   proyectoId: any;
   @ViewChild(Navbar) navBar: Navbar;
@@ -41,6 +43,8 @@ export class ElementoPage {
     public db: AngularFireDatabase,
     public menu: MenuController
   ) {
+    this.cliente = this.navParams.get('cliente');
+    this.identificacion = this.navParams.get('identificacion');
     this.menu1Active();
 
     this.elementoService.getListaElementos().valueChanges()
@@ -81,7 +85,7 @@ export class ElementoPage {
       idUsuario: this.usuarioId,
       elemento: elemento.nombre
     }
-    this.navCtrl.push(SistemasPage, { elemento: elemento.key, infoSave: infoSave });
+    this.navCtrl.push(SistemasPage, { elemento: elemento, infoSave: infoSave });
 
   }
 
@@ -96,7 +100,7 @@ export class ElementoPage {
   }
   ionViewDidLoad() {
     this.navBar.backButtonClick = (ev: UIEvent) => {
-      this.navCtrl.push(ProyectoPage);
+      this.navCtrl.push(ProyectoPage, { cliente: this.cliente, identificacion: this.identificacion, editar: true });
     }
   }
 

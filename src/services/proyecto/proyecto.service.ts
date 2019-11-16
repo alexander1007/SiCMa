@@ -36,9 +36,11 @@ export class ProyectoService {
         materiales.id = key;
         materiales.idDetalle = detalleId;
         this.db.database.ref('resultadoProyectos/' + materiales.id).set(materiales);
+        return key;
     }
 
     actualizarValorDetalle(detalleProducto) {
+        console.log('detalkle0', detalleProducto);
         this.db.database.ref('detalleProyectos/' + detalleProducto.id).set(detalleProducto);
 
     }
@@ -57,4 +59,16 @@ export class ProyectoService {
         return this.db.list('/resultadoProyectos/', ref => ref.orderByChild('idDetalle').equalTo(id));
 
     }
+
+    editarProyecto(proyecto, id) {
+        this.db.database.ref('proyectos/' + id).set(proyecto);
+
+    }
+    eliminarResultado(id) {
+        this.db.database.ref('resultadoProyectos/' + id).remove();
+    }
+    eliminarDetalle(id) {
+        this.db.database.ref('detalleProyectos/' + id).remove();
+    }
+
 }

@@ -9,8 +9,8 @@ export class ListaSistemasService {
     constructor(private db: AngularFireDatabase) {
     }
 
-    getListaSistemaxElemento(elemento: string) {
+    getListaSistemaxElemento(elemento: any) {
 
-        return this.db.list('/sistemas/', ref => ref.orderByChild('elemento').equalTo(elemento));
+        return this.db.list('/sistemas/', ref => ref.orderByChild('elemento').equalTo(elemento['key']));
     }
 }
