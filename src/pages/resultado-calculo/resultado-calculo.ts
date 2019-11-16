@@ -101,5 +101,7 @@ export class ResultadoCalculoPage {
   }
 
 
-
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
+  }
 }

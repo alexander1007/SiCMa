@@ -1,8 +1,13 @@
 <ion-header style="    margin-top: -12px;">
 
   <ion-navbar>
-    <ion-title class="aling_left">Historial </ion-title>
+    <div class="separado-flex">
+      <ion-title class="aling_left">Historial </ion-title>
+      <button (click)="irAlInicio()" ion-button class="style-btn-home">
+        <ion-icon name='home'></ion-icon>
 
+      </button>
+    </div>
   </ion-navbar>
 
 </ion-header>
@@ -10,16 +15,23 @@
 <ion-content padding class="card-background-page fondo">
 
   <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
-  <ion-card *ngFor="let proyecto of proyectos$" class="style-card" (click)="abrirDetalleProyecto(proyecto.id)">
-    <p class="style-p center " style="    font-weight: bold;">Proyecto</p>
+  <ion-card *ngFor="let proyecto of proyectos$" class="style-card">
+    <div class="separado-flex">
+      <p class="style-p center " style="    font-weight: bold;">Proyecto</p>
+      <button (click)="confirmareQuitarProyecto(proyecto)" ion-button class="style-boton-quitar" size="small">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+    </div>
+    <ion-card-content style="margin-top: -38px;" (click)="abrirDetalleProyecto(proyecto.id, proyecto.cliente, proyecto.identificacion)">
 
-    <ion-label class="style-label">
-      {{proyecto.fecha}}
-    </ion-label>
-    <h4 class="style-h4">
-      {{proyecto.cliente}}
-    </h4>
-    <p class="style-p">{{proyecto.identificacion}}</p>
+      <ion-label class="style-label">
+        {{proyecto.fecha}}
+      </ion-label>
+      <h4 class="style-h4">
+        {{proyecto.cliente}}
+      </h4>
+      <p class="style-p">{{proyecto.identificacion}}</p>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>

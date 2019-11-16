@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { Storage } from '@ionic/storage';
 import { DetalleProyectoPage } from '../detalle-proyecto/detalle-proyecto';
+import { InicioPage } from '../inicio/inicio';
 
 /**
  * Generated class for the HistorialPage page.
@@ -22,6 +23,7 @@ export class HistorialPage {
   proyectos: any = [];
   usuarioId: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private alertCtrl: AlertController,
     public proyectoService: ProyectoService, public storage: Storage) {
     // obtenemos el id del usuario autenticado
     this.storage.get('idUsuario').then((val) => {
@@ -64,9 +66,36 @@ export class HistorialPage {
     }
   }
   //
-  abrirDetalleProyecto(proyectoId) {
-    this.navCtrl.push(DetalleProyectoPage, { proyectoId: proyectoId });
+  abrirDetalleProyecto(proyectoId, cliente, identificacion) {
+    this.navCtrl.push(DetalleProyectoPage, { proyectoId: proyectoId, cliente: cliente, identificacion: identificacion });
   }
 
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
+  }
 
+  confirmareQuitarProyecto(proyecto) {
+    const alert = this.alertCtrl.create({
+      title: 'PlaCMa',
+      subTitle: '¿Está seguro que desea quitar este elemento?',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => {
+            this.quitarProyecto(proyecto);
+          }
+        },
+        {
+          text: 'No'
+        }
+      ]
+    });
+    alert.present();
+  }
+  quitarProyecto(proyecto) {
+    console.log(proyecto);
+    this.proyectoService.eliminarProyuecto(proyecto['id']);
+
+
+  }
 }

@@ -1,8 +1,13 @@
 <ion-header style="    margin-top: -12px;">
 
   <ion-navbar>
-    <ion-title class="aling_left">Detalle Proyecto </ion-title>
+    <div class="separado-flex">
+      <ion-title class="aling_left">Detalle Proyecto </ion-title>
+      <button (click)="irAlInicio()" ion-button class="style-btn-home">
+        <ion-icon name='home'></ion-icon>
 
+      </button>
+    </div>
   </ion-navbar>
 
 </ion-header>
@@ -30,7 +35,18 @@
               ==''? ' ':'m' }} </p>
           </ion-col>
         </ion-row>
-
+        <ion-row>
+          <ion-col col-6>
+            <button (click)="confirmareEditarDetalle(detalle)" ion-button class="style-boton-editar" size="small">
+              <ion-icon name='create'></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-6 class="der">
+            <button (click)="confirmareQuitarDetalle(detalle)" ion-button class="style-boton-quitar" size="small">
+              <ion-icon name='trash'></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
       <ion-row>
         <ion-col col-6>
@@ -63,5 +79,10 @@
       </ion-card-content>
     </ion-card>
   </div>
+  <ion-fab right bottom>
+    <button ion-fab (click)="confirmacion('¿Está seguro que desea agregar un nuevo elemento al proyecto?')">
+      <ion-icon name="add"></ion-icon>
+    </button>
 
+  </ion-fab>
 </ion-content>

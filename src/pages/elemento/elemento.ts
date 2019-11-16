@@ -103,5 +103,7 @@ export class ElementoPage {
       this.navCtrl.push(ProyectoPage, { cliente: this.cliente, identificacion: this.identificacion, editar: true });
     }
   }
-
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
+  }
 }

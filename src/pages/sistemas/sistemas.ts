@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { MedidaMurosPage } from '../medida-muros/medida-muros';
 import { ElementoPage } from '../elemento/elemento';
+import { InicioPage } from '../inicio/inicio';
 
 /**
  * Generated class for the SistemasPage page.
@@ -117,4 +118,7 @@ export class SistemasPage {
     }
   }
 
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
+  }
 }

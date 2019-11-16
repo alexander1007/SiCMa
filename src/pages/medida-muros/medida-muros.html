@@ -1,10 +1,14 @@
 <ion-header>
 
   <ion-navbar>
+      <div class="separado-flex">
+          <ion-title class="aling_left"> {{titulo}} </ion-title>
+          <button (click)="irAlInicio()" ion-button class="style-btn-home">
+            <ion-icon name='home'></ion-icon>
+    
+          </button>
+        </div>
 
-    <ion-title class="aling_left">
-      {{titulo}}
-    </ion-title>
   </ion-navbar>
 
 </ion-header>

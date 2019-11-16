@@ -75,4 +75,14 @@ page-sistemas {
    
     
   }
+  .separado-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .style-btn-home{
+    height: 23px;
+    color: #3960a7;
+    background-color: #fafafb;
+  }
 }

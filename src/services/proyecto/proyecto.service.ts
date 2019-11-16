@@ -56,8 +56,8 @@ export class ProyectoService {
 
     }
     listarMaterialesProyecto(id) {
+        console.log('materiales ', id);
         return this.db.list('/resultadoProyectos/', ref => ref.orderByChild('idDetalle').equalTo(id));
-
     }
 
     editarProyecto(proyecto, id) {
@@ -70,5 +70,9 @@ export class ProyectoService {
     eliminarDetalle(id) {
         this.db.database.ref('detalleProyectos/' + id).remove();
     }
+    eliminarProyuecto(id) {
+        this.db.database.ref('proyectos/' + id).remove();
+    }
+
 
 }

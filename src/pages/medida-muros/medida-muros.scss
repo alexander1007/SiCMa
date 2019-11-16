@@ -141,5 +141,14 @@ page-medida-muros {
     .letra-gris{
         color: #9f9f9f;
     }
-  
+    .separado-flex{
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .style-btn-home{
+        height: 23px;
+        color: #3960a7;
+        background-color: #fafafb;
+      }
 }

@@ -8,6 +8,7 @@ import { ResultadoCalculoPage } from '../resultado-calculo/resultado-calculo';
 import { ListaRecomendacionesService } from '../../services/recomendaciones/recomendacion.service';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { SistemasPage } from '../sistemas/sistemas';
+import { InicioPage } from '../inicio/inicio';
 interface info {
   idProyecto: string,
   idUsuario: string,
@@ -176,7 +177,9 @@ export class MedidaMurosPage {
         idProyecto: this.info.idProyecto,
         idUsuario: this.info.idUsuario,
         elemento: this.info.elemento,
+        elemen: this.elemento,
         sistema: this.info.sistema,
+        siste: this.sistema,
         p_variable1: this.p_variable1,
         p_variable2: this.p_variable2,
         p_variable3: '',
@@ -191,7 +194,9 @@ export class MedidaMurosPage {
         idProyecto: this.proyectoId,
         idUsuario: this.usuarioId,
         elemento: this.elemento['nombre'],
+        elemen: this.elemento,
         sistema: this.sistema['nombre'],
+        siste: this.sistema,
         p_variable1: this.p_variable1,
         p_variable2: this.p_variable2,
         p_variable3: '',
@@ -233,7 +238,7 @@ export class MedidaMurosPage {
     // actualizar valor total presupuesto
     this.agregarValorTotal(infoSave, this.valorTotalC);
     // guarda la data resultad del calculo
-    this.guardarResultado(this.materiales);
+    this.guardarResultado(this.materiales, infoSave);
     // abre la pantalla que permite mostrar los materiales necesarios
     this.abrirResultados(this.materiales, this.valorTotalC, this.recomendaciones);
 
@@ -296,8 +301,11 @@ export class MedidaMurosPage {
    * @param infoMateriales Arreglo con la info para el resultado del proyecto
    * 
    */
-  guardarResultado(infoMateriales) {
+  guardarResultado(infoMateriales, infoSave) {
     this.idResultado = this.proyectoService.guardarResultadoProyecto(infoMateriales, this.idDetalle);
+    infoSave.idResultado = this.idResultado;
+    this.proyectoService.actualizarValorDetalle(infoSave);
+
   }
   /**
    * funcion que permite actuaizar o agregar el valor del presupuesto total
@@ -321,5 +329,8 @@ export class MedidaMurosPage {
   eliminarCalculo(idResultado) {
     this.proyectoService.eliminarResultado(idResultado);
 
+  }
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
   }
 }

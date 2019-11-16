@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, Platform, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { ElementoPage } from '../elemento/elemento';
 import { InventarioPage } from '../inventario/inventario';
 import { FileOpener } from '@ionic-native/file-opener';
@@ -11,6 +11,8 @@ import { DocumentViewer } from '@ionic-native/document-viewer';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ProyectoPage } from '../proyecto/proyecto';
+import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -41,7 +43,9 @@ export class InicioPage {
     private document: DocumentViewer,
     public loadingCtrl: LoadingController,
     private transfer: FileTransfer,
-    private iab: InAppBrowser
+    private iab: InAppBrowser,
+    private alertCtrl: AlertController,
+    private storage: Storage
   ) {
     this.menu1Active();
     this.verInventario = true;
@@ -103,6 +107,30 @@ export class InicioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioPage');
+  }
+
+  salir() {
+    this.storage.clear();
+    this.navCtrl.setRoot(LoginPage);
+  }
+
+  confirmarSalir() {
+    const alert = this.alertCtrl.create({
+      title: 'PlaCMa',
+      subTitle: '¿Está seguro que desea salir de la aplicación?',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => {
+            this.salir();
+          }
+        },
+        {
+          text: 'No'
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
