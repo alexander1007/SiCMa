@@ -1,5 +1,5 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 
 /**
@@ -26,17 +26,15 @@ export class DetalleProyectoPage {
   ];
   proyectoId: any;
   accordionExpanded = true;
-  @ViewChild("acordeon") contenido: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public proyectoService: ProyectoService,
+    private alertCtrl: AlertController,
     public renderer: Renderer) {
     this.proyectoId = this.navParams.get('proyectoId');
     this.consultarDetalle();
 
   }
 
-  ionViewDidLoad() {
 
-  }
 
   consultarDetalle() {
     this.proyectoService.listarDetalleProyecto(this.proyectoId).valueChanges()
@@ -45,29 +43,28 @@ export class DetalleProyectoPage {
         dato.map((d, idx) => {
           this.proyectoService.listarMaterialesProyecto(d['id']).valueChanges()
             .subscribe((data) => {
+              this.detalleProyecto[idx]['open'] = true;
               this.detalleProyecto[idx]['materiales'] = Object.keys(data[0]).map(function (key) {
                 return data[0][key];
               });
             });
         })
-        console.log('info', this.detalleProyecto);
       });
   }
 
-  toggleAccordion() {
-    console.log('aqui',this.accordionExpanded )
-    if (this.accordionExpanded) {
-      this.renderer.setElementStyle(this.contenido.nativeElement, "display", "none");
-    } else {
-      this.renderer.setElementStyle(this.contenido.nativeElement, "display", "block");
-
-    }
-    this.accordionExpanded = !this.accordionExpanded;
+  toggleAccordion(posicion) {
+    this.detalleProyecto[posicion]['open'] = !this.detalleProyecto[posicion]['open'];
   }
 
   verImagenMaterial(material) {
-    console.log('material ver', material);
+    const alert = this.alertCtrl.create({
+      title: material.descripcion,
+      message: '<img class="img_card img-material" src=' + material.foto + '/> ',
+      buttons: ['Aceptar']
+    });
+    alert.present();
 
   }
+
 
 }

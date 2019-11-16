@@ -56,6 +56,13 @@ page-detalle-proyecto {
         background-color: #6485c8;
         color: black;
     }
+    .color-btn-mostrar{
+        background-color: #64c874 !important;
+    }
+    .color-btn-ocultar{
+        background-color: #6485c8 !important;
+    }
+    
     .titulo-material{
         color: black;
         font-weight: 500;
@@ -70,7 +77,12 @@ page-detalle-proyecto {
         color: #078753;
         text-decoration: underline;
     }
-    .card-content{
-      display: block;
+
+
+    .abierto{
+        display: block !important;
+    }
+    .cerrado{
+        display: none !important;
     }
 }
