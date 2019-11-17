@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { ProyectoPage } from './proyecto';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { ProyectoPage } from './proyecto';
   ],
   imports: [
     IonicPageModule.forChild(ProyectoPage),
+    IonicImageViewerModule
   ],
 })
-export class ProyectoPageModule {}
+export class ProyectoPageModule { }
