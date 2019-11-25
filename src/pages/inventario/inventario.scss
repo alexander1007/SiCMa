@@ -1,34 +1,73 @@
 page-inventario {
-    .fondo{
-        background-image: url("/assets/imgs/fondo.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+  .fondo{
+    background-image: url("/assets/imgs/fondo3.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     }
-    .azulSicma{
-      background: #488aff;
-      border-radius: 75px;
-  }
-    .fondo_rojo{
-        background: rgba(229, 10, 10, 0.68);
-      }
-      .fondo_azul{
-          background: rgba(0, 120, 182, 0.75);
-        }
-  
-      .blanco{
-        color: white;
-      }
+    .toolbar-background-md{
+        background: transparent !important;
+    }
+    .header-md::after {
+        position: relative;
+    }
 
-      .desing-card{
-        background: #e6e6e6;
-    border-radius: 5px;
-    border-right: red solid 5px;
-      }
+    .separado-flex{
+      display: flex;
+      justify-content: space-between;
+    }
 
-      .negrita{
-        font-weight: bold;
-      }
-      
+    .style-btn-home{
+      height: 23px;
+      color: #3960a7;
+      background-color: #fafafb;
+    }
 
+    .style-card-cantidad{
+      padding: 8px;
+      background-color: #d1e3ff;
+      -webkit-box-shadow: 2px 2px 8px -3px #787878;
+      -moz-box-shadow:2px 2px 8px -3px #787878;
+      box-shadow: 2px 2px 8px -3px #787878;
+    }
+
+    .style-input-cantidad{
+      background-color: white;
+        height: 34px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 8px -3px #787878;
+    }
+
+     
+     .style-input-cantidad .text-input-md{
+      margin-top: 8px;
+     }
+     
+    .borde-top{
+      border-top: 8px solid #3d6bae;
+    }
+    .separado-flex{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .style-btn-add{
+      height: 34px;
+      color: #3d6bae;
+      background-color: #f8f8f8;
+      margin-top: 0px;
+      font-size: 13px;
+    }
+    .style-btn-close{
+      height: 34px;
+      color: #ae3d3d;
+      background-color: #f8f8f8;
+      margin-top: 0px;
+      font-size: 13px;
+    }
+    .style-btn-add:hover, .style-btn-close:hover{
+      background-color: #fdfdff !important;
+      border: 2px solid #151515;
+      color: #100f0f;
+    }
 }

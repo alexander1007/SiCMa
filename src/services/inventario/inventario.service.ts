@@ -3,15 +3,11 @@ import { AngularFireDatabase } from "angularfire2/database";
 //import { Sistema } from "../../app/models/sistema";
 
 @Injectable()
-export class ListaInventariosService{
+export class ListaInventariosService {
 
-constructor(private db: AngularFireDatabase) { }
+    constructor(private db: AngularFireDatabase) { }
 
-getListaInventarios(fecha:any, idInv:string ){
-
-    console.log(fecha);
-    console.log(idInv);
-
-    return this.db.list('/inventarios/inventario'+fecha+idInv);
-}
+    getListaInventarios() {
+        return this.db.list('/materiales/', ref => ref.orderByChild('cotizacion').equalTo('si'));
+    }
 }

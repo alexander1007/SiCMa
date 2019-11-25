@@ -22,6 +22,7 @@ import { HistorialPage } from '../historial/historial';
   templateUrl: 'detalle-proyecto.html',
 })
 export class DetalleProyectoPage {
+  quitar: boolean = false;
   @ViewChild(Navbar) navBar: Navbar;
   identificacion: any;
   cliente: any;
@@ -34,6 +35,7 @@ export class DetalleProyectoPage {
   ];
   proyectoId: any;
   accordionExpanded = true;
+  total: any = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, public proyectoService: ProyectoService,
     private alertCtrl: AlertController,
     private storage: Storage,
@@ -62,6 +64,11 @@ export class DetalleProyectoPage {
               .subscribe((data) => {
                 if (data.length > 0) {
                   this.detalleProyecto[idx]['open'] = true;
+
+                  if (!this.quitar) {
+                    this.total = this.total + this.detalleProyecto[idx]['valorTotal'];
+                    console.log('sumar', this.total, this.detalleProyecto[idx]['valorTotal']);
+                  }
                   this.detalleProyecto[idx]['materiales'] = Object.keys(data[0]).map(function (key) {
                     return data[0][key];
                   });
@@ -138,7 +145,7 @@ export class DetalleProyectoPage {
     alert.present();
   }
 
-  confirmareQuitarDetalle(detalle) {
+  confirmareQuitarDetalle(detalle, index) {
     const alert = this.alertCtrl.create({
       title: 'PlaCMa',
       subTitle: '¿Está seguro que desea quitar este elemento?',
@@ -146,7 +153,7 @@ export class DetalleProyectoPage {
         {
           text: 'Si',
           handler: () => {
-            this.quitarDetalle(detalle);
+            this.quitarDetalle(detalle, index);
           }
         },
         {
@@ -156,10 +163,14 @@ export class DetalleProyectoPage {
     });
     alert.present();
   }
-  quitarDetalle(detalle) {
+  quitarDetalle(detalle, index) {
+    console.log('quitar', this.total, this.detalleProyecto[index]['valorTotal']);
+    this.quitar = true;
+    this.total = this.total - this.detalleProyecto[index]['valorTotal'];
     this.proyectoService.eliminarResultado(detalle['idResultado']);
     this.proyectoService.eliminarDetalle(detalle['id']);
 
 
   }
+
 }

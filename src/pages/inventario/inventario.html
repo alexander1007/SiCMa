@@ -1,43 +1,70 @@
-<!--
-  Generated template for the InventarioPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header style="    margin-top: -12px;">
 
   <ion-navbar>
-    <ion-title>Pedido</ion-title>
+    <div class="separado-flex">
+      <ion-title class="aling_left">Cotizaciones </ion-title>
+      <button (click)="irAlInicio()" ion-button class="style-btn-home">
+        <ion-icon name='home'></ion-icon>
+
+      </button>
+    </div>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="card-background-page fondo">
+  <ion-row>
+    <ion-col col-5>
 
-    <button (click)="agregarProducto()" ion-button full class="azulSicma tamano">Agregar Producto</button>
+    </ion-col>
+    <ion-col col-7>
+      <ion-item>
+        <ion-label style="text-align: right;">Agregados</ion-label>
+        <ion-toggle [disabled]="vacio" [(ngModel)]="filtro" (ionChange)="filtrar()"></ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row>
 
-    <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
-    
-    <!-- <ion-list>
-        <button ion-item *ngFor="let producto of productos" (click)="abrirPedido(producto)">
-          {{producto.nombre}}
-        </button>  
-      </ion-list> -->
-  
-<ion-card class="desing-card" *ngFor="let producto of pedido" >
-<ion-card-content>
- <h3 class="negrita">{{producto.Descripcion}}</h3>
- <ion-row>
-   <ion-col col-6><p><span> Stock: </span>{{producto.Stock}}</p></ion-col>
-   <ion-col col-6><p> <span> Precio: </span>$ {{producto.Precio}}</p></ion-col>  
- </ion-row>
- <ion-row>
-   
- </ion-row>
-</ion-card-content>
-</ion-card>
-<ion-fab right bottom>
-  <button ion-fab  (click)= "terminarPedido()"><ion-icon name="checkmark"></ion-icon></button>
-</ion-fab>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar"></ion-searchbar>
+
+  <ion-card *ngFor="let producto of productos$">
+    <ion-card-content class="borde-top">
+      <div>
+        <p>{{producto.descripcion}}</p>
+      </div>
+      <h2 style="font-weight: bold;
+      font-size: 21px;">{{producto.nombre}}</h2>
+
+      <ion-row>
+        <ion-col col-6 style="padding: 8px;">
+          <p>Valor:
+          </p>
+          <p style="font-size: 18px;">
+            <b> {{producto.valor | currency}} </b>
+          </p>
+        </ion-col>
+        <ion-col col-6 class="style-card-cantidad">
+          <p>
+            <b>Cantidad:</b>
+          </p>
+          <div class="separado-flex">
+            <ion-input [disabled]="producto.add" type="number" [(ngModel)]="producto.cantAdd" class="style-input-cantidad" (change)="agregarProducto(producto, producto.cantAdd)"></ion-input>
+            <button [hidden]="producto.add" (click)="agregarProducto(producto, producto.cantAdd)" ion-button class="style-btn-add">
+              <ion-icon name='checkmark-circle'></ion-icon>
+            </button>
+            <button [hidden]="!producto.add" (click)="quitarProducto(producto)" ion-button class="style-btn-close">
+              <ion-icon name='close-circle'></ion-icon>
+            </button>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="terminarPedido()">OK</button>
+  </ion-fab>
 </ion-content>

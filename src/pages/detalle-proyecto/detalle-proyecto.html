@@ -9,17 +9,25 @@
       </button>
     </div>
   </ion-navbar>
-
+  <div class="div-total">
+    <p class=" center color_negro style_text style_header">
+      Presupuesto total:
+      <b>{{total | currency}} Pesos </b>
+    </p>
+  </div>
 </ion-header>
 
 <ion-content padding class="card-background-page fondo">
+
   <div style="margin-top: 5em;">
     <ion-card *ngFor="let detalle of detalleProyecto let i = index">
+
       <ion-card-header class="fondo-heder">
         <h2 class="bold"> {{detalle.elemento}}</h2>
         <h4>{{detalle.sistema}}</h4>
         <h4 class="style-h4-header">
-          <ion-icon class="style-icon-dinero" name='cash'></ion-icon> {{detalle.valorTotal | currency}}</h4>
+          <ion-icon class="style-icon-dinero" name='cash'>
+          </ion-icon> {{detalle.valorTotal | currency}}</h4>
         <ion-row>
           <ion-col col-4>
             <p>
@@ -42,7 +50,7 @@
             </button>
           </ion-col>
           <ion-col col-6 class="der">
-            <button (click)="confirmareQuitarDetalle(detalle)" ion-button class="style-boton-quitar" size="small">
+            <button (click)="confirmareQuitarDetalle(detalle, i)" ion-button class="style-boton-quitar" size="small">
               <ion-icon name='trash'></ion-icon>
             </button>
           </ion-col>
