@@ -1,10 +1,12 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Navbar } from 'ionic-angular';
 import { ProyectoService } from '../../services/proyecto/proyecto.service';
 import { ElementoPage } from '../elemento/elemento';
 import { Storage } from '@ionic/storage';
 import { InicioPage } from '../inicio/inicio';
 import { MedidaMurosPage } from '../medida-muros/medida-muros';
+import { ProyectoPage } from '../proyecto/proyecto';
+import { HistorialPage } from '../historial/historial';
 
 /**
  * Generated class for the DetalleProyectoPage page.
@@ -20,7 +22,7 @@ import { MedidaMurosPage } from '../medida-muros/medida-muros';
   templateUrl: 'detalle-proyecto.html',
 })
 export class DetalleProyectoPage {
-
+  @ViewChild(Navbar) navBar: Navbar;
   identificacion: any;
   cliente: any;
   detalleProyecto: {}[] = [{
@@ -39,22 +41,25 @@ export class DetalleProyectoPage {
     this.proyectoId = this.navParams.get('proyectoId');
     this.cliente = this.navParams.get('cliente');
     this.identificacion = this.navParams.get('identificacion');
+    this.consultarDetalle();
   }
 
   ionViewDidLoad() {
-    this.consultarDetalle();
+
+    this.navBar.backButtonClick = (ev: UIEvent) => {
+      this.navCtrl.push(HistorialPage);
+    }
+
   }
 
   consultarDetalle() {
     this.proyectoService.listarDetalleProyecto(this.proyectoId).valueChanges()
       .subscribe((dato) => {
         this.detalleProyecto = dato;
-        console.log(this.detalleProyecto);
         dato.map((d, idx) => {
           if (d['id'] != undefined) {
             this.proyectoService.listarMaterialesProyecto(d['id']).valueChanges()
               .subscribe((data) => {
-                console.log(data.length);
                 if (data.length > 0) {
                   this.detalleProyecto[idx]['open'] = true;
                   this.detalleProyecto[idx]['materiales'] = Object.keys(data[0]).map(function (key) {
@@ -110,7 +115,6 @@ export class DetalleProyectoPage {
   }
 
   editarDetalle(detalle) {
-    console.log(detalle);
     this.navCtrl.push(MedidaMurosPage, { elemento: detalle.elemen, sistema: detalle.siste, editar: true, detalleId: detalle.id, idResultado: detalle.idResultado });
 
   }

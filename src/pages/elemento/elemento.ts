@@ -85,7 +85,7 @@ export class ElementoPage {
       idUsuario: this.usuarioId,
       elemento: elemento.nombre
     }
-    this.navCtrl.push(SistemasPage, { elemento: elemento, infoSave: infoSave });
+    this.navCtrl.push(SistemasPage, { elemento: elemento, infoSave: infoSave, cliente: this.cliente, identificacion: this.identificacion });
 
   }
 

@@ -50,7 +50,6 @@ export class InicioPage {
     this.menu1Active();
     this.verInventario = true;
     this.tipo = this.navParams.get('tipo');
-    console.log(this.tipo);
     if (this.tipo == 'cliente') {
       this.verInventario = false;
     }
@@ -106,7 +105,6 @@ export class InicioPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InicioPage');
   }
 
   salir() {

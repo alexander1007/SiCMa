@@ -4,6 +4,7 @@ import { ElementoPage } from '../elemento/elemento';
 import { InicioPage } from '../inicio/inicio';
 import { MedidaMurosPage } from '../medida-muros/medida-muros';
 import { ProyectoPage } from '../proyecto/proyecto';
+import { DetalleProyectoPage } from '../detalle-proyecto/detalle-proyecto';
 
 /**
  * Generated class for the ResultadoCalculoPage page.
@@ -18,6 +19,9 @@ import { ProyectoPage } from '../proyecto/proyecto';
   templateUrl: 'resultado-calculo.html',
 })
 export class ResultadoCalculoPage {
+  proyectoId: any;
+  identificacion: any;
+  cliente: any;
   sistema: any;
   elemento: any;
   idResultado: any;
@@ -38,6 +42,10 @@ export class ResultadoCalculoPage {
     this.idResultado = this.navParams.get('idResultado');
     this.elemento = this.navParams.get('elemento');
     this.sistema = this.navParams.get('sistema');
+    this.cliente = this.navParams.get('cliente');
+    this.identificacion = this.navParams.get('identificacion');
+    this.proyectoId = this.navParams.get('proyectoId');
+
 
 
     const formatter = new Intl.NumberFormat('en-US', {
@@ -58,6 +66,7 @@ export class ResultadoCalculoPage {
       title: 'PlaCMa',
       subTitle: 'Gracias por preferirnos. Seleccione: ?',
       buttons: [
+
         {
           text: 'Agregar nuevo cálculo',
           handler: () => {
@@ -68,6 +77,12 @@ export class ResultadoCalculoPage {
           text: 'Crear Nuevo Proyecto',
           handler: () => {
             this.navCtrl.push(ProyectoPage);
+          }
+        },
+        {
+          text: 'Terminar Proyecto',
+          handler: () => {
+            this.navCtrl.push(DetalleProyectoPage, { cliente: this.cliente, identificacion: this.identificacion, proyectoId: this.proyectoId });
           }
         },
         {

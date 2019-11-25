@@ -93,7 +93,6 @@ export class HistorialPage {
     alert.present();
   }
   quitarProyecto(proyecto) {
-    console.log(proyecto);
     this.proyectoService.eliminarProyuecto(proyecto['id']);
 
 

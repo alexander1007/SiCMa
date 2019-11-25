@@ -48,14 +48,12 @@ export class LoginPage {
 
   // autenticar
   ingresar(user: Usuario) {
-    console.log(user);
 
     if (user.email != null && user.password != null) {
       this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
 
         .then((success) => {
           const authObserv = this.afAuth.authState.subscribe(auth => {
-            console.log(authObserv);
             this.usuarioService.getListaUsuariosxuid(auth.uid).valueChanges()
               .subscribe(data => {
                 this.storage.set('idUsuario', auth.uid);

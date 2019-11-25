@@ -25,6 +25,8 @@ interface info {
   templateUrl: 'sistemas.html',
 })
 export class SistemasPage {
+  identificacion: any;
+  cliente: any;
   usuarioId: any;
   proyectoId: any;
   @ViewChild(Navbar) navBar: Navbar;
@@ -56,7 +58,10 @@ export class SistemasPage {
     }
     this.menu1Active();
     this.elemento = this.navParams.get('elemento');
-    this.editar = this.navParams.get('editar');
+    this.cliente = this.navParams.get('cliente');
+    this.identificacion = this.navParams.get('identificacion');
+
+
 
     this.sistemas = [];
     this.sistemaService.getListaSistemaxElemento(this.elemento).valueChanges()
@@ -97,7 +102,7 @@ export class SistemasPage {
         sistema: sistema.nombre
       }
     }
-    this.navCtrl.push(MedidaMurosPage, { sistema: sistema, elemento: this.elemento, infoSave: infoSave, editar: false });
+    this.navCtrl.push(MedidaMurosPage, { sistema: sistema, elemento: this.elemento, infoSave: infoSave, editar: false, cliente: this.cliente, identificacion: this.identificacion });
   }
 
   generarFotos(index) {

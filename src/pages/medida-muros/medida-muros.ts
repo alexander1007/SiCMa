@@ -21,6 +21,8 @@ interface info {
   templateUrl: 'medida-muros.html',
 })
 export class MedidaMurosPage {
+  identificacion: any;
+  cliente: any;
   usuarioId: any;
   proyectoId: any;
   @ViewChild(Navbar) navBar: Navbar;
@@ -66,6 +68,8 @@ export class MedidaMurosPage {
     this.elemento = this.navParams.get('elemento');
     this.sistema = this.navParams.get('sistema');
     this.editar = this.navParams.get('editar');
+    this.cliente = this.navParams.get('cliente');
+    this.identificacion = this.navParams.get('identificacion');
     // obtenemos el id del proyecto creado
     this.storage.get('idProyecto').then((val) => {
       this.proyectoId = val;
@@ -79,7 +83,6 @@ export class MedidaMurosPage {
       this.idResultado = this.navParams.get('idResultado');
       this.eliminarCalculo(this.idResultado);
     }
-    console.log('editar', this.editar);
     this.info = this.navParams.get('infoSave');
 
 
@@ -171,7 +174,6 @@ export class MedidaMurosPage {
     }
     // se crea variable para el almacenamiento
     var infoSave;
-    console.log('yhyh', this.info);
     if (!this.editar) {
       infoSave = {
         idProyecto: this.info.idProyecto,
@@ -249,7 +251,7 @@ export class MedidaMurosPage {
     this.navCtrl.push(ResultadoCalculoPage, {
       materiales: materiales, valorTotalC: valorTotalC,
       recomendaciones: recomendaciones, detalleId: this.idDetalle, idResultado: this.idResultado,
-      elemento: this.elemento, sistema: this.sistema
+      elemento: this.elemento, sistema: this.sistema, cliente: this.cliente, identificacion: this.identificacion, proyectoId: this.proyectoId
     });
 
   }

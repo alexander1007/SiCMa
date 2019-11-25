@@ -40,7 +40,6 @@ export class ProyectoService {
     }
 
     actualizarValorDetalle(detalleProducto) {
-        console.log('detalkle0', detalleProducto);
         this.db.database.ref('detalleProyectos/' + detalleProducto.id).set(detalleProducto);
 
     }
@@ -56,7 +55,6 @@ export class ProyectoService {
 
     }
     listarMaterialesProyecto(id) {
-        console.log('materiales ', id);
         return this.db.list('/resultadoProyectos/', ref => ref.orderByChild('idDetalle').equalTo(id));
     }
 
