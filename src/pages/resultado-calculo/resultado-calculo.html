@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content padding class="card-background-page fondo">
-  <ion-card class="style_card" *ngFor="let material of materiales">
+  <ion-card class="style_card" *ngFor="let material of materiales" [hidden]="!material.valorTotal > 0">
     <ion-header class="titulo-card-material">
       <h2 class="blanco">
         <b>{{material.nombre}}</b>
