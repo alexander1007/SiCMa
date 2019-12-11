@@ -43,7 +43,11 @@ export class MedidaMurosPage {
   imagenesMateriales: string[];
   materiales: any = [];
   verVar4: boolean;
-  resultadoTejas: any[];
+  resultadoTejas: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  resultadoTejasTerm: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  resultadoTejasFibr: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  resultadoTejasArq: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  resultadoTejasPVC: any[] = [0, 0, 0, 0, 0, 0, 0, 0];
 
 
 
@@ -61,6 +65,14 @@ export class MedidaMurosPage {
     this.valorTotalC = 0;
     this.elemento = this.navParams.get('elemento');
     this.sistema = this.navParams.get('sistema');
+    if (this.sistema == 'sistema7' || this.sistema == 'sistema8' || this.sistema == 'sistema9' || this.sistema == 'sistema10') {
+      const alert = this.alertCtrl.create({
+        title: 'PlaCMa',
+        subTitle: 'El LARGO es la medida que va en el mismo sentido de la caida del agua, es muy importante ingresar esta medida correctamente',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
 
 
     this.medidaService.getListaMedidasByelemento(this.elemento).valueChanges()
@@ -115,7 +127,7 @@ export class MedidaMurosPage {
 
     if (this.variable1 == undefined) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -125,8 +137,18 @@ export class MedidaMurosPage {
 
     if (isNaN(parseInt(this.variable1))) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable1 + ', debe ser numerico. Ingrese un valor. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
+
+    if (parseFloat(this.variable1) <= 0) {
+      const alert = this.alertCtrl.create({
+        title: 'PlaCMa',
+        subTitle: 'El valor del ' + this.p_variable1 + ', debe ser mayor que 0. ',
         buttons: ['OK']
       });
       alert.present();
@@ -135,7 +157,7 @@ export class MedidaMurosPage {
 
     if (this.variable2 == undefined) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable2 + ', no puede ir vacio. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -145,7 +167,7 @@ export class MedidaMurosPage {
 
     if (isNaN(parseInt(this.variable2))) {
       const alert = this.alertCtrl.create({
-        title: 'SiCMa',
+        title: 'PlaCMa',
         subTitle: 'El valor del ' + this.p_variable2 + ', debe ser numerico. Ingrese un valor. ',
         buttons: ['OK']
       });
@@ -153,13 +175,22 @@ export class MedidaMurosPage {
       return;
     }
 
+    if (parseFloat(this.variable2) <= 0) {
+      const alert = this.alertCtrl.create({
+        title: 'PlaCMa',
+        subTitle: 'El valor del ' + this.p_variable2 + ', debe ser mayor que 0. ',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
+    }
 
 
     if (this.verVar3 == true || this.verVar4 == true) {
 
       if (this.variable3 == undefined) {
         const alert = this.alertCtrl.create({
-          title: 'SiCMa',
+          title: 'PlaCMa',
           subTitle: 'El valor del ' + this.p_variable3 + ', no puede ir vacio. Ingrese un valor. ',
           buttons: ['OK']
         });
@@ -168,7 +199,7 @@ export class MedidaMurosPage {
       }
       if (isNaN(parseInt(this.variable3))) {
         const alert = this.alertCtrl.create({
-          title: 'SiCMa',
+          title: 'PlaCMa',
           subTitle: 'El valor del ' + this.p_variable3 + ', debe ser numerico. Ingrese un valor. ',
           buttons: ['OK']
         });
@@ -176,68 +207,33 @@ export class MedidaMurosPage {
         return;
       }
 
+      if (parseFloat(this.variable3) <= 0) {
+        const alert = this.alertCtrl.create({
+          title: 'PlaCMa',
+          subTitle: 'El valor del ' + this.p_variable3 + ', debe ser mayor que 0. ',
+          buttons: ['OK']
+        });
+        alert.present();
+        return;
+      }
+
+
       if (this.sistema == 'sistema7' || this.sistema == 'sistema8' || this.sistema == 'sistema9' || this.sistema == 'sistema10') {
 
         if (this.sistema == 'sistema7') {
-          this.variable3 = "1.40";
-          this.ancho = (parseFloat(this.variable1) / 1);
-          if (parseFloat(this.variable2) <= 5.9) {
-            var cantAux = ((parseFloat(this.variable2) / 5.6) * this.ancho);
-            var cantTotal = cantAux;
-            console.log(cantAux);
+          if (parseFloat(this.variable3) <= 1.40) {
+            this.ancho = (parseFloat(this.variable1) / 1);
+            var posicion = [11.65, 5.75, 0, 0, 0, 0, 0, 0];
+            this.resultadoTejasTerm = this.calcularNumTejas(posicion);
           }
-          if (parseFloat(this.variable2) > 5.9 && parseFloat(this.variable2) <= 11.8) {
-            var cantAux = ((parseFloat(this.variable2) / 11.2) * this.ancho);
-            var cantTotal = cantAux;
-            console.log(cantAux);
-          }
-          if (parseFloat(this.variable2) > 11.8) {
-            var real = (parseFloat(this.variable2) / 11.2);
-            var cantAux = (parseFloat(this.variable2) / 11.2) - (Math.trunc(parseFloat(this.variable2) / 11.2));
-            var totalL = ((Math.trunc(parseFloat(this.variable2) / 11.2)) * this.ancho);
-            var cantAux2 = cantAux * 12.39;
-            var cantAux3 = cantAux2 / 5.6 * this.ancho;
-            var cantAux4 = cantAux3 - (Math.trunc(cantAux3));
-            console.log("real");
-            console.log(real);
-            console.log("cantAux");
-            console.log(cantAux);
-            console.log("totalL");
-            console.log(totalL);
-            console.log("cantAux2");
-            console.log(cantAux2);
-            console.log("cantAux3");
-            console.log(cantAux3);
-            console.log("cantAux4");
-            console.log(cantAux4);
-
-            if (cantAux4 < 0.5) {
-              cantTotal = Math.trunc(cantAux3);
-            }
-
-            console.log("tejas x 11.8m");
-            console.log(real);
-            console.log("cantidad de tejas total x 11.8m");
-            console.log(totalL);
-            console.log("tejascantidad de tejas total x 5.9m");
-            console.log(cantAux3);
-            console.log("cantidad de tejas total x 5.9m");
-            console.log(cantTotal);
-
-          }
-          //Calculo de la cantidad total y el valor total
-          for (var index = 0; index < this.materiales.length; index++) {
-
-            this.materiales[index].cantidadTotal = totalL;
-            this.materiales[index].cantidadTotal = cantAux3;
-
-
-
-
-            // this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
-            // this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
-            // this.valorTotalC += this.materiales[index].valorTotal;
-
+          else {
+            const alert = this.alertCtrl.create({
+              title: 'PlaCMa',
+              subTitle: 'El valor de la ' + this.p_variable3 + ', debe ser menor o igual a 1.40m. ',
+              buttons: ['OK']
+            });
+            alert.present();
+            return;
           }
         }
 
@@ -246,88 +242,199 @@ export class MedidaMurosPage {
           this.ancho = (parseFloat(this.variable1) / 0.873);
 
           //solo para teja #4
-          if (this.variable3 == "1.08") {
-            var posicion = [2.91, 2.30, 1.69, 1.38, 1.08];
+          if (parseFloat(this.variable3) == 1.08) {
+            var posicion = [0, 0, 0, 2.91, 2.30, 1.69, 1.38, 1.08];
             this.resultadoTejas = this.calcularNumTejas(posicion);
           }
 
           if (parseFloat(this.variable3) == 1.15) {
-            var posicion = [0, 2.30, 0, 0, 1.08];
+            var posicion = [0, 0, 0, 2.91, 2.30, 1.69, 1.38, 0];
             this.resultadoTejas = this.calcularNumTejas(posicion);
           }
 
           if (parseFloat(this.variable3) == 1.38) {
-            var posicion = [2.91, 0, 1.69, 1.38, 0];
+            var posicion = [0, 0, 0, 2.91, 0, 1.69, 1.38, 0];
             this.resultadoTejas = this.calcularNumTejas(posicion);
           }
 
           if (parseFloat(this.variable3) == 1.46) {
-            var posicion = [2.91, 0, 1.69, 0, 0];
+            var posicion = [0, 0, 0, 2.91, 0, 1.69, 0, 0];
             this.resultadoTejas = this.calcularNumTejas(posicion);
           }
 
           if (parseFloat(this.variable3) == 1.69) {
-            var posicion = [0, 0, 1.69, 0, 0];
-            this.resultadoTejas = this.calcularNumTejas(posicion);
+            var posicion = [0, 0, 0, 0, 0, 1.69, 0, 0];
+            this.resultadoTejasFibr = this.calcularNumTejas(posicion);
           }
-
-          console.log(this.resultadoTejas);
-
         }
 
         if (this.sistema == 'sistema9') {
-          if (this.variable3 > "1.2") {
+          if (parseFloat(this.variable3) > 1.2) {
             const alert = this.alertCtrl.create({
               title: 'SiCMa',
-              subTitle: 'El valor de la ' + this.p_variable3 + ', para este sistema es máximo 1.2m. ',
+              subTitle: 'El valor de la ' + this.p_variable3 + ', debe ser menor igual a 1.2m. ',
               buttons: ['OK']
             });
             alert.present();
             return;
+          } else {
+            this.ancho = (parseFloat(this.variable1) / 0.73);
+            var posicion = [0, 0, 5.80, 4.80, 3.80, 3.46, 2.85, 2.24];
+            this.resultadoTejasArq = this.calcularNumTejas(posicion);
           }
-          this.ancho = (parseFloat(this.variable1) / 0.73);
         }
 
         if (this.sistema == 'sistema10') {
-          if (this.variable3 > "1") {
+          if (parseFloat(this.variable3) > 1) {
             const alert = this.alertCtrl.create({
               title: 'SiCMa',
-              subTitle: 'El valor de la ' + this.p_variable3 + ', para este sistema es máximo 1m. ',
+              subTitle: 'El valor de la ' + this.p_variable3 + ', debe ser menor igual a 1.0m. ',
               buttons: ['OK']
             });
             alert.present();
             return;
           }
-          this.ancho = (parseFloat(this.variable1) / 0.873);
+          else {
+            this.ancho = (parseFloat(this.variable1) / 0.873);
+            var posicion = [0, 0, 0, 2.91, 2.30, 1.69, 1.38, 1.08];
+            this.resultadoTejasPVC = this.calcularNumTejas(posicion);
+          }
         }
+        this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
       }
 
-      else
+      else {
         //logica de la variable 3
         this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)) * (parseFloat(this.variable3)));
+      }
     }
 
     else {
       this.mtcuadrados = (parseFloat(this.variable1) * (parseFloat(this.variable2)));
     }
 
-    //declaracion de moneda
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0
-    });
+
     //Calculo de la cantidad total y el valor total
     for (var index = 0; index < this.materiales.length; index++) {
+      //SIstema 7 teja termoacustica
+      if (this.materiales[index].key == "material94") {
+        this.materiales[index].cantidadTotal = this.resultadoTejasTerm[1];
+        this.generarResultados(index);
+      }
+      else {
+        if (this.materiales[index].key == "material95") {
+          this.materiales[index].cantidadTotal = this.resultadoTejasTerm[0];
+          this.generarResultados(index);
+        }
+        else {
+          //sistema 8 teja fibrocemento
+          if (this.materiales[index].key == "material96") {
+            this.materiales[index].cantidadTotal = this.resultadoTejasFibr[7];
+            this.generarResultados(index);
+          }
+          else {
+            if (this.materiales[index].key == "material97") {
+              this.materiales[index].cantidadTotal = this.resultadoTejasFibr[6];
+              this.generarResultados(index);
+            }
+            else {
+              if (this.materiales[index].key == "material98") {
+                this.materiales[index].cantidadTotal = this.resultadoTejasFibr[5];
+                this.generarResultados(index);
+              }
+              else {
+                if (this.materiales[index].key == "material99") {
+                  this.materiales[index].cantidadTotal = this.resultadoTejasFibr[4];
+                  this.generarResultados(index);
+                }
+                else {
+                  if (this.materiales[index].key == "material100") {
+                    this.materiales[index].cantidadTotal = this.resultadoTejasFibr[3];
+                    this.generarResultados(index);
+                  }
+                  else {
+                    //Sistema 9 teja arq metalica
+                    if (this.materiales[index].key == "material101") {
+                      this.materiales[index].cantidadTotal = this.resultadoTejasArq[7];
+                      this.generarResultados(index);
+                    }
+                    else {
+                      if (this.materiales[index].key == "material102") {
+                        this.materiales[index].cantidadTotal = this.resultadoTejasArq[6];
+                        this.generarResultados(index);
+                      }
+                      else {
+                        if (this.materiales[index].key == "material103") {
+                          this.materiales[index].cantidadTotal = this.resultadoTejasArq[5];
+                          this.generarResultados(index);
+                        }
+                        else {
+                          if (this.materiales[index].key == "material104") {
+                            this.materiales[index].cantidadTotal = this.resultadoTejasArq[4];
+                            this.generarResultados(index);
+                          }
+                          else {
+                            if (this.materiales[index].key == "material105") {
+                              this.materiales[index].cantidadTotal = this.resultadoTejasArq[3];
+                              this.generarResultados(index);
+                            }
+                            else {
+                              if (this.materiales[index].key == "material107") {
+                                this.materiales[index].cantidadTotal = this.resultadoTejasArq[2];
+                                this.generarResultados(index);
+                              }
+                              else {
+                                //sistema10 teja pvc traslucido
+                                if (this.materiales[index].key == "material108") {
+                                  this.materiales[index].cantidadTotal = this.resultadoTejasPVC[7];
+                                  this.generarResultados(index);
+                                }
+                                else {
+                                  if (this.materiales[index].key == "material109") {
+                                    this.materiales[index].cantidadTotal = this.resultadoTejasPVC[6];
+                                    this.generarResultados(index);
+                                  }
+                                  else {
+                                    if (this.materiales[index].key == "material110") {
+                                      this.materiales[index].cantidadTotal = this.resultadoTejasPVC[5];
+                                      this.generarResultados(index);
+                                    }
+                                    else {
+                                      if (this.materiales[index].key == "material111") {
+                                        this.materiales[index].cantidadTotal = this.resultadoTejasPVC[4];
+                                        this.generarResultados(index);
+                                      }
+                                      else {
+                                        if (this.materiales[index].key == "material112") {
+                                          this.materiales[index].cantidadTotal = this.resultadoTejasPVC[3];
+                                          this.generarResultados(index);
+                                        }
+                                        else {
+                                          console.log('mat no teja', this.materiales[index]);
 
-      var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
+                                          var cantTotal = parseFloat((this.materiales[index].cantidadxM2)) * (this.mtcuadrados);
+                                          this.materiales[index].cantidadTotal = cantTotal;
+                                          this.generarResultados(index);
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 
-      this.materiales[index].cantidadTotal = cantTotal;
 
-
-      this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
-      this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
-      this.valorTotalC += this.materiales[index].valorTotal;
 
     }
 
@@ -341,7 +448,19 @@ export class MedidaMurosPage {
 
 
   }
+  generarResultados(index) {
+    //declaracion de moneda
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    });
 
+    this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
+    this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
+    this.valorTotalC += this.materiales[index].valorTotal;
+
+  }
   abrirResultados(materiales, valorTotalC, recomendaciones) {
 
     this.navCtrl.push(ResultadoCalculoPage, { materiales: materiales, valorTotalC: valorTotalC, recomendaciones: recomendaciones });
@@ -472,6 +591,7 @@ export class MedidaMurosPage {
 
 
   ionViewDidLoad() {
+
     this.mtcuadrados = 0;
     this.valorTotalC = 0;
     this.verVar3 = false;
