@@ -300,7 +300,7 @@ export class MedidaMurosPage {
             alert.present();
             return;
           }
-        }
+        } jk
 
         if (this.sistema['key'] == 'sistema8') {
 
