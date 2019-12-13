@@ -59,11 +59,12 @@ export class DetalleProyectoPage {
       .subscribe((dato) => {
         this.detalleProyecto = dato;
         dato.map((d, idx) => {
+          this.detalleProyecto[idx]['open'] = true;
           if (d['id'] != undefined) {
             this.proyectoService.listarMaterialesProyecto(d['id']).valueChanges()
               .subscribe((data) => {
                 if (data.length > 0) {
-                  this.detalleProyecto[idx]['open'] = true;
+
 
                   if (!this.quitar) {
                     this.total = this.total + this.detalleProyecto[idx]['valorTotal'];
