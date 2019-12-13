@@ -60,6 +60,8 @@ import { ProyectoService } from '../services/proyecto/proyecto.service';
 import { HistorialPageModule } from '../pages/historial/historial.module';
 import { DetalleProyectoPageModule } from '../pages/detalle-proyecto/detalle-proyecto.module';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import { ManualesPageModule } from '../pages/manuales/manuales.module';
+import { ManualService } from '../services/manual/manual.service';
 
 
 
@@ -89,6 +91,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     DetalleProyectoPageModule,
+    ManualesPageModule,
     IonicImageViewerModule,
     IonicStorageModule.forRoot()
   ],
@@ -105,6 +108,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     ListaMedidasService,
     ListaSistemasService,
     ProyectoService,
+    ManualService,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

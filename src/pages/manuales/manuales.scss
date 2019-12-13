@@ -1,0 +1,154 @@
+page-manuales {
+    .card-background-page {
+
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+      
+        .card-title {
+          position: absolute;
+          top: 36%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: #222;
+        }
+      
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 52%;
+          width: 100%;
+          color: #fff;
+        }
+      
+      }
+
+
+      .fondo{
+        background-image: url("/assets/imgs/fondo1.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .fondo_rojo{
+      background: rgba(229, 10, 10, 0.68);
+    }
+    .fondo_azul{
+        background: rgba(0, 120, 182, 0.75)
+      }
+
+    .blanco{
+      color: white;
+    }
+
+    .toolbar-background-md{
+        background: transparent !important;
+    }
+
+    .header-md::after {
+        position: relative;
+    }
+    .toolbar-title .toolbar-title-md{
+        color:white;
+    }
+    .back-button{
+        color:white;
+    }
+    .margin_ri_34{
+        margin-right: 34px;
+    }
+    .margin_ri_39{
+        margin-right: 39px;
+    }
+
+    .aling_left{
+        text-align: left;
+    }
+
+    .tope{
+        margin-top: 22em;
+    }
+    .azulSicma{
+        background: #0078b6;
+        border-radius: 5px;
+    }
+    .login{
+        border-radius: 5px;
+        color: black;
+        -webkit-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        -moz-box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        box-shadow: 5px 5px 5px 0px rgba(173,173,173,1);
+        margin-bottom: 10px;
+    }
+
+    .tamano{
+        height: 47px;
+    }
+    .fondo_rojo{
+        background: rgba(229, 10, 10, 1);
+      }
+      .text-right{
+        text-align: right; 
+    }
+    .colorLetra{
+ color: #0078b6;
+    }
+
+    .style_font{
+        color: black !important;
+    font-size: 20px  !important;
+    }
+
+    .style_img{
+        padding: 10px;
+        width: 87%;
+        height: 248px;
+        margin-top: 24%;
+        margin-left: 6%;
+        margin-right: auto;
+        border-radius: 29px;
+    }
+
+    .color_negro{
+        color:black;
+    }
+    .margin_top8{
+        margin-top: 8px;
+    }
+    .style_header {
+        font-size: 17px !important;
+        margin-bottom: 7px !important;
+    }
+
+
+        .div-descripcion{
+            margin-bottom: 22px;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+  
+            
+          }
+    .aling_center{
+        text-align: center;
+    }
+
+    .letra-gris{
+        color: #9f9f9f;
+    }
+    .separado-flex{
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .style-btn-home{
+        height: 23px;
+        color: #3960a7;
+        background-color: #fafafb;
+      }
+}

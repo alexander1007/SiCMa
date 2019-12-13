@@ -13,6 +13,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ProyectoPage } from '../proyecto/proyecto';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
+import { ManualesPage } from '../manuales/manuales';
 
 
 
@@ -67,7 +68,11 @@ export class InicioPage {
 
   abrirInventario() {
     this.navCtrl.push(InventarioPage);
-  } options
+  }
+  abrirManuales() {
+    this.navCtrl.push(ManualesPage);
+
+  }
 
 
   openFile() {

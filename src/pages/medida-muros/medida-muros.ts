@@ -87,6 +87,7 @@ export class MedidaMurosPage {
     this.storage.get('idUsuario').then((val) => {
       this.usuarioId = val;
     });
+    console.log(this.editar, this.idDetalle, this.idResultado, this.elemento, this.sistema);
     if (this.editar) {
       this.idDetalle = this.navParams.get('detalleId');
       this.idResultado = this.navParams.get('idResultado');
@@ -252,7 +253,8 @@ export class MedidaMurosPage {
 
 
     if (this.verVar3 == true || this.verVar4 == true) {
-
+      infoSave.p_variable3 = this.p_variable3;
+      infoSave.variable3 = this.variable3;
       if (this.variable3 == undefined) {
         const alert = this.alertCtrl.create({
           title: 'PlaCMa',
@@ -523,7 +525,7 @@ export class MedidaMurosPage {
       minimumFractionDigits: 0
     });
 
-    this.materiales[index].valorTotal = (this.materiales[index].valor) * (this.materiales[index].cantidadTotal);
+    this.materiales[index].valorTotal = Math.ceil((this.materiales[index].valor) * (this.materiales[index].cantidadTotal));
     this.materiales[index].valorTotalS = formatter.format(parseFloat(this.materiales[index].valorTotal)) // "$1,000.00" 
     this.valorTotalC += this.materiales[index].valorTotal;
 
@@ -704,7 +706,7 @@ export class MedidaMurosPage {
     if (this.editar) {
       infoSave.id = this.idDetalle;
     }
-    infoSave.valorTotal = valorTotal;
+    infoSave.valorTotal = Math.ceil(valorTotal);
     this.proyectoService.actualizarValorDetalle(infoSave);
 
   }

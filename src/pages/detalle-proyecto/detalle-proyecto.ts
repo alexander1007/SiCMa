@@ -58,17 +58,16 @@ export class DetalleProyectoPage {
     this.proyectoService.listarDetalleProyecto(this.proyectoId).valueChanges()
       .subscribe((dato) => {
         this.detalleProyecto = dato;
+
         dato.map((d, idx) => {
           this.detalleProyecto[idx]['open'] = true;
           if (d['id'] != undefined) {
             this.proyectoService.listarMaterialesProyecto(d['id']).valueChanges()
               .subscribe((data) => {
                 if (data.length > 0) {
-
-
                   if (!this.quitar) {
+                    console.log('quitar ', this.quitar, this.detalleProyecto[idx]);
                     this.total = this.total + this.detalleProyecto[idx]['valorTotal'];
-                    console.log('sumar', this.total, this.detalleProyecto[idx]['valorTotal']);
                   }
                   this.detalleProyecto[idx]['materiales'] = Object.keys(data[0]).map(function (key) {
                     return data[0][key];
@@ -123,11 +122,13 @@ export class DetalleProyectoPage {
   }
 
   editarDetalle(detalle) {
+    console.log(detalle);
     this.navCtrl.push(MedidaMurosPage, { elemento: detalle.elemen, sistema: detalle.siste, editar: true, detalleId: detalle.id, idResultado: detalle.idResultado });
 
   }
 
   confirmareEditarDetalle(detalle) {
+
     const alert = this.alertCtrl.create({
       title: 'PlaCMa',
       subTitle: '¿Está seguro que desea editar las medidas de este elemento?',
