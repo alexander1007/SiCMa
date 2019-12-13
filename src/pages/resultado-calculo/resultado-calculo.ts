@@ -64,7 +64,7 @@ export class ResultadoCalculoPage {
 
     const alert = this.alertCtrl.create({
       title: 'PlaCMa',
-      subTitle: 'Gracias por preferirnos. Seleccione: ?',
+      subTitle: 'Gracias por preferirnos. Seleccione:',
       buttons: [
 
         {

@@ -182,22 +182,20 @@ export class InventarioPage {
     // preparar productos
     let info = new Array();
     let titulo = [
-      { text: 'Producto', style: 'tableHeader' },
       { text: 'Descripción', style: 'tableHeader' },
-      { text: 'Valor U.', style: 'tableHeader' },
       { text: 'Cantidad', style: 'tableHeader' },
+      { text: 'Valor U.', style: 'tableHeader' },
       { text: 'Valor Total', style: 'tableHeader' }
 
     ];
     info.push(titulo);
     for (let i = 0; i < this.productosAgregados.length; i++) {
       this.valorTotal = this.valorTotal + (this.productosAgregados[i]['valor'] * this.productosAgregados[i]['cantidad']);
-      info.push([this.productosAgregados[i]['nombre'], this.productosAgregados[i]['descripcion'], '$ ' + Number(this.productosAgregados[i]['valor']).toLocaleString('en'),
-      this.productosAgregados[i]['cantidad'], '$ ' + Number(this.productosAgregados[i]['valor'] * this.productosAgregados[i]['cantidad']).toLocaleString('en')]);
+      info.push([this.productosAgregados[i]['descripcion'], this.productosAgregados[i]['cantidad'], '$ ' + Number(this.productosAgregados[i]['valor']).toLocaleString('en'),
+      '$ ' + Number(this.productosAgregados[i]['valor'] * this.productosAgregados[i]['cantidad']).toLocaleString('en')]);
     }
 
     let footerTable = [
-      { text: '', style: 'tableHeader' },
       { text: '', style: 'tableHeader' },
       { text: '', style: 'tableHeader' },
       { text: 'Total', style: 'total' },
@@ -265,7 +263,7 @@ export class InventarioPage {
         {
           style: 'tableExample',
           table: {
-            widths: [100, 100, 100, 50, 100],
+            widths: [200, 50, 100, 100],
             body: info
 
           }
