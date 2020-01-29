@@ -9,6 +9,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { InicioPage } from '../inicio/inicio';
 /**
  * Generated class for the ManualesPage page.
  *
@@ -82,6 +83,11 @@ export class ManualesPage {
     this.presentLoading();
     let ruta = encodeURIComponent(url);
     this.iab.create('https://docs.google.com/viewer?url=' + ruta);
+
+  }
+
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
 
   }
 

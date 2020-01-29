@@ -66,7 +66,6 @@ export class DetalleProyectoPage {
               .subscribe((data) => {
                 if (data.length > 0) {
                   if (!this.quitar) {
-                    console.log('quitar ', this.quitar, this.detalleProyecto[idx]);
                     this.total = this.total + this.detalleProyecto[idx]['valorTotal'];
                   }
                   this.detalleProyecto[idx]['materiales'] = Object.keys(data[0]).map(function (key) {
@@ -122,7 +121,6 @@ export class DetalleProyectoPage {
   }
 
   editarDetalle(detalle) {
-    console.log(detalle);
     this.navCtrl.push(MedidaMurosPage, { elemento: detalle.elemen, sistema: detalle.siste, editar: true, detalleId: detalle.id, idResultado: detalle.idResultado });
 
   }
@@ -166,7 +164,6 @@ export class DetalleProyectoPage {
     alert.present();
   }
   quitarDetalle(detalle, index) {
-    console.log('quitar', this.total, this.detalleProyecto[index]['valorTotal']);
     this.quitar = true;
     this.total = this.total - this.detalleProyecto[index]['valorTotal'];
     this.proyectoService.eliminarResultado(detalle['idResultado']);

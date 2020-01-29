@@ -87,12 +87,7 @@ export class MedidaMurosPage {
     this.storage.get('idUsuario').then((val) => {
       this.usuarioId = val;
     });
-    console.log(this.editar, this.idDetalle, this.idResultado, this.elemento, this.sistema);
-    if (this.editar) {
-      this.idDetalle = this.navParams.get('detalleId');
-      this.idResultado = this.navParams.get('idResultado');
-      this.eliminarCalculo(this.idResultado);
-    }
+
     this.info = this.navParams.get('infoSave');
 
     if (this.sistema['key'] == 'sistema7' || this.sistema['key'] == 'sistema8' || this.sistema['key'] == 'sistema9' || this.sistema['key'] == 'sistema10') {
@@ -150,6 +145,13 @@ export class MedidaMurosPage {
     this.menu.enable(false);
   }
   calcularMateriales() {
+
+    console.log(this.editar, this.idDetalle, this.idResultado, this.elemento, this.sistema);
+    if (this.editar) {
+      this.idDetalle = this.navParams.get('detalleId');
+      this.idResultado = this.navParams.get('idResultado');
+      this.eliminarCalculo(this.idResultado);
+    }
     //Validacion de campos vacios y que sean valores numericos
     this.mtcuadrados = 0;
     this.valorTotalC = 0;
@@ -669,6 +671,7 @@ export class MedidaMurosPage {
     this.valorTotalC = 0;
     this.verVar3 = false;
     this.navBar.backButtonClick = (ev: UIEvent) => {
+
       this.eliminarDetalle(this.idDetalle);
       this.navCtrl.push(SistemasPage, { elemento: this.elemento, editar: true });
     }
@@ -720,6 +723,7 @@ export class MedidaMurosPage {
 
   }
   irAlInicio() {
+
     this.navCtrl.push(InicioPage);
   }
 }

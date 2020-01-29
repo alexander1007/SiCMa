@@ -9,6 +9,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
+import { InicioPage } from '../inicio/inicio';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -334,4 +335,9 @@ export class InventarioPage {
     loader.present();
   }
 
+
+  irAlInicio() {
+    this.navCtrl.push(InicioPage);
+
+  }
 }

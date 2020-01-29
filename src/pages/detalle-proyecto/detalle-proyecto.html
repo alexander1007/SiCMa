@@ -29,18 +29,34 @@
           <ion-icon class="style-icon-dinero" name='cash'>
           </ion-icon> {{detalle.valorTotal | currency}}</h4>
         <ion-row>
-          <ion-col col-4>
+          <ion-col col-3>
             <p>
-              <b>{{detalle.p_variable1}} = </b> {{detalle.variable1}} m </p>
+              <b>{{detalle.p_variable1}}</b>
+            </p>
           </ion-col>
-          <ion-col col-4>
+          <ion-col col-3>
             <p>
-              <b>{{detalle.p_variable2}} = </b> {{detalle.variable2}} m </p>
+              <b>{{detalle.p_variable2}} </b>
+            </p>
           </ion-col>
-          <ion-col col-4>
+          <ion-col col-6>
             <p>
-              <b>{{detalle.p_variable3}} {{detalle.p_variable3 ==''? ' ':'=' }} </b> {{detalle.variable3}} {{detalle.p_variable3
-              ==''? ' ':'m' }} </p>
+              <b>{{detalle.p_variable3}} {{detalle.p_variable3 ==''? ' ':'' }} </b>
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: -13px;">
+          <ion-col col-3>
+            <p>
+              {{detalle.variable1}} m </p>
+          </ion-col>
+          <ion-col col-3>
+            <p>
+              {{detalle.variable2}} m </p>
+          </ion-col>
+          <ion-col col-6>
+            <p>
+              {{detalle.variable3}} {{detalle.p_variable3 ==''? ' ':'m' }} </p>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -67,7 +83,7 @@
         </ion-col>
       </ion-row>
       <ion-card-content class="color-content" [ngClass]="detalle.open ? 'abierto': 'cerrado'">
-        <ion-card *ngFor="let material of detalle['materiales']" [hidden]="!material.cantidadTotal > 0">
+        <ion-card *ngFor="let material of detalle['materiales']" [hidden]="!material.cantidadTotal > 0 ||  material.cantidadTotal == '0.00'">
           <div class="separado-flex">
             <p class="titulo-material">{{material.descripcion}}</p>
             <a class="style-boton-ver" (click)="verImagenMaterial(material)">Ver</a>
