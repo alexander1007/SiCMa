@@ -4,7 +4,6 @@ describe("test2", () => {
     var validar;
     var email = 'Alex@s.com'
     var patron = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-
     it("prueba para campo email sea email", () => {
         if (email.search(patron) == 0) {
             validar = true;
